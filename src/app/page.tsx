@@ -1,68 +1,61 @@
-import Image from "next/image";
-
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
+    <div className="min-h-screen bg-background text-foreground flex flex-col items-center justify-center p-6 sm:p-12">
+      {/* Container-ka guud */}
+      <main className="w-full max-w-2xl flex flex-col items-center text-center gap-8">
+        
+        {/* 1. Badge / Secondary Tag */}
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-secondary text-secondary-foreground text-xs font-semibold tracking-wide border border-border">
+          <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+          Suuqify Design System
+        </div>
+
+        {/* 2. Cinwaanka Weyn & Faahfaahinta */}
+        <div className="space-y-3">
+          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight">
+            Dukaankaaga Online-ka ah, <br />
+            <span className="text-primary">Hal Gujiso Ku Bilow</span>
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="text-muted-foreground text-base sm:text-lg max-w-lg mx-auto">
+            Madal casri ah oo fududaynaysa iibka ganacsatada TikTok & Instagram adoo isticmaalaya WhatsApp fariin diyaarsan.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        {/* 3. Badhamada (Primary & Secondary Buttons) */}
+        <div className="flex flex-col sm:flex-row gap-3.5 w-full sm:w-auto">
+          {/* Primary Button */}
+          <button className="h-12 px-7 rounded-xl bg-primary text-primary-foreground font-medium transition-all hover:opacity-90 shadow-sm active:scale-95">
+            Dukaan Abuur Hadda
+          </button>
+
+          {/* Secondary Button */}
+          <button className="h-12 px-7 rounded-xl bg-secondary text-secondary-foreground font-medium transition-all hover:bg-secondary/80 border border-border active:scale-95">
+            Fiiri Dukaamada VIP
+          </button>
         </div>
+
+        {/* 4. Tusaale Kaadhka Alaabta (Card Preview) */}
+        <div className="w-full max-w-sm mt-6 p-4 rounded-2xl bg-card border border-border shadow-sm text-left">
+          <div className="w-full h-44 rounded-xl bg-muted flex items-center justify-center text-muted-foreground font-medium">
+            Sawirka Alaabta (Image)
+          </div>
+          
+          <div className="mt-4 space-y-2">
+            <div className="flex items-center justify-between">
+              <h3 className="font-semibold text-lg">Cadar Carfiye VIP</h3>
+              <span className="text-primary font-bold text-lg">$25.00</span>
+            </div>
+            <p className="text-muted-foreground text-sm">
+              Cadar caraf macaan leh oo maalintii oo dhan kugu haraya.
+            </p>
+
+            {/* Batoonka WhatsApp-ka */}
+            <button className="w-full mt-3 h-11 rounded-xl bg-primary text-primary-foreground font-medium flex items-center justify-center gap-2 hover:opacity-90 transition-all">
+              Kala xiriir WhatsApp
+            </button>
+          </div>
+        </div>
+
       </main>
     </div>
   );
