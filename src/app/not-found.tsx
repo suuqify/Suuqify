@@ -1,8 +1,13 @@
+"use client";
+
 import Link from "next/link";
-import { Home, SearchX, ShoppingBag, PlusCircle } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { ArrowLeft, SearchX, ShoppingBag, PlusCircle } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 
 export default function NotFound() {
+    const router = useRouter();
+
     return (
         <div className="relative flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center px-4 py-16 sm:px-6 lg:px-8">
             {/* Background glow */}
@@ -36,16 +41,17 @@ export default function NotFound() {
                 </div>
 
                 <div className="mt-8 flex w-full flex-col gap-3.5 sm:w-auto sm:flex-row sm:items-center">
-                    <Link
-                        href="/"
+                    <button
+                        type="button"
+                        onClick={() => router.back()}
                         className={buttonVariants({
                             size: "lg",
-                            className: "h-12 px-7 text-base font-semibold rounded-xl gap-2.5 shadow-sm active:scale-[0.98] transition-all",
+                            className: "h-12 px-7 text-base font-semibold rounded-xl gap-2.5 shadow-sm active:scale-[0.98] transition-all cursor-pointer",
                         })}
                     >
-                        <Home className="h-5 w-5" />
-                        <span>Ku Laabo Bogga Hore</span>
-                    </Link>
+                        <ArrowLeft className="h-5 w-5" />
+                        <span>Dib u Laabo</span>
+                    </button>
 
                     <Link
                         href="/signin"
