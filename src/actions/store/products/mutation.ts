@@ -12,6 +12,21 @@ interface ProductInput {
     in_stock?: boolean;
 }
 
+// Helper function: Ka soo bixi path-ka saxda ah ee sawirka Supabase Storage URL
+function extractStoragePath(url: string, bucketName: string): string | null {
+    try {
+        const parsed = new URL(url);
+        const token = `/${bucketName}/`;
+        const index = parsed.pathname.indexOf(token);
+        if (index !== -1) {
+            return decodeURIComponent(parsed.pathname.substring(index + token.length));
+        }
+        return null;
+    } catch {
+        return null;
+    }
+}
+
 // 1. Abuur Alaab Cusub
 export async function createProductAction(data: ProductInput) {
     const supabase = await createClient();
@@ -46,7 +61,7 @@ export async function createProductAction(data: ProductInput) {
     return { success: true };
 }
 
-// 2. Wax ka beddel Alaabta
+// 2. Wax ka beddel Alaabta (haddii sawir cusub la geliyo, kii hore waa la tirtirayaa)
 export async function updateProductAction(id: string, data: ProductInput) {
     const supabase = await createClient();
 
@@ -54,6 +69,24 @@ export async function updateProductAction(id: string, data: ProductInput) {
         data: { user },
     } = await supabase.auth.getUser();
     if (!user) return { success: false, error: "Fadlan soo gal nidaamka" };
+
+    // Soo qaado sawirkii hore si loo hubiyo haddii la beddelay
+    const { data: currentProduct } = await supabase
+        .from("products")
+        .select("image")
+        .eq("id", id)
+        .single();
+
+    if (
+        currentProduct?.image &&
+        data.image !== undefined &&
+        data.image !== currentProduct.image
+    ) {
+        const oldPath = extractStoragePath(currentProduct.image, "products");
+        if (oldPath) {
+            await supabase.storage.from("products").remove([oldPath]);
+        }
+    }
 
     const { error } = await supabase
         .from("products")
@@ -74,7 +107,7 @@ export async function updateProductAction(id: string, data: ProductInput) {
     return { success: true };
 }
 
-// 3. Tirtir Alaabta
+// 3. Tirtir Alaabta + Sawirkeeda ku jira Storage
 export async function deleteProductAction(id: string) {
     const supabase = await createClient();
 
@@ -83,6 +116,22 @@ export async function deleteProductAction(id: string) {
     } = await supabase.auth.getUser();
     if (!user) return { success: false, error: "Fadlan soo gal nidaamka" };
 
+    // 1. Soo qaad xogta alaabta si aynu u helno URL-ka sawirka
+    const { data: product } = await supabase
+        .from("products")
+        .select("image")
+        .eq("id", id)
+        .single();
+
+    // 2. Haddii ay sawir leedahay, ka masax Supabase Storage
+    if (product?.image) {
+        const path = extractStoragePath(product.image, "products");
+        if (path) {
+            await supabase.storage.from("products").remove([path]);
+        }
+    }
+
+    // 3. Tirtir alaabta database-ka
     const { error } = await supabase.from("products").delete().eq("id", id);
 
     if (error) {
