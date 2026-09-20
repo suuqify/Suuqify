@@ -62,7 +62,6 @@ export function ProductsTable({ products, onEdit, onDelete }: ProductsTableProps
                 <Table>
                     <TableHeader className="bg-muted/40">
                         <TableRow>
-                            {/* w-[80px] waxaan u bedelnay w-20 */}
                             <TableHead className="w-20">Sawir</TableHead>
                             <TableHead>Magaca</TableHead>
                             <TableHead>Qiimaha</TableHead>
@@ -114,7 +113,6 @@ export function ProductsTable({ products, onEdit, onDelete }: ProductsTableProps
                                 </TableCell>
                                 <TableCell className="text-right">
                                     <DropdownMenu>
-                                        {/* Halkan toos ayaa loogu dhex daray class-yada Button-ka iyadoo la isticmaalayo cn iyo buttonVariants */}
                                         <DropdownMenuTrigger
                                             className={cn(
                                                 buttonVariants({ variant: "ghost", size: "icon" }),
@@ -172,7 +170,6 @@ export function ProductsTable({ products, onEdit, onDelete }: ProductsTableProps
                         </div>
 
                         <DropdownMenu>
-                            {/* Mobile-kana sidoo kale si toos ah ayaa design-ka loo siiyay Trigger-ka */}
                             <DropdownMenuTrigger
                                 className={cn(
                                     buttonVariants({ variant: "ghost", size: "icon" }),

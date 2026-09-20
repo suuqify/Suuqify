@@ -85,8 +85,9 @@ export function ProductDialog({ open, onOpenChange, product }: ProductDialogProp
             const { data } = supabase.storage.from("products").getPublicUrl(filePath);
             setImage(data.publicUrl);
             toast.success("Sawirka waa la soo geliyay");
-        } catch (err: any) {
-            toast.error(err.message || "Khalad ayaa dhacay sawirka");
+        } catch (err: unknown) {
+            const message = err instanceof Error ? err.message : "Khalad ayaa dhacay sawirka";
+            toast.error(message);
         } finally {
             setUploading(false);
         }
@@ -344,7 +345,11 @@ export function ProductDialog({ open, onOpenChange, product }: ProductDialogProp
                         >
                             Ka noqo
                         </Button>
-                        <Button type="submit" disabled={isPending || uploading}>
+                        <Button
+                            type="submit"
+                            disabled={isPending || uploading}
+                            className="bg-primary hover:bg-primary/90 text-primary-foreground"
+                        >
                             {isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                             {isEditing ? "Keydi Isbeddelka" : "Ku dar Alaabta"}
                         </Button>

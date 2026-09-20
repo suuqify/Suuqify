@@ -27,7 +27,7 @@ function extractStoragePath(url: string, bucketName: string): string | null {
     }
 }
 
-// 1. Abuur Alaab Cusub
+// 1. Abuur Alaab Cusub (oo leh xakamaynta Subscription-ka & Xadka Alaabta)
 export async function createProductAction(data: ProductInput) {
     const supabase = await createClient();
 
@@ -36,14 +36,55 @@ export async function createProductAction(data: ProductInput) {
     } = await supabase.auth.getUser();
     if (!user) return { success: false, error: "Fadlan soo gal nidaamka" };
 
-    const { data: store } = await supabase
+    const { data: store, error: storeError } = await supabase
         .from("stores")
-        .select("id")
+        .select("id, status")
         .eq("owner_id", user.id)
         .single();
 
-    if (!store) return { success: false, error: "Dukaan lama helin" };
+    if (storeError || !store) return { success: false, error: "Dukaan lama helin" };
 
+    // 1. Hubi Subscription-ka dukaanka ee firfircoon
+    const { data: currentSub } = await supabase
+        .from("subscriptions")
+        .select(`
+            status,
+            end_date,
+            plans (
+                max_product
+            )
+        `)
+        .eq("store_id", store.id)
+        .eq("status", "active")
+        .order("end_date", { ascending: false })
+        .limit(1)
+        .maybeSingle();
+
+    const now = new Date();
+    if (!currentSub || new Date(currentSub.end_date) <= now) {
+        return {
+            success: false,
+            error: "Ma haysatid qorshe firfircoon ama wuu dhacay. Fadlan dooro qorshe si aad alaab u darto.",
+        };
+    }
+
+    // 2. Hubi Xadka tirada alaabta ee qorshihiisa (max_product)
+    const planData = currentSub.plans as unknown as { max_product: number } | null;
+    const maxLimit = planData?.max_product || 15;
+
+    const { count: currentCount } = await supabase
+        .from("products")
+        .select("*", { count: "exact", head: true })
+        .eq("store_id", store.id);
+
+    if ((currentCount || 0) >= maxLimit) {
+        return {
+            success: false,
+            error: `Waxaad gaartay xadkii ugu badnaa ee qorshahaaga (${maxLimit} alaab). Fadlan qorshahaaga kordhi (Upgrade).`,
+        };
+    }
+
+    // 3. Geli alaabta miiska products
     const { error } = await supabase.from("products").insert({
         store_id: store.id,
         name: data.name.trim(),
@@ -58,6 +99,7 @@ export async function createProductAction(data: ProductInput) {
     }
 
     revalidatePath("/store/products");
+    revalidatePath("/store/subscription");
     return { success: true };
 }
 
@@ -139,6 +181,7 @@ export async function deleteProductAction(id: string) {
     }
 
     revalidatePath("/store/products");
+    revalidatePath("/store/subscription");
     return { success: true };
 }
 
