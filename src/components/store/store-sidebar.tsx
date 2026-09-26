@@ -71,7 +71,7 @@ export function StoreSidebar({ storeName }: StoreSidebarProps) {
         return pathname.startsWith(href);
     };
 
-    const storeUrl = `/s/${encodeURIComponent(storeName.toLowerCase().replace(/\s+/g, "-"))}`;
+    const storeUrl = `/${encodeURIComponent(storeName.toLowerCase().replace(/\s+/g, "-"))}`;
 
     return (
         <Sidebar collapsible="icon">
