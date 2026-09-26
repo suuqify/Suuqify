@@ -15,21 +15,21 @@ import {
 
 export function Navbar() {
     const [open, setOpen] = React.useState(false);
-
     const logoImageSrc: string | null = null;
 
     const navLinks = [
-        { label: "Features", href: "#features" },
-        { label: "How it Works", href: "#how-it-works" },
-        { label: "Pricing", href: "#pricing" },
-        { label: "VIP Stores", href: "#featured-stores" },
+        { label: "Features", href: "/#features" },
+        { label: "How it Works", href: "/#how-it-works" },
+        { label: "Pricing", href: "/#pricing" },
+        { label: "VIP Stores", href: "/#featured-stores" },
+        { label: "About Us", href: "/about" },
+        { label: "Contact", href: "/contact" },
     ];
 
     return (
         <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/80 backdrop-blur-md">
             <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-
-                {/* Brand Logo (Ready for Image or Icon) */}
+                {/* Brand Logo */}
                 <Link href="/" className="flex items-center gap-2.5 transition-opacity hover:opacity-90">
                     {logoImageSrc ? (
                         <Image
@@ -50,11 +50,11 @@ export function Navbar() {
                     </span>
                 </Link>
 
-                {/* Desktop Navigation Links (English) */}
-                <nav className="hidden items-center gap-8 md:flex">
+                {/* Desktop Navigation Links */}
+                <nav className="hidden items-center gap-7 md:flex">
                     {navLinks.map((link) => (
                         <Link
-                            key={link.href}
+                            key={link.label}
                             href={link.href}
                             className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
                         >
@@ -63,18 +63,18 @@ export function Navbar() {
                     ))}
                 </nav>
 
-                {/* Right CTA: Single "Get started" button pointing to /signin */}
+                {/* Right CTA */}
                 <div className="hidden items-center sm:flex">
                     <Link
                         href="/signin"
-                        className={buttonVariants({ className: "gap-1.5 shadow-sm px-5" })}
+                        className={buttonVariants({ className: "gap-1.5 shadow-sm px-5 rounded-xl font-semibold" })}
                     >
-                        <span>Get started</span>
+                        <span>Bilow Hadda</span>
                         <ArrowRight className="h-4 w-4" />
                     </Link>
                 </div>
 
-                {/* Mobile Responsive Menu (shadcn Sheet) */}
+                {/* Mobile Responsive Menu */}
                 <div className="flex items-center sm:hidden">
                     <Sheet open={open} onOpenChange={setOpen}>
                         <SheetTrigger
@@ -84,33 +84,22 @@ export function Navbar() {
                             <Menu className="h-5 w-5" />
                         </SheetTrigger>
 
-                        <SheetContent side="right" className="w-75 sm:w-87.5">
+                        <SheetContent side="right" className="w-72">
                             <SheetHeader className="text-left">
                                 <SheetTitle className="flex items-center gap-2">
-                                    {logoImageSrc ? (
-                                        <Image
-                                            src={logoImageSrc}
-                                            alt="Suuqify"
-                                            width={32}
-                                            height={32}
-                                            className="h-8 w-8 object-contain"
-                                        />
-                                    ) : (
-                                        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                                            <ShoppingBag className="h-4 w-4" />
-                                        </div>
-                                    )}
+                                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+                                        <ShoppingBag className="h-4 w-4" />
+                                    </div>
                                     <span className="font-bold">
                                         Suuq<span className="text-primary">ify</span>
                                     </span>
                                 </SheetTitle>
                             </SheetHeader>
 
-                            {/* Mobile Links */}
                             <nav className="mt-8 flex flex-col space-y-4">
                                 {navLinks.map((link) => (
                                     <Link
-                                        key={link.href}
+                                        key={link.label}
                                         href={link.href}
                                         onClick={() => setOpen(false)}
                                         className="text-base font-medium text-muted-foreground transition-colors hover:text-foreground"
@@ -120,21 +109,19 @@ export function Navbar() {
                                 ))}
                             </nav>
 
-                            {/* Mobile CTA: Get started to /signin */}
                             <div className="mt-8 border-t border-border pt-6">
                                 <Link
                                     href="/signin"
                                     onClick={() => setOpen(false)}
-                                    className={buttonVariants({ className: "w-full justify-center gap-1.5" })}
+                                    className={buttonVariants({ className: "w-full justify-center gap-1.5 rounded-xl" })}
                                 >
-                                    <span>Get started</span>
+                                    <span>Bilow Hadda</span>
                                     <ArrowRight className="h-4 w-4" />
                                 </Link>
                             </div>
                         </SheetContent>
                     </Sheet>
                 </div>
-
             </div>
         </header>
     );
