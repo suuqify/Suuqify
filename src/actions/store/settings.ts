@@ -18,11 +18,11 @@ function extractStoragePath(url: string, bucketName: string): string | null {
     }
 }
 
-// 1. Cusboonaysii Xogta Guud ee Dukaanka
+// 1. Cusboonaysii Xogta Guud ee Dukaanka (Multi-City Taageero leh)
 export async function updateStoreGeneralAction(formData: {
     name: string;
     whatsapp_number: string;
-    city_id: string;
+    city_ids: string[];
     category_id: string;
     location: string;
     bio: string;
@@ -51,6 +51,11 @@ export async function updateStoreGeneralAction(formData: {
         };
     }
 
+    // Hubi Magaalooyinka
+    if (!formData.city_ids || formData.city_ids.length === 0) {
+        return { error: "Fadlan dooro ugu yaraan hal magaalo oo aad ka hawlgasho." };
+    }
+
     // Hubi dhererka Bio (160) iyo About (1000)
     if (formData.bio && formData.bio.length > 160) {
         return { error: "Bio-ga dukaanku kama badnaan karo 160 xaraf." };
@@ -64,7 +69,8 @@ export async function updateStoreGeneralAction(formData: {
         .update({
             name: storeName,
             whatsapp_number: formData.whatsapp_number.trim(),
-            city_id: formData.city_id || null,
+            city_ids: formData.city_ids,
+            city_id: formData.city_ids[0] || null, // Magaalada 1-aad u dhig backup
             category_id: formData.category_id || null,
             location: formData.location.trim(),
             bio: formData.bio.trim(),
@@ -92,7 +98,6 @@ export async function updateStoreBrandingAction(branding: {
     } = await supabase.auth.getUser();
     if (!user) return { error: "Fadlan soo gal nidaamka." };
 
-    // Soo qaad sawirradii hore si haddii cusub la geliyo kuwii hore loo tirtiro
     const { data: currentStore } = await supabase
         .from("stores")
         .select("logo_url, back_logo_url")
@@ -141,7 +146,7 @@ export async function updateStoreBrandingAction(branding: {
     return { success: true, message: "Sawirka dukaanka si guul leh ayaa loo beddelay!" };
 }
 
-// 3. Tirtir Dukaanka + Sawirradiisa (Store Branding & Dhammaan Products-ka)
+// 3. Tirtir Dukaanka + Sawirradiisa
 export async function deleteStoreAction() {
     const supabase = await createClient();
     const {
@@ -149,7 +154,6 @@ export async function deleteStoreAction() {
     } = await supabase.auth.getUser();
     if (!user) return { error: "Fadlan soo gal nidaamka." };
 
-    // 1. Hel dukaanka iyo sawirradiisa
     const { data: store } = await supabase
         .from("stores")
         .select("id, logo_url, back_logo_url")
@@ -160,7 +164,6 @@ export async function deleteStoreAction() {
         return { error: "Dukaan lama helin." };
     }
 
-    // 2. Ka tirtir Logo & Banner bucket-ka 'stores'
     const storeFilesToDelete: string[] = [];
     if (store.logo_url) {
         const p = extractStoragePath(store.logo_url, "stores");
@@ -174,7 +177,6 @@ export async function deleteStoreAction() {
         await supabase.storage.from("stores").remove(storeFilesToDelete);
     }
 
-    // 3. Hel dhammaan sawirrada alaabta dukaankan ka hor intaanan tirtirin
     const { data: storeProducts } = await supabase
         .from("products")
         .select("image")
@@ -193,7 +195,6 @@ export async function deleteStoreAction() {
         }
     }
 
-    // 4. Hadda tirtir dukaanka (alaabtiisa database-ka toos bay ugu tirtirmeysaa sababtoo ah ON DELETE CASCADE)
     const { error } = await supabase.from("stores").delete().eq("id", store.id);
 
     if (error) {

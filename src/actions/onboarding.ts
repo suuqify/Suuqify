@@ -35,15 +35,22 @@ export async function createStoreAction(formData: FormData) {
     const phoneNumber = (formData.get("phone_number") as string)?.trim();
     const storeName = (formData.get("name") as string)?.trim();
     const whatsappNumber = (formData.get("whatsapp_number") as string)?.trim();
-    const cityId = formData.get("city_id") as string;
     const categoryId = formData.get("category_id") as string;
 
-    // Xaqiiji dhererka magaca
+    // Qaado dhammaan magaalooyinka la doortay (Array)
+    const cityIds = formData.getAll("city_ids") as string[];
+
+    // Hubinta Magaca
     if (!storeName || storeName.length < 3) {
         return { error: "Magaca dukaanku waa inuu ka koobnaadaa ugu yaraan 3 xaraf." };
     }
 
-    // 1. Hubi haddii magacan horey loo qaatay (ilike waxay hubisaa xuruufta waaweyn & yaryar)
+    // Hubinta Magaalooyinka
+    if (!cityIds || cityIds.length === 0) {
+        return { error: "Fadlan dooro ugu yaraan hal magaalo oo aad ka hawlgasho." };
+    }
+
+    // 1. Hubi haddii magacan horey loo qaatay
     const { data: existingStore } = await supabase
         .from("stores")
         .select("id")
@@ -52,7 +59,7 @@ export async function createStoreAction(formData: FormData) {
 
     if (existingStore) {
         return {
-            error: `Magaca "${storeName}" horey ayaa loo qaatay. Fadlan dooro magac kale oo kuu gaar ah.`,
+            error: `Magaca "${storeName}" horey ayaa loo qaatay. Fadlan dooro magac kale.`,
         };
     }
 
@@ -66,12 +73,13 @@ export async function createStoreAction(formData: FormData) {
         return { error: "Qalad profiles: " + profileError.message };
     }
 
-    // 3. Abuur dukaanka cusub
+    // 3. Abuur dukaanka cusub adoo kaydinaya city_ids array
     const { error: storeError } = await supabase.from("stores").insert({
         owner_id: user.id,
         name: storeName,
         whatsapp_number: whatsappNumber,
-        city_id: cityId || null,
+        city_ids: cityIds,
+        city_id: cityIds[0] || null, // Magaalada 1-aad ee aasaasiga ah
         category_id: categoryId || null,
         status: "pending",
     });

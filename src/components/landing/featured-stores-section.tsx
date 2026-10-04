@@ -35,7 +35,7 @@ export function FeaturedStoresSection({ stores }: FeaturedStoresSectionProps) {
                     {stores.map((s) => (
                         <Link
                             key={s.id}
-                            href={`/${encodeURIComponent(s.name)}`}
+                            href={`/s/${encodeURIComponent(s.name)}`}
                             target="_blank"
                             className="bg-card border border-border/80 hover:border-primary/50 rounded-3xl overflow-hidden shadow-2xs hover:shadow-md transition-all group flex flex-col"
                         >

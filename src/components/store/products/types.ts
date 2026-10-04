@@ -7,6 +7,7 @@ export interface Product {
     id: string;
     store_id: string;
     name: string;
+    description?: string | null; // <-- Kani ayaa lagu daray
     price: number;
     image: string | null;
     options: ProductOption[];

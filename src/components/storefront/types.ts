@@ -1,14 +1,9 @@
-export interface StorefrontOption {
-    name: string;
-    values: string[];
-}
-
 export interface StorefrontProduct {
     id: string;
     name: string;
     price: number;
     image: string | null;
-    options: StorefrontOption[];
+    options: any;
     in_stock: boolean;
     created_at: string;
 }
@@ -22,9 +17,12 @@ export interface StorefrontData {
     bio: string | null;
     about: string | null;
     location: string | null;
+    city_ids?: string[];
+    // Halkan ku dar labadan si TypeScript uusan cilad u bixin:
+    city?: { name: string } | null;
+    cities?: { id?: string; name: string }[];
+    category?: { name: string } | null;
     is_verified: boolean;
-    status: "pending" | "active" | "suspended";
-    city: { name: string } | null;
-    category: { name: string } | null;
+    status: string;
     products: StorefrontProduct[];
 }

@@ -50,7 +50,7 @@ export function HeroSection() {
                         {/* CTA Links styled with shadcn buttonVariants */}
                         <div className="mt-8 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
                             <Link
-                                href="/register"
+                                href="/signin"
                                 className={buttonVariants({ size: "lg", className: "h-12 px-7 text-base shadow-md gap-2" })}
                             >
                                 <span>Bilow Dukaankaaga Bilaash</span>

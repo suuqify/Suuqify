@@ -14,9 +14,14 @@ import { ProductsPagination } from "./product-pagination";
 interface ProductsViewProps {
     initialData: ProductsResponse;
     maxLimit?: number; // Xadka qorshaha dukaanka (tusaale 15, 50, 150)
+    categoryName?: string; // Magaca category-ga dukaanka
 }
 
-export function ProductsView({ initialData, maxLimit = 15 }: ProductsViewProps) {
+export function ProductsView({
+    initialData,
+    maxLimit = 15,
+    categoryName
+}: ProductsViewProps) {
     const [productDialog, setProductDialog] = useState(false);
     const [deleteDialog, setDeleteDialog] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -132,11 +137,12 @@ export function ProductsView({ initialData, maxLimit = 15 }: ProductsViewProps) 
                 totalPages={initialData.totalPages}
             />
 
-            {/* Product Dialog (Add / Edit) */}
+            {/* Product Dialog (Add / Edit) - Hadda si toos ah ayuu u helayaa Category-ga */}
             <ProductDialog
                 open={productDialog}
                 onOpenChange={setProductDialog}
                 product={selectedProduct}
+                storeCategoryName={categoryName}
             />
 
             {/* Delete Confirmation Dialog */}

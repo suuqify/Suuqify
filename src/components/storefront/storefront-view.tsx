@@ -75,10 +75,13 @@ export function StorefrontView({ store }: StorefrontViewProps) {
                     </TabsContent>
 
                     {/* 3. Tab-ka Goobta (Location) */}
+                    {/* 3. Tab-ka Goobta (Location) */}
                     <TabsContent value="location" className="mt-4">
                         <Card className="rounded-2xl border-border/70 shadow-xs">
-                            <CardContent className="p-6 space-y-3">
-                                <h3 className="text-base font-bold text-foreground">Cinwaanka Dukaanka</h3>
+                            <CardContent className="p-6 space-y-4">
+                                <h3 className="text-base font-bold text-foreground">Cinwaanka & Magaalooyinka</h3>
+
+                                {/* Cinwaanka Gaarka ah */}
                                 {store.location ? (
                                     <div className="flex items-start gap-2.5 text-sm text-muted-foreground">
                                         <MapPin className="h-4 w-4 text-primary shrink-0 mt-0.5" />
@@ -86,13 +89,28 @@ export function StorefrontView({ store }: StorefrontViewProps) {
                                     </div>
                                 ) : (
                                     <p className="text-xs text-muted-foreground italic">
-                                        Goobta saxda ah weli lama qeexin.
+                                        Goobta gaarka ah (degmada/laamiga) weli lama qeexin.
                                     </p>
                                 )}
-                                {store.city && (
-                                    <p className="text-xs font-medium text-foreground">
-                                        Magaalada: <span className="text-primary">{store.city.name}</span>
-                                    </p>
+
+                                {/* Magaalooyinka uu Ganacsigu Gaaro */}
+                                {store.cities && store.cities.length > 0 && (
+                                    <div className="pt-2 border-t border-border/60">
+                                        <span className="text-xs font-semibold text-muted-foreground uppercase block mb-2">
+                                            Magaalooyinka aan u adeegno:
+                                        </span>
+                                        <div className="flex flex-wrap gap-1.5">
+                                            {store.cities.map((c: any) => (
+                                                <span
+                                                    key={c.id || c.name}
+                                                    className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-emerald-500/10 text-emerald-700 text-xs font-semibold"
+                                                >
+                                                    <MapPin className="h-3 w-3" />
+                                                    {c.name}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </div>
                                 )}
                             </CardContent>
                         </Card>

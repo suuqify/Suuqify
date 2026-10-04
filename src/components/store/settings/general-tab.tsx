@@ -24,7 +24,7 @@ import { StoreData, City, Category } from "./types";
 interface GeneralFormData {
     name: string;
     whatsapp_number: string;
-    city_id: string;
+    city_ids: string[];
     category_id: string;
     location: string;
     bio: string;
@@ -42,23 +42,25 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
     const [isPending, startTransition] = useTransition();
     const [isEditing, setIsEditing] = useState(false);
 
+    // Initial setup: Qaado city_ids haddii ay jiraan, haddii kalena city_id
+    const initialCityIds: string[] =
+        store.city_ids && store.city_ids.length > 0
+            ? store.city_ids
+            : store.city_id ? [store.city_id] : [];
+
     const [formData, setFormData] = useState<GeneralFormData>({
         name: store.name ?? "",
         whatsapp_number: store.whatsapp_number ?? "",
-        city_id: store.city_id ?? "",
+        city_ids: initialCityIds,
         category_id: store.category_id ?? "",
         location: store.location ?? "",
         bio: store.bio ?? "",
         about: store.about ?? "",
     });
 
-    // Helpers lagu helayo Magaca (Name) halkii ID la arki lahaa
-    const getCityName = (idOrName: string) => {
-        if (!idOrName) return "Lama dooran";
-        const found = cities.find(
-            (c) => c.id === idOrName || c.name.toLowerCase() === idOrName.toLowerCase()
-        );
-        return found ? found.name : "Lama dooran";
+    const getCityName = (id: string) => {
+        const found = cities.find((c) => c.id === id);
+        return found ? found.name : id;
     };
 
     const getCategoryName = (idOrName: string) => {
@@ -69,8 +71,23 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
         return found ? found.name : "Lama dooran";
     };
 
+    const toggleCity = (cityId: string) => {
+        setFormData((prev) => ({
+            ...prev,
+            city_ids: prev.city_ids.includes(cityId)
+                ? prev.city_ids.filter((id) => id !== cityId)
+                : [...prev.city_ids, cityId],
+        }));
+    };
+
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
+
+        if (formData.city_ids.length === 0) {
+            toast.error("Fadlan dooro ugu yaraan hal magaalo.");
+            return;
+        }
+
         startTransition(async () => {
             const res = await updateStoreGeneralAction(formData);
             if (res.error) {
@@ -83,7 +100,6 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
     };
 
     const selectedCategoryName = getCategoryName(formData.category_id);
-    const selectedCityName = getCityName(formData.city_id);
 
     return (
         <Card className="border-border shadow-xs">
@@ -155,69 +171,86 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                         )}
                     </div>
 
-                    {/* Qaybta & Magaalada Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        {/* Category */}
-                        <div className="space-y-1.5">
-                            <Label className="text-xs font-medium">Qaybta (Category)</Label>
-                            {isEditing ? (
-                                <Select
-                                    value={formData.category_id}
-                                    onValueChange={(val: string | null) =>
-                                        setFormData({ ...formData, category_id: val || "" })
-                                    }
-                                >
-                                    <SelectTrigger>
-                                        <SelectValue placeholder="Dooro Qaybta">
-                                            {selectedCategoryName !== "Lama dooran" ? selectedCategoryName : "Dooro Qaybta"}
-                                        </SelectValue>
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        {categories.map((cat) => (
-                                            <SelectItem key={cat.id} value={cat.id}>
-                                                {cat.name}
-                                            </SelectItem>
-                                        ))}
-                                    </SelectContent>
-                                </Select>
-                            ) : (
-                                <div className="p-2.5 rounded-lg border bg-muted/20 text-sm flex items-center gap-2">
-                                    <Tag className="w-4 h-4 text-primary" />
-                                    <span className="font-medium text-foreground">{selectedCategoryName}</span>
-                                </div>
+                    {/* Qaybta (Category) */}
+                    <div className="space-y-1.5">
+                        <Label className="text-xs font-medium">Qaybta (Category)</Label>
+                        {isEditing ? (
+                            <Select
+                                value={formData.category_id}
+                                onValueChange={(val: string | null) =>
+                                    setFormData({ ...formData, category_id: val || "" })
+                                }
+                            >
+                                <SelectTrigger>
+                                    <SelectValue placeholder="Dooro Qaybta">
+                                        {selectedCategoryName !== "Lama dooran" ? selectedCategoryName : "Dooro Qaybta"}
+                                    </SelectValue>
+                                </SelectTrigger>
+                                <SelectContent>
+                                    {categories.map((cat) => (
+                                        <SelectItem key={cat.id} value={cat.id}>
+                                            {cat.name}
+                                        </SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
+                        ) : (
+                            <div className="p-2.5 rounded-lg border bg-muted/20 text-sm flex items-center gap-2">
+                                <Tag className="w-4 h-4 text-primary" />
+                                <span className="font-medium text-foreground">{selectedCategoryName}</span>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Magaalooyinka (Multi-City Selection) */}
+                    <div className="space-y-2">
+                        <div className="flex items-center justify-between">
+                            <Label className="text-xs font-medium">Magaalooyinka aad ka hawlgasho</Label>
+                            {isEditing && (
+                                <span className="text-[11px] text-primary font-medium">
+                                    (Dooro dhammaan magaalooyinka aad gaarsiin karto)
+                                </span>
                             )}
                         </div>
 
-                        {/* City */}
-                        <div className="space-y-1.5">
-                            <Label className="text-xs font-medium">Magaalada</Label>
-                            {isEditing ? (
-                                <Select
-                                    value={formData.city_id}
-                                    onValueChange={(val: string | null) =>
-                                        setFormData({ ...formData, city_id: val || "" })
-                                    }
-                                >
-                                    <SelectTrigger>
-                                        <SelectValue placeholder="Dooro Magaalada">
-                                            {selectedCityName !== "Lama dooran" ? selectedCityName : "Dooro Magaalada"}
-                                        </SelectValue>
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        {cities.map((city) => (
-                                            <SelectItem key={city.id} value={city.id}>
-                                                {city.name}
-                                            </SelectItem>
-                                        ))}
-                                    </SelectContent>
-                                </Select>
-                            ) : (
-                                <div className="p-2.5 rounded-lg border bg-muted/20 text-sm flex items-center gap-2">
-                                    <MapPin className="w-4 h-4 text-primary" />
-                                    <span className="font-medium text-foreground">{selectedCityName}</span>
-                                </div>
-                            )}
-                        </div>
+                        {isEditing ? (
+                            <div className="flex flex-wrap gap-2 pt-1">
+                                {cities.map((city) => {
+                                    const isSelected = formData.city_ids.includes(city.id);
+                                    return (
+                                        <button
+                                            key={city.id}
+                                            type="button"
+                                            onClick={() => toggleCity(city.id)}
+                                            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium border transition-all cursor-pointer select-none ${isSelected
+                                                ? "bg-primary text-primary-foreground border-primary shadow-xs"
+                                                : "bg-muted/40 text-foreground border-border/70 hover:bg-muted"
+                                                }`}
+                                        >
+                                            <MapPin className={`h-3 w-3 ${isSelected ? "text-primary-foreground" : "text-muted-foreground"}`} />
+                                            <span>{city.name}</span>
+                                            {isSelected && <Check className="h-3.5 w-3.5 ml-0.5" />}
+                                        </button>
+                                    );
+                                })}
+                            </div>
+                        ) : (
+                            <div className="p-2.5 rounded-lg border bg-muted/20 min-h-11 flex flex-wrap items-center gap-1.5">
+                                {formData.city_ids.length > 0 ? (
+                                    formData.city_ids.map((id) => (
+                                        <span
+                                            key={id}
+                                            className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-emerald-500/10 text-emerald-700 text-xs font-semibold"
+                                        >
+                                            <MapPin className="w-3 h-3" />
+                                            {getCityName(id)}
+                                        </span>
+                                    ))
+                                ) : (
+                                    <span className="text-xs text-muted-foreground italic">Magaalo lama dooran</span>
+                                )}
+                            </div>
+                        )}
                     </div>
 
                     {/* WhatsApp & Goobta Grid */}
@@ -240,12 +273,12 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                         </div>
 
                         <div className="space-y-1.5">
-                            <Label className="text-xs font-medium">Goobta Dukaanka (Location)</Label>
+                            <Label className="text-xs font-medium">Goobta Dukaanka (Degmada / Laamiga)</Label>
                             {isEditing ? (
                                 <Input
                                     value={formData.location}
                                     onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                                    placeholder="Tusaale: Suuqa Bakaaraha, Muqdisho"
+                                    placeholder="Tusaale: Suuqa Bakaaraha, Laamiga 1-aad"
                                 />
                             ) : (
                                 <div className="p-2.5 rounded-lg border bg-muted/20 text-sm">
@@ -272,7 +305,7 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                                 placeholder="Qoraal gaaban oo dukaankaaga ku saabsan (max 160 xaraf)..."
                             />
                         ) : (
-                            <div className="p-3 rounded-lg border bg-muted/20 text-sm italic text-foreground min-h-12.5">
+                            <div className="p-3 rounded-lg border bg-muted/20 text-sm italic text-foreground min-h-50px">
                                 {formData.bio || "Wali wax bio ah ma aadan qorin."}
                             </div>
                         )}
@@ -295,7 +328,7 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                                 placeholder="Faahfaahin dheer oo ku saabsan dukaankaaga..."
                             />
                         ) : (
-                            <div className="p-3 rounded-lg border bg-muted/20 text-sm whitespace-pre-line text-foreground min-h-20">
+                            <div className="p-3 rounded-lg border bg-muted/20 text-sm whitespace-pre-line text-foreground min-h-80px">
                                 {formData.about || "Wali wax faahfaahin ah ma aadan qorin."}
                             </div>
                         )}

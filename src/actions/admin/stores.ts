@@ -6,6 +6,7 @@ import { createClient } from "@/utils/supabase/server";
 export interface AdminStoreItem {
     id: string;
     name: string;
+    phoneNumber: string | null;
     whatsappNumber: string;
     logoUrl: string | null;
     backLogoUrl: string | null;
@@ -96,6 +97,7 @@ export async function getAdminStoresAction(params: GetStoresParams) {
             return {
                 id: s.id,
                 name: s.name,
+                phoneNumber: s.profiles?.phone_number || null,
                 whatsappNumber: s.whatsapp_number,
                 logoUrl: s.logo_url,
                 backLogoUrl: s.back_logo_url,

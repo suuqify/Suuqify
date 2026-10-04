@@ -17,8 +17,8 @@ export function StoreLinkBanner({ storeName, isVerified }: StoreLinkBannerProps)
     // Link-ga storefront-ka dhabta ah
     const storeUrl =
         typeof window !== "undefined"
-            ? `${window.location.origin}/${encodeURIComponent(storeName)}`
-            : `suuqify.com/${storeName}`;
+            ? `${window.location.origin}/s/${encodeURIComponent(storeName)}`
+            : `suuqify.com/s/${storeName}`;
 
     const handleCopyLink = () => {
         if (navigator.clipboard) {

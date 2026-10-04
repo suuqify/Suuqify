@@ -18,6 +18,7 @@ export interface StoreData {
     about: string | null;
     location: string | null;
     city_id: string | null;
+    city_ids?: string[] | null; // <-- Kani ayaa maqnaa
     category_id: string | null;
     status: string;
 }

@@ -130,7 +130,7 @@ export function StoreDetailDialog({ store, isOpen, onClose }: StoreDetailDialogP
                         </div>
 
                         <Link
-                            href={`/${encodeURIComponent(store.name)}`}
+                            href={`/s/${encodeURIComponent(store.name)}`}
                             target="_blank"
                             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground transition-all"
                         >

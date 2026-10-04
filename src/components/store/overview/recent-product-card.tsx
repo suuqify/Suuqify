@@ -43,8 +43,13 @@ export function RecentProductsCard({ products }: RecentProductsCardProps) {
                     {products.map((p) => (
                         <div key={p.id} className="p-4 flex items-center justify-between gap-3">
                             <div className="flex items-center gap-3">
-                                <div className="h-12 w-12 rounded-xl bg-muted border border-border/70 overflow-hidden relative shrink-0">
-                                    <Image src={p.image} alt={p.name} fill className="object-cover" />
+                                {/* Halkan ayaa la saxay: haddii p.image bannaan yahay Icon ayaa galaya */}
+                                <div className="h-12 w-12 rounded-xl bg-muted border border-border/70 overflow-hidden relative shrink-0 flex items-center justify-center">
+                                    {p.image && p.image.trim() !== "" ? (
+                                        <Image src={p.image} alt={p.name} fill className="object-cover" />
+                                    ) : (
+                                        <Package className="w-5 h-5 text-muted-foreground/50" />
+                                    )}
                                 </div>
                                 <div>
                                     <h4 className="font-semibold text-sm text-foreground">{p.name}</h4>
@@ -55,8 +60,8 @@ export function RecentProductsCard({ products }: RecentProductsCardProps) {
                             <div className="text-right">
                                 <span
                                     className={`inline-block text-[11px] font-medium px-2.5 py-0.5 rounded-full ${p.inStock
-                                            ? "bg-emerald-50 text-emerald-700 border border-emerald-200/60"
-                                            : "bg-rose-50 text-rose-700 border border-rose-200/60"
+                                        ? "bg-emerald-50 text-emerald-700 border border-emerald-200/60"
+                                        : "bg-rose-50 text-rose-700 border border-rose-200/60"
                                         }`}
                                 >
                                     {p.inStock ? "In Stock" : "Dhamaatay"}

@@ -24,10 +24,15 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
         redirect("/signin");
     }
 
-    // 1. Hel Dukaanka
+    // 1. Hel Dukaanka iyo Category-giisa
     const { data: store } = await supabase
         .from("stores")
-        .select("id")
+        .select(`
+            id,
+            categories (
+                name
+            )
+        `)
         .eq("owner_id", user.id)
         .single();
 
@@ -35,16 +40,18 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
         redirect("/onboarding");
     }
 
+    const categoryName = (store?.categories as unknown as { name: string } | null)?.name || undefined;
+
     // 2. Soo qaado xadka alaabta (max_product) ee qorshaha hadda u socda
     const { data: subscription } = await supabase
         .from("subscriptions")
         .select(`
-      status,
-      end_date,
-      plans (
-        max_product
-      )
-    `)
+            status,
+            end_date,
+            plans (
+                max_product
+            )
+        `)
         .eq("store_id", store.id)
         .eq("status", "active")
         .order("end_date", { ascending: false })
@@ -66,7 +73,11 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
 
     return (
         <div className="max-w-6xl w-full mx-auto">
-            <ProductsView initialData={productsData} maxLimit={maxLimit} />
+            <ProductsView
+                initialData={productsData}
+                maxLimit={maxLimit}
+                categoryName={categoryName}
+            />
         </div>
     );
 }
