@@ -11,7 +11,6 @@ import {
     DialogFooter,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { StorefrontProduct } from "./types";
 
 interface OrderModalProps {
@@ -98,13 +97,13 @@ export function OrderModal({
                     {/* Doorashooyinka (Options: Color, Size, etc.) */}
                     {product.options && product.options.length > 0 && (
                         <div className="space-y-3 pt-2 border-t">
-                            {product.options.map((optGroup, idx) => (
+                            {product.options.map((optGroup: { name: string; values: string[] }, idx: number) => (
                                 <div key={idx} className="space-y-1.5">
                                     <span className="text-xs font-semibold text-foreground uppercase tracking-wider block">
                                         {optGroup.name}:
                                     </span>
                                     <div className="flex flex-wrap gap-2">
-                                        {optGroup.values.map((val, valIdx) => {
+                                        {optGroup.values.map((val: string, valIdx: number) => {
                                             const isSelected = selectedOptions[optGroup.name] === val;
                                             return (
                                                 <button
@@ -112,8 +111,8 @@ export function OrderModal({
                                                     type="button"
                                                     onClick={() => handleSelectOption(optGroup.name, val)}
                                                     className={`text-xs px-3 py-1.5 rounded-lg border font-medium transition-all flex items-center gap-1.5 ${isSelected
-                                                        ? "bg-primary text-primary-foreground border-primary shadow-xs"
-                                                        : "bg-background text-foreground hover:bg-muted border-border"
+                                                            ? "bg-primary text-primary-foreground border-primary shadow-xs"
+                                                            : "bg-background text-foreground hover:bg-muted border-border"
                                                         }`}
                                                 >
                                                     {isSelected && <Check className="h-3 w-3 stroke-3" />}
