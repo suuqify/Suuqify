@@ -47,6 +47,15 @@ const CATEGORY_SCHEMAS: Record<string, PresetGroup[]> = {
             name: "Midab (Color)",
             presetValues: ["Madow", "Caddaan", "Buluug", "Casaan", "Cagaar", "Bunni", "Jaalle"],
         },
+         {
+    name: "Size-ka Kabaha",
+    presetValues: [
+        "20", "21", "22", "23", "24", "25", // Ilmaha yaryar (1-3 jir)
+        "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", // Carruurta (4-10 jir)
+        "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46" // Dhalinyarada & Dadka waaweyn
+    ],
+},
+        
     ],
     // Kabaha
     shoes: [
@@ -59,26 +68,32 @@ const CATEGORY_SCHEMAS: Record<string, PresetGroup[]> = {
             presetValues: ["Madow", "Caddaan", "Bunni", "Buluug"],
         },
     ],
-    // Electronics & Moobillada
+    // Electronics & Moobillada & laptops
     electronics: [
         {
-            name: "Kaydka (Storage)",
-            presetValues: ["64GB", "128GB", "256GB", "512GB", "1TB"],
+            name: "Xaalada (Condition)",
+            presetValues: ["Cusub (New)", "Gacan Labaad (Used)"],
         },
         {
             name: "Midabka",
             presetValues: ["Black", "Silver", "Gold", "Blue", "Gray"],
         },
     ],
-    // Beauty, Cadar & Skincare
+    // Beauty, Cadar Fregnances & Skincare
     beauty: [
         {
-            name: "Xajmiga (ml)",
-            presetValues: ["30ml", "50ml", "100ml", "150ml", "200ml"],
+            name: "Ku Habboon (Target / Gender)",
+            presetValues: ["Dumar (Women)", "Rag (Men)", "Labada Qofba (Unisex)"],
         },
         {
-            name: "Nooca",
-            presetValues: ["Original", "Tester", "Saliid", "Buufin"],
+            name: "Nooca Maqaarka (Skin Type)",
+            presetValues: [
+                "Oily (Dux leh)",
+                "Dry (Qallalan)",
+                "Sensitive (Xasaasi)",
+                "Combination (Isku-dhaf)",
+                "All Skin Types (Dhammaan)"
+            ],
         },
     ],
     // Cunto & Maqaayado
@@ -93,16 +108,72 @@ const CATEGORY_SCHEMAS: Record<string, PresetGroup[]> = {
         },
     ],
     // Haddii la waayo wax la mid ah (General fallback)
-    general: [
-        {
-            name: "Cabbir (Size)",
-            presetValues: ["Yar (S)", "Dhexe (M)", "Weyn (L)"],
+    General: [
+         {
+            name: "Xaaladda (Condition)",
+            presetValues: ["Cusub (New)", "Gacan Labaad (Used)"],
         },
         {
-            name: "Midab (Color)",
-            presetValues: ["Madow", "Caddaan", "Buluug", "Gaduud"],
+            name: "Qaybta Guriga (Room / Space)",
+            presetValues: [
+                "Qolka Fadhiga (Living Room)",
+                "Qolka Jiifka (Bedroom)",
+                "Jikada (Kitchen)",
+                "Musqusha (Bathroom)",
+                "Guud ahaan Guriga (General Home)"
+            ],
+        },
+        {
+            name: "Maaddada (Material)",
+            presetValues: [
+                "Alwaax (Wood)",
+                "Bir (Metal)",
+                "Caag (Plastic)",
+                "Dhalo (Glass)",
+                "Maro / Suuf (Fabric)",
+                "Dhoobo / Ceramics"
+            ],
         },
     ],
+    Supplements: [
+        {
+            name: "Body Type",
+            presetValues: ["Slim / Weight Gain", "Weight Loss / Cutting", "Lean Muscle / Athletic", "All Bodies"],
+        },
+        
+    ],
+     Travel: [
+        {
+            name: "Visa Type",
+            presetValues: ["Tourist / Vacation", "Student / Education", "Medical / Health", "Business", "Work / Employment", "Visit / Family", "Transit", "Umrah & Hajj"],
+        },
+         {
+            name: "Visa Duration",
+            presetValues: ["7 Days", "14 Days", "1 Month", "2 Months", "3 Months", "6 Months", "1 Year", "2+ Years"],
+        },
+       
+    ],
+   Vehicles: [
+        {
+            name: "Nooca (Status)",
+            presetValues: ["Iib (For Sale)", "Kiro (For Rent)"],
+        },
+        {
+            name: "Xaaladda (Condition)",
+            presetValues: ["Cusub (New)", "Gacan Labaad (Used)"],
+        },
+    ],
+    RealState: [
+        {
+            name: "Nooca (Status)",
+            presetValues: ["Iib (For Sale)", "Kiro (For Rent)"],
+        },
+        {
+            name: "Nooca Hantida (Property Type)",
+            presetValues: ["Guri (House)", "Dabaq (Apartment)", "Dhul (Land)", "Ganacsi (Commercial)"],
+        },
+    ],
+   
 };
 
 // Function si automatic ah u ogaanaya Category-ga saxda ah ee dukaanka

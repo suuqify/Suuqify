@@ -38,7 +38,7 @@ export function StoreLinkBanner({ storeName, isVerified }: StoreLinkBannerProps)
                 <div className="space-y-2 max-w-xl">
                     <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-white/15 text-white backdrop-blur-xs border border-white/20">
                         <Sparkles className="w-3.5 h-3.5" />
-                        <span>Link-in-Bio Micro-Storefront</span>
+                        <span>Link-in-Bio Business Page</span>
                     </div>
 
                     <div className="flex items-center gap-2">
@@ -51,7 +51,7 @@ export function StoreLinkBanner({ storeName, isVerified }: StoreLinkBannerProps)
                     </div>
 
                     <p className="text-xs sm:text-sm text-emerald-100/90 leading-relaxed">
-                        Kani waa link-ga dukaankaaga! Ku dhaji <strong>Bio-gaaga TikTok ama Instagram</strong> si macaamiishu toos ugu soo dalbadaan alaabtaada WhatsApp.
+                    Kani waa link-ga Ganacsigaaga! Ku xayeysii <strong>dhammaan barahaaga bulshada (Status, Posts, & Bio)</strong> si macaamiishaadu wax walba oo aad iibinayso hal meel uga helaan, toosna kuugu soo dalbadaan.
                     </p>
                 </div>
 
@@ -86,7 +86,7 @@ export function StoreLinkBanner({ storeName, isVerified }: StoreLinkBannerProps)
                             className="inline-flex items-center justify-center h-9 px-3.5 rounded-xl text-xs font-semibold bg-white/15 hover:bg-white/25 text-white gap-1.5 border border-white/20 transition-all"
                         >
                             <ExternalLink className="w-3.5 h-3.5" />
-                            <span>Fur Dukaanka</span>
+                            <span>Fur Ganacsigaaga</span>
                         </Link>
                     </div>
                 </div>

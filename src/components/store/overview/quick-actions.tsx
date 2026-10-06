@@ -5,14 +5,14 @@ import { PlusCircle, Sliders, Layers, Receipt } from "lucide-react";
 export function QuickActions() {
     const actions = [
         {
-            title: "Ku Dar Alaab Cusub",
-            desc: "Geli alaab cusub oo dukaankaaga soo gashay",
+            title: "+ Add New",
+            desc: "Soo bandhig wax kasta oo cusub oo aad u haysid macaamiishaada",
             href: "/store/products",
             icon: PlusCircle,
             accent: "bg-primary/10 text-primary border-primary/20",
         },
         {
-            title: "Habee Dukaanka (Settings)",
+            title: "Habee Ganacsigaga (Settings)",
             desc: "Beddel sawirrada Logo-da, Banner-ka, ama Bio-ga",
             href: "/store/settings",
             icon: Sliders,
@@ -20,7 +20,7 @@ export function QuickActions() {
         },
         {
             title: "Kordhi Qorshaha (Upgrade)",
-            desc: "Dooro qorshe kuu ogolaanaya alaab intaas ka badan",
+            desc: "Dooro qorshe kuu oggolaanaya isticmaal dheeraad ah.",
             href: "/store/plans",
             icon: Layers,
             accent: "bg-purple-500/10 text-purple-600 border-purple-500/20",

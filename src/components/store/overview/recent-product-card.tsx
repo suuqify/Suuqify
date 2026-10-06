@@ -14,8 +14,8 @@ export function RecentProductsCard({ products }: RecentProductsCardProps) {
         <div className="bg-card border border-border/80 rounded-2xl shadow-xs overflow-hidden">
             <div className="p-5 border-b border-border/70 flex items-center justify-between">
                 <div>
-                    <h3 className="font-semibold text-base text-foreground">Alaabihii Ugu Dambeeyay</h3>
-                    <p className="text-xs text-muted-foreground">Alaabta aad dhawaan ku dartay dukaankaaga</p>
+                    <h3 className="font-semibold text-base text-foreground">Kuwii Ugu Dambeeyay</h3>
+<p className="text-xs text-muted-foreground">Waxyaabihii aad dhawaan ku dartay ganacsigaaga</p>
                 </div>
                 <Link
                     href="/store/products"
@@ -28,13 +28,13 @@ export function RecentProductsCard({ products }: RecentProductsCardProps) {
             {products.length === 0 ? (
                 <div className="p-8 text-center text-sm text-muted-foreground flex flex-col items-center justify-center">
                     <Package className="w-10 h-10 text-muted-foreground/40 mb-3" />
-                    <p className="font-medium text-foreground">Weli wax alaab ah kuma aadan darin dukaankaaga.</p>
+                    <p className="font-medium text-foreground">Weli wax alaab ah kuma aadan darin Ganacsigaaga.</p>
                     <p className="text-xs text-muted-foreground mt-1 mb-4">
-                        Ku dar alaabtaada koowaad si macaamiishu uga dhex arkaan dukaankaaga.
+                        Bilow hadda oo soo bandhig waxa aad u haysid macaamiishaada.
                     </p>
                     <Link href="/store/products">
                         <Button size="sm" className="rounded-xl text-xs bg-primary text-primary-foreground font-semibold gap-1.5">
-                            <Plus className="w-4 h-4" /> Ku dar Alaab
+                            <Plus className="w-4 h-4" />+ Add New
                         </Button>
                     </Link>
                 </div>

@@ -20,7 +20,7 @@ export function StatsGrid({ stats, subscription }: StatsGridProps) {
             <div className="bg-card border border-border/80 rounded-2xl p-5 shadow-xs flex flex-col justify-between">
                 <div>
                     <div className="flex items-center justify-between text-muted-foreground mb-1">
-                        <span className="text-xs font-medium uppercase tracking-wider">Alaabta Guud</span>
+                        <span className="text-xs font-medium uppercase tracking-wider">Wadarta Guud</span>
                         <Package className="w-4 h-4 text-primary" />
                     </div>
                     <div className="flex items-baseline gap-1.5">
@@ -79,7 +79,7 @@ export function StatsGrid({ stats, subscription }: StatsGridProps) {
                     </div>
                 </div>
                 <p className="mt-3 pt-2 text-[11px] text-muted-foreground">
-                    Badhanka dalabka wuu xiran yahay
+                   Macaamiishu hadda ma dalban karaan
                 </p>
             </div>
 
