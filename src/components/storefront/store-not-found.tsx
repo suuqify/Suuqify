@@ -8,8 +8,8 @@ interface StoreNotFoundProps {
 }
 
 export function StoreNotFound({
-    title = "Dukaanku Waa Xiran Yahay",
-    message = "Dukaanka heshiiskii uu ku shaqaynayay wuu dhacay. Fadlan dib ugu soo laabo goor dhow.",
+    title = "Website-kani Si Ku-Meel-Gaar ah Ayuu u Xiran Yahay",
+message = "Boggani hadda ma shaqaynayo. Fadlan dib ugu soo laabo goor dhow.",
 }: StoreNotFoundProps) {
     return (
         <main className="min-h-screen w-full bg-muted/20 flex items-center justify-center p-4 sm:p-6 md:p-8">

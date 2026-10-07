@@ -5,33 +5,33 @@ export function FeaturesSection() {
     const features = [
         {
             icon: MessageSquareCode,
-            title: "Dalab Hal Gujiso ah oo WhatsApp ah",
-            desc: "Macmiilku marka uu doorto cabbirka iyo midabka, hal gujiso ayuu ku dirayaa fariin habaysan oo toos ugu furmaysa WhatsApp-kaaga.",
+            title: "Dalab Hal Gujis ah oo WhatsApp ah",
+            desc: "Macmiilku marka uu doorto Alaab ama Adeeg, hal gujis ayuu kugu soo dirayaa fariin habaysan oo toos ugu furmaysa WhatsApp-kaaga.",
         },
         {
             icon: Smartphone,
-            title: "Loogu Talagalay TikTok & Instagram",
-            desc: "Link-gaaga dukaanka wuxuu si xawaare sare leh ugu furmayaa browser-ka gudaha ee Instagram iyo TikTok.",
+            title: "Loogu Talagalay barahaaga bulshada oo dhan",
+            desc: "Link-gaaga Page ka Ganacsigaaga wuxuu si xawaare sare leh ugu furmayaa browser-ka gudaha ee barahaaga bulshada oo dhan.",
         },
         {
             icon: CreditCard,
             title: "Lacag-bixinta Maxalliga ah",
-            desc: "Ma jirto Master Card ama PayPal murugsan; heshiisyada waxaad ku bixinaysaa EVC Plus, Zaad, Sahal, iyo eDahab.",
+            desc: "Ma jirto Master Card ama PayPal heshiisyada waxaad ku bixinaysaa EVC Plus, Zaad, Sahal, iyo eDahab.",
         },
         {
             icon: Layers,
-            title: "Doorashooyin Dynamic ah (Options)",
-            desc: "Alaab kasta u yeel Midabbo, Cabbirro (S, M, L), ama GB iyadoo macmiilku si sahlan u dooran karo.",
+            title: "Xulashooyin Fudud (Dynamic Options)",
+            desc: "Alaab ama adeeg kasta u yeel cabbirkiisa, midabkiisa, ama muddadiisa si macmiilku si sahlan ugu doorto.",
         },
         {
             icon: Zap,
             title: "Xawaare Aad u Sarreeya",
-            desc: "Ku dhisan Next.js 15 iyo Tailwind CSS v4 si dukaankaagu u furmo ilbiriqsi ka yar, meel kasta oo laga furo.",
+            desc: "Wuxuu ku furmayaa ilbiriqsi ka yar, xitaa haddii internet-ka macmiilku daciif yahay ama uu mobile isticmaalayo.",
         },
         {
             icon: ShieldCheck,
-            title: "Calaamadda Verified-ka ee Rasmiga ah",
-            desc: "Dhis kalsoonida macaamiishaada adigoo helaya calaamadda hubinta dukaanka ee maamulka Suuqify.",
+            title: "Calaamadda Rasmiga ah (Verified)",
+            desc: "Dhis kalsoonida macaamiishaada adigoo helaya calaamadda hubinta ganacsiga ee maamulka Suuqify.",
         },
     ];
 

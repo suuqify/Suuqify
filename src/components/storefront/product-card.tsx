@@ -39,7 +39,7 @@ export function ProductCard({ product, onOrder }: ProductCardProps) {
                     ) : (
                         product.options && product.options.length > 0 && (
                             <Badge variant="secondary" className="bg-background/90 backdrop-blur-xs text-[10px] text-foreground font-medium px-2 py-0.5 shadow-xs">
-                                Kala-doorasho leh
+                                Xulasho leh
                             </Badge>
                         )
                     )}

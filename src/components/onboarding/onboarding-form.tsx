@@ -33,7 +33,7 @@ export function OnboardingForm({ cities, categories }: Props) {
         }
 
         setLoading(true);
-        const toastId = toast.loading("Dhisidda dukaanka...");
+        const toastId = toast.loading("Dhisidda Ganacsigaaga...");
         const formData = new FormData(e.currentTarget);
 
         // Ku dar dhammaan magaalooyinka la doortay formData
@@ -46,7 +46,7 @@ export function OnboardingForm({ cities, categories }: Props) {
                 toast.error(result.error, { id: toastId, duration: 4000 });
                 setLoading(false);
             } else if (result?.success) {
-                toast.success("Hambalyo! Dukaankaaga si guul leh ayaa loo dhisay.", {
+                toast.success("Hambalyo! Ganacsigaaga si guul leh ayaa loo dhisay.", {
                     id: toastId,
                     duration: 3000,
                 });
@@ -63,7 +63,7 @@ export function OnboardingForm({ cities, categories }: Props) {
         <form onSubmit={handleSubmit} className="space-y-4">
             <div>
                 <label className="block text-xs font-semibold text-muted-foreground uppercase">
-                    Magaca Dukaanka *
+                    Magaca Ganacsigaaga *
                 </label>
                 <input
                     name="name"
@@ -123,7 +123,7 @@ export function OnboardingForm({ cities, categories }: Props) {
             <div className="space-y-2 pt-1">
                 <div className="flex items-center justify-between">
                     <label className="block text-xs font-semibold text-muted-foreground uppercase">
-                        Magaalooyinka aad ka hawlgasho *
+                        Magaalooyinka aad Xarumo ku leedahay *
                     </label>
                     <span className="text-[11px] text-primary font-medium">
                         (Dooro hal ama ka badan)
@@ -157,7 +157,7 @@ export function OnboardingForm({ cities, categories }: Props) {
                 disabled={loading}
                 className="w-full mt-2 rounded-xl bg-primary py-3 text-sm font-semibold text-primary-foreground shadow-sm transition hover:opacity-90 disabled:opacity-50 cursor-pointer"
             >
-                {loading ? "Fadlan sug..." : "Dhis Dukaankayga"}
+                {loading ? "Fadlan sug..." : "Dhis Ganacsigayga"}
             </button>
         </form>
     );

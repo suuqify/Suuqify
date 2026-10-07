@@ -18,12 +18,12 @@ export function Footer() {
                             </span>
                         </Link>
                         <p className="text-sm text-muted-foreground max-w-sm leading-relaxed">
-                            Madal casri ah oo ganacsatada Soomaalida ee TikTok iyo Instagram u beddelaysa dukaamo Link-in-Bio ah oo toos WhatsApp looga dalbado.
+                           Madal casri ah oo ganacsatada Soomaalida u suurtagelisa inay daqiiqado gudahood ku yeeshaan Website ganacsi, dalabyadana toos WhatsApp kaga helaan.
                         </p>
                         {/* Payment Methods Badges */}
                         <div className="pt-2">
                             <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-2">
-                                Hababka Lacag-bixinta ee Taageersan
+                                Hababka Lacag-bixinta
                             </span>
                             <div className="flex flex-wrap gap-2 text-xs font-medium text-foreground">
                                 <span className="bg-card px-2.5 py-1 rounded-lg border border-border shadow-2xs">EVC Plus</span>
@@ -56,13 +56,13 @@ export function Footer() {
                     </div>
                 </div>
 
-                {/* Bottom Bar */}
-                <div className="mt-12 pt-8 border-t border-border/60 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
-                    <p>© {new Date().getFullYear()} Suuqify Inc. Xuquuqda oo dhan waa dhowran tahay.</p>
-                    <p className="flex items-center gap-1">
-                        Lagu dhisay <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500" /> ganacsatada Soomaaliyeed.
-                    </p>
-                </div>
+               {/* Bottom Bar */}
+<div className="mt-12 pt-8 border-t border-border/60 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
+    <p>© {new Date().getFullYear()} Suuqify Inc. Xuquuqda oo dhan waa dhowran tahay.</p>
+    <p className="flex items-center gap-1">
+        Lagu dhisay <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500 inline-block" /> looguna talagalay ganacsatada Soomaaliyeed.
+    </p>
+</div>
             </div>
         </footer>
     );

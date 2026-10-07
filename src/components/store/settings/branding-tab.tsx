@@ -70,7 +70,7 @@ export function BrandingTab({ store }: BrandingTabProps) {
             <CardHeader>
                 <CardTitle className="text-lg font-bold">Muuqaalka & Sawirrada</CardTitle>
                 <CardDescription>
-                    Soo geli Logo-da iyo Banner-ka dambe ee dukaankaaga (Ugu badnaan 5MB).
+                    Soo geli Logo-da iyo Banner-ka dambe ee Ganacsigaaga (Ugu badnaan 5MB).
                 </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
@@ -84,7 +84,7 @@ export function BrandingTab({ store }: BrandingTabProps) {
                     </Avatar>
 
                     <div className="flex-1 space-y-1">
-                        <h4 className="text-sm font-bold text-foreground">Logo-da Dukaanka</h4>
+                        <h4 className="text-sm font-bold text-foreground">Logo-da Ganacsigaaga</h4>
                         <p className="text-xs text-muted-foreground">
                             Sawir laba-jibaaran (1:1 ratio) oo cabbirkiisu yahay ugu yaraan 300x300px.
                         </p>
@@ -116,7 +116,7 @@ export function BrandingTab({ store }: BrandingTabProps) {
                         <div>
                             <h4 className="text-sm font-bold text-foreground">Banner-ka Dhabarka (Cover)</h4>
                             <p className="text-xs text-muted-foreground">
-                                Sawirka ballaaran ee ka muuqda dhabarka sare ee dukaankaaga.
+                                Sawirka ballaaran ee ka muuqda dhabarka sare ee Ganacsigaaga.
                             </p>
                         </div>
                         <label className="cursor-pointer inline-flex">

@@ -17,10 +17,10 @@ export function ProductGrid({ products, onOrder }: ProductGridProps) {
                 <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-muted text-muted-foreground">
                     <PackageOpen className="h-6 w-6" />
                 </div>
-                <h3 className="font-semibold text-foreground text-sm">Weli wax alaab ah ma taal dukaankan</h3>
-                <p className="text-xs text-muted-foreground max-w-xs mx-auto">
-                    Dukaanku wuxuu dhowaan soo gelin doonaa alaab cusub. Fadlan dib ugu soo laabo goor dhow.
-                </p>
+                <h3 className="font-semibold text-foreground text-sm">Weli waxba lama soo bandhigin</h3>
+<p className="text-xs text-muted-foreground max-w-xs mx-auto">
+    Dhowaan ayaa halkan lagu soo kordhin doonaa waxyaabo cusub. Fadlan dib ugu soo laabo mar kale.
+</p>
             </div>
         );
     }

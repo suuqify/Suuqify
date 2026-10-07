@@ -10,15 +10,15 @@ export function FAQSection() {
     const faqs = [
         {
             q: "Sidee macaamiishu wax iiga iibsanayaan?",
-            a: "Macaamiishu waxay booqanayaan link-gaaga dukaanka (tusaale: suuqify.com/dukaankaaga). Marka ay doortaan alaabta, cabbirka, iyo midabka, waxay gujinayaan 'Dalbo WhatsApp', taas oo toos ugu furaysa WhatsApp-kaaga fariin qoraal ah oo ay ku qoran tahay alaabta ay doonayaan.",
+            a: "Macaamiishu waxay booqanayaan link-gaaga Ganacsigaaga (tusaale: suuqify.com/Ganacsigaaga). Marka ay doortaan waxa ay rabaan, waxay gujinayaan 'Dalbo WhatsApp', taas oo toos ugu furaysa WhatsApp-kaaga fariin qoraal ah oo ay ku qoran tahay alaabta ama Adeega ay doonayaan.",
         },
         {
             q: "Sideen ku bixinayaa lacagta Subscription-ka?",
-            a: "Waxaad ku bixin kartaa adeegyada lacagaha mobilada ee Soomaalida sida EVC Plus, Zaad, Sahal, iyo eDahab. Markaad lacagta soo dirto waxaad gelinaysaa lambarkaaga, admin-kuna isla markiiba wuu ku xaqiijinayaa.",
+            a: "Waxaad ku bixin kartaa adeegyada lacagaha mobilada ee Soomaalida sida EVC Plus, Zaad, Sahal, iyo eDahab. Markaad lacagta soo dirto waxaad gelinaysaa lambarkaaga aad kasoo dirtay, wax ka yar 1 saac ayuu system ka kugu xaqiijin doona InshaAllah",
         },
         {
-            q: "Ma u baahanahay inaan barnaamij-sameeye (Developer) kireysto?",
-            a: "Maya haba yaraatee! Suuqify waxaa loogu talagalay in qof kasta uu 1 daqiiqo gudahood dukaan ku furto isagoo taleefankiisa gacanta kaliya isticmaalaya.",
+            q: "Ma u baahanahay inaan barnaamij-sameeyo (Developer) kireysto?",
+            a: "Maya haba yaraatee! Suuqify waxaa loogu talagalay in qof kasta uu 5 daqiiqo gudahood Ganacsi Online ku furto isagoo taleefankiisa gacanta kaliya isticmaalaya.",
         },
         {
             q: "Maxay tahay faa'iidada VIP Plan-ka?",

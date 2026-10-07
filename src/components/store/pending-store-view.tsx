@@ -49,15 +49,15 @@ export function PendingStoreView({ storeName, status }: PendingStoreViewProps) {
                                 : "bg-amber-100 text-amber-800 dark:bg-amber-950/60 dark:text-amber-400 border border-amber-200 dark:border-amber-900"
                                 }`}
                         >
-                            {isSuspended ? "La Hakiyay" : "Dib-u-eegis (Pending)"}
+                            {isSuspended ? "La Hakiyay" : "Sugitaanka Ansixinta"}
                         </Badge>
                     </div>
 
                     <p className="text-sm sm:text-base text-muted-foreground max-w-md mx-auto leading-relaxed">
-                        {isSuspended
-                            ? "Dukaankaaga si ku-meel-gaar ah ayaa loo hakiyay. Fadlan la xiriir xafiiska taageerada macaamiisha si dib loogu howlgeliyo."
-                            : "Dukaankaagu wuxuu ku jiraa nidaamka hubinta iyo ansixinta maamulka. Wax yar kadib ayaa si toos ah loo furi doonaa."}
-                    </p>
+    {isSuspended
+        ? "Ganacsigaaga si ku-meel-gaar ah ayaa loo hakiyay. Fadlan la xiriir kooxda taageerada si dib loogu hawlgeliyo."
+        : "Website-kaagu wuxuu ku jiraa hubinta iyo ansixinta maamulka. Wax yar ka dib ayaa si toos ah laguu hawlgelinayaa."}
+</p>
                 </CardHeader>
 
                 {/* Content Section */}
@@ -73,15 +73,15 @@ export function PendingStoreView({ storeName, status }: PendingStoreViewProps) {
                         <div className="space-y-2.5 text-xs sm:text-sm text-muted-foreground">
                             <div className="flex items-start gap-3">
                                 <CheckCircle2 className="h-4 w-4 text-emerald-500 shrink-0 mt-0.5" />
-                                <span>Maamulku wuxuu xaqiijinayaa xogta dukaankaaga si loo ilaaliyo badqabka ganacsigaaga.</span>
+                                <span>Waxaan hubinaynaa xogta ganacsigaaga si loo ilaaliyo kalsoonida iyo badqabka.</span>
                             </div>
                             <div className="flex items-start gap-3">
                                 <CheckCircle2 className="h-4 w-4 text-emerald-500 shrink-0 mt-0.5" />
-                                <span>Isla marka la ansixiyo, boggani wuxuu si toos ah kuugu geyn doonaa Dashboard-kaaga.</span>
+                                <span>Isla marka la ansixiyo, waxaad si toos ah u geli doontaa Dashboard-kaaga.</span>
                             </div>
                             <div className="flex items-start gap-3">
                                 <CheckCircle2 className="h-4 w-4 text-emerald-500 shrink-0 mt-0.5" />
-                                <span>Kadib waxaad bilaabi kartaa inaad ku darto alaabtaada oo aad iibiso.</span>
+                                <span>Kadib waxaad si toos ah u bilaabi kartaa soo gelinta waxaad haysato.</span>
                             </div>
                         </div>
                     </div>
@@ -90,16 +90,16 @@ export function PendingStoreView({ storeName, status }: PendingStoreViewProps) {
                     <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/5 dark:bg-emerald-500/10 p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
                         <div className="text-center sm:text-left space-y-0.5">
                             <h4 className="text-sm font-semibold text-foreground">
-                                Ma doonaysaa xaqiijin degdeg ah?
-                            </h4>
-                            <p className="text-xs text-muted-foreground">
-                                Kala hadal maamulka WhatsApp si dhakhso ah loogu ansixiyo
-                            </p>
+    Ma doonaysaa ansixin degdeg ah?
+</h4>
+<p className="text-xs text-muted-foreground">
+    Nagala soo xiriir WhatsApp si daqiiqado gudahood laguu hawlgeliyo
+</p>
                         </div>
 
                         <a
                             href={`https://wa.me/252610000000?text=${encodeURIComponent(
-                                `Asc Suuqify, waxaan rabaa in degdeg loo xaqiijiyo dukaankayga: ${storeName}`
+                                `Asc Suuqify, waxaan rabaa in degdeg loo xaqiijiyo Ganacsigayga: ${storeName}`
                             )}`}
                             target="_blank"
                             rel="noopener noreferrer"

@@ -92,7 +92,7 @@ export function StorefrontHeader({
                             className="bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl px-4 py-2.5 h-auto flex items-center gap-2 font-semibold shadow-xs transition-all cursor-pointer"
                         >
                             <MessageCircle className="h-4 w-4 shrink-0 fill-current/20" />
-                            <span className="whitespace-nowrap text-sm">La Xiriir Dukaanka</span>
+                            <span className="whitespace-nowrap text-sm">La Xiriir Ganacsiga</span>
                         </Button>
                     </a>
                 </div>

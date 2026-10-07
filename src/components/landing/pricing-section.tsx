@@ -20,7 +20,7 @@ export function PricingSection({ plans }: PricingSectionProps) {
                         Dooro Qorshaha Ganacsigaaga Ku Habboon
                     </h2>
                     <p className="text-sm text-muted-foreground mt-2">
-                        Ku bixi EVC Plus, Zaad, Sahal, ama eDahab. Ma jiro wax lacag ah oo qarsoon.
+                        Ku bixi EVC Plus, Zaad, Sahal, ama eDahab.
                     </p>
                 </div>
 
@@ -59,7 +59,7 @@ export function PricingSection({ plans }: PricingSectionProps) {
                                     </li>
                                     <li className="flex items-center gap-2">
                                         <Check className="w-4 h-4 text-primary shrink-0" />
-                                        <span>Link-in-Bio Micro-Storefront</span>
+                                       <span>Smart Business Websites</span>
                                     </li>
                                     {p.isFeature && (
                                         <li className="flex items-center gap-2 text-primary font-semibold">

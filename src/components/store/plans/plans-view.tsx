@@ -2,7 +2,7 @@
 "use client";
 
 import { useState } from "react";
-import { Check, Sparkles, Zap, ShieldCheck } from "lucide-react";
+import { Check, Sparkles, Zap, ShieldCheck, X } from "lucide-react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -28,13 +28,13 @@ export function PlansView({ plans, activeSubscription }: PlansViewProps) {
             {/* Header Section */}
             <div className="text-center max-w-2xl mx-auto space-y-2">
                 <Badge variant="outline" className="text-primary border-primary/30 bg-primary/5 px-3 py-1 font-medium">
-                    Qorshayaasha Dukaanka
+                    Xirmooyinka Ganacsiga
                 </Badge>
                 <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-foreground">
-                    Dooro Qorshaha Ku Habboon Ganacsigaaga
+                    Dooro Xirmada ku Habboon Ganacsigaaga
                 </h1>
                 <p className="text-muted-foreground text-sm sm:text-base">
-                    Ka kordhi iibkaaga adigoo helaya alaab badan, taageero gaar ah, iyo muuqaalka sare ee dukaamada VIP-da ah.
+                    Ballaari suuqaaga adigoo helaya fursad aad ku soo bandhigto wax badan, taageero buuxda, iyo website heer sare ah oo ganacsigaaga kor u qaada.
                 </p>
             </div>
 
@@ -57,7 +57,7 @@ export function PlansView({ plans, activeSubscription }: PlansViewProps) {
                                 <div className="absolute top-1.5 left-1/2 -translate-x-1/2">
                                     <Badge className="bg-primary text-primary-foreground shadow-sm flex items-center gap-1.5 px-3 py-0.5 text-xs font-semibold">
                                         <Sparkles className="h-3.5 w-3.5" />
-                                        Ugu Caansan & VIP
+                                        Heer Sare & VIP
                                     </Badge>
                                 </div>
                             )}
@@ -67,12 +67,12 @@ export function PlansView({ plans, activeSubscription }: PlansViewProps) {
                                     <CardTitle className="text-xl font-bold">{plan.name}</CardTitle>
                                     {isCurrentPlan && (
                                         <Badge variant="secondary" className="bg-emerald-50 text-emerald-700 border-emerald-200">
-                                            Qorshahaaga Hadda
+                                            Xirmadaada Hadda
                                         </Badge>
                                     )}
                                 </div>
                                 <CardDescription className="text-xs text-muted-foreground mt-1">
-                                    Muddada xirmadan waa {plan.duration} maalmood.
+                                    Xirmo soconaysa {plan.duration} maalmood
                                 </CardDescription>
 
                                 {/* Price Display */}
@@ -89,50 +89,55 @@ export function PlansView({ plans, activeSubscription }: PlansViewProps) {
                             <CardContent className="space-y-4 flex-1">
                                 <div className="h-px bg-border/60 w-full" />
                                 <ul className="space-y-3 text-sm">
+                                    {/* 1. Limit Item */}
                                     <li className="flex items-center gap-2.5 text-foreground">
                                         <div className="rounded-full bg-primary/10 p-1 text-primary">
                                             <Check className="h-3.5 w-3.5 stroke-3" />
                                         </div>
                                         <span>
-                                            Ilaa <strong>{plan.max_product}</strong> Alaab oo aad soo gelin karto
+                                            Soo bandhig ilaa <strong>{plan.max_product} boos</strong> website-kaaga
                                         </span>
                                     </li>
 
+                                    {/* 2. WhatsApp Direct */}
                                     <li className="flex items-center gap-2.5 text-foreground">
                                         <div className="rounded-full bg-primary/10 p-1 text-primary">
                                             <Check className="h-3.5 w-3.5 stroke-3" />
                                         </div>
-                                        <span>Dalabaadka tooska ah ee WhatsApp</span>
+                                        <span>Xiriirka tooska ah ee WhatsApp</span>
                                     </li>
 
+                                    {/* 3. Website & QR */}
                                     <li className="flex items-center gap-2.5 text-foreground">
                                         <div className="rounded-full bg-primary/10 p-1 text-primary">
                                             <Check className="h-3.5 w-3.5 stroke-3" />
                                         </div>
-                                        <span>Link-in-bio shakhsi ah & QR Code</span>
+                                        <span>Website-kaaga gaarka ah & QR Code</span>
                                     </li>
 
+                                    {/* 4. Homepage Feature */}
                                     {isFeatured ? (
                                         <li className="flex items-center gap-2.5 text-primary font-medium">
                                             <div className="rounded-full bg-primary/20 p-1 text-primary">
                                                 <Sparkles className="h-3.5 w-3.5 stroke-3" />
                                             </div>
-                                            <span>Ka dhex muuqo dukaamada VIP ee bogga hore</span>
+                                            <span>Ka muuqashada Ganacsiyada VIP ee bogga hore</span>
                                         </li>
                                     ) : (
                                         <li className="flex items-center gap-2.5 text-muted-foreground">
                                             <div className="rounded-full bg-muted p-1 text-muted-foreground">
-                                                <Check className="h-3.5 w-3.5 opacity-50" />
+                                                <X className="h-3.5 w-3.5 opacity-50" />
                                             </div>
-                                            <span>Muujinta bogga hore kuma jirto</span>
+                                            <span>Ka muuqashada bogga hore kuma jirto</span>
                                         </li>
                                     )}
 
+                                    {/* 5. Support */}
                                     <li className="flex items-center gap-2.5 text-foreground">
                                         <div className="rounded-full bg-primary/10 p-1 text-primary">
                                             <ShieldCheck className="h-3.5 w-3.5 stroke-3" />
                                         </div>
-                                        <span>Dammaanad & Taageero 24/7</span>
+                                        <span>Taageero & Caawimaad joogto ah</span>
                                     </li>
                                 </ul>
                             </CardContent>
@@ -148,11 +153,11 @@ export function PlansView({ plans, activeSubscription }: PlansViewProps) {
                                     disabled={isCurrentPlan}
                                 >
                                     {isCurrentPlan ? (
-                                        "Waad Haysataa Qorshahan"
+                                        "Waad Haysataa Xirmadan"
                                     ) : (
                                         <>
                                             <Zap className="h-4 w-4 fill-current" />
-                                            Dooro Qorshahan
+                                            Dooro Xirmadan
                                         </>
                                     )}
                                 </Button>

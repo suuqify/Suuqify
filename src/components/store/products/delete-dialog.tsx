@@ -34,7 +34,7 @@ export function DeleteProductDialog({
         startTransition(async () => {
             const res = await deleteProductAction(productId);
             if (res.success) {
-                toast.success("Alaabta waa la tirtiray");
+                toast.success("waa la tirtiray");
                 onOpenChange(false);
             } else {
                 toast.error(res.error || "Khalad ayaa dhacay");
@@ -48,8 +48,8 @@ export function DeleteProductDialog({
                 <DialogHeader>
                     <DialogTitle className="text-lg font-bold">Ma hubtaa inaad tirtirto?</DialogTitle>
                     <DialogDescription className="text-sm">
-                        Alaabta <strong>"{productName}"</strong> gabi ahaanba waa la tirtiri doonaa lagamana noqon karo ficilkan.
-                    </DialogDescription>
+    <strong>"{productName}"</strong> gabi ahaanba waa la tirtirayaa, dibna looma soo celin karo ficilkan.
+</DialogDescription>
                 </DialogHeader>
                 <DialogFooter className="gap-2 sm:gap-0">
                     <Button

@@ -38,7 +38,7 @@ export function StoreLinkBanner({ storeName, isVerified }: StoreLinkBannerProps)
                 <div className="space-y-2 max-w-xl">
                     <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-white/15 text-white backdrop-blur-xs border border-white/20">
                         <Sparkles className="w-3.5 h-3.5" />
-                        <span>Link-in-Bio Business Page</span>
+                        <span>Website-ka Rasmiga ah ee Ganacsigaaga</span>
                     </div>
 
                     <div className="flex items-center gap-2">

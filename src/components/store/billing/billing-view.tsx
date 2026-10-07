@@ -179,7 +179,7 @@ export function BillingView({ data }: BillingViewProps) {
                                 Diiwaanka Lacag-bixinnada
                             </CardTitle>
                             <CardDescription className="text-xs mt-0.5">
-                                Liiska dhammaan dalabaadka lacag-bixinta ee dukaankaaga.
+                                Liiska dhammaan dalabaadka lacag-bixinta ee Ganacsigaaga.
                             </CardDescription>
                         </div>
                         <span className="text-xs font-semibold bg-muted px-2.5 py-1 rounded-full text-muted-foreground">
@@ -196,7 +196,7 @@ export function BillingView({ data }: BillingViewProps) {
                             </div>
                             <h3 className="font-bold text-foreground text-sm">Weli ma jirto lacag-bixin</h3>
                             <p className="text-xs text-muted-foreground max-w-sm mx-auto">
-                                Ma aadan samayn wax dalab lacag-bixin ah. Dooro qorshe si aad u bilowdo isticmaalka dukaankaaga.
+                                Ma aadan samayn wax dalab lacag-bixin ah. Dooro qorshe si aad u bilowdo isticmaalka Ganacsigaaga.
                             </p>
                             <Link
                                 href="/store/plans"
@@ -225,7 +225,7 @@ export function BillingView({ data }: BillingViewProps) {
                                                 Habka
                                             </TableHead>
                                             <TableHead className="font-semibold text-muted-foreground uppercase text-[11px] tracking-wider">
-                                                Lambarka Diraha
+                                                Lambarka aad kasoo dirtay
                                             </TableHead>
                                             <TableHead className="font-semibold text-muted-foreground uppercase text-[11px] tracking-wider">
                                                 Taariikhda

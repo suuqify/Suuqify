@@ -37,7 +37,7 @@ export function DangerTab({ store }: DangerTabProps) {
             if (res.error) {
                 toast.error(res.error, { id: toastId });
             } else {
-                toast.success("Dukaankaaga si buuxda ayaa loo tirtiray!", { id: toastId });
+                toast.success("Ganacsigaaga si buuxda ayaa loo tirtiray!", { id: toastId });
                 router.push("/onboarding");
             }
         });
@@ -49,35 +49,35 @@ export function DangerTab({ store }: DangerTabProps) {
                 <CardHeader className="pb-3">
                     <CardTitle className="text-lg font-bold text-destructive flex items-center gap-2">
                         <Trash2 className="w-5 h-5" />
-                        Tirtir Dukaankaaga
+                        Tirtir Ganacsigaaga
                     </CardTitle>
                     <CardDescription>
-                        Talaabadani waxay si joogto ah u tirtiraysaa dukaankaaga iyo dhammaan alaabta ku dhex jirta.
-                    </CardDescription>
+    Ficilkani wuxuu si joogto ah u tirtirayaa website-kaaga ganacsi iyo dhammaan xogta ku dhex jirta.
+</CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <div className="p-3.5 rounded-lg bg-destructive/10 border border-destructive/20 text-xs text-destructive leading-relaxed space-y-1">
-                        <p className="font-semibold">Fadlan ogow intaadan tirtirin:</p>
-                        <ul className="list-disc list-inside space-y-0.5">
-                            <li>Dhammaan alaabtaada (Products) iyo sawirradooda si joogto ah ayaa loo tirtirayaa.</li>
-                            <li>Link-gaaga dukaanku wuxuu noqonayaa mid aan jirin.</li>
-                            <li>Akoonkaaga Google wuu sii jiri doonaa, waxaadna mar kasta furan kartaa dukaan cusub.</li>
-                        </ul>
-                    </div>
+                   <div className="p-3.5 rounded-lg bg-destructive/10 border border-destructive/20 text-xs text-destructive leading-relaxed space-y-1">
+    <p className="font-semibold">Fadlan ogow intaadan tirtirin:</p>
+    <ul className="list-disc list-inside space-y-0.5">
+        <li>Dhammaan waxyaabihii aad soo gelisay iyo sawirradooda si joogto ah ayaa loo tirtirayaa.</li>
+        <li>Cinwaanka (Link-ga) website-kaaga lama heli doono mar dambe.</li>
+        <li>Akoonkaaga Google wuu sii jiri doonaa, waxaadna mar kasta samaysan kartaa website ganacsi oo cusub.</li>
+    </ul>
+</div>
                 </CardContent>
                 <CardFooter className="border-t border-destructive/10 pt-4 flex justify-end">
                     <AlertDialog>
                         <AlertDialogTrigger className={buttonVariants({ variant: "destructive", size: "sm" })}>
                             <Trash2 className="w-4 h-4 mr-1.5" />
-                            Tirtir Dukaanka
+                            Tirtir Ganacsigaaga
                         </AlertDialogTrigger>
                         <AlertDialogContent>
                             <AlertDialogHeader>
                                 <AlertDialogTitle className="text-destructive">
-                                    Ma hubtaa inaad tirtirto dukaanka?
+                                    Ma hubtaa inaad tirtirto Ganacsigaaga?
                                 </AlertDialogTitle>
                                 <AlertDialogDescription>
-                                    Ficilkan dib looma noqon karo. Dukaanka <strong>"{store.name}"</strong> iyo dhammaan xogtiisa si joogto ah ayaa loo tirtirayaa.
+                                    Ficilkan dib looma noqon karo. Ganacsiga <strong>"{store.name}"</strong> iyo dhammaan xogtiisa si joogto ah ayaa loo tirtirayaa.
                                 </AlertDialogDescription>
                             </AlertDialogHeader>
                             <AlertDialogFooter>

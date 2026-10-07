@@ -20,9 +20,9 @@ export function SettingsView({ store, userEmail, cities, categories }: SettingsV
         <div className="space-y-6 max-w-4xl pb-16">
             {/* Header */}
             <div>
-                <h2 className="text-2xl font-bold tracking-tight text-foreground">Qaabeynta Dukaanka</h2>
+                <h2 className="text-2xl font-bold tracking-tight text-foreground">Qaabeynta Ganacsiga</h2>
                 <p className="text-sm text-muted-foreground mt-1">
-                    Maamul macluumaadka dukaankaaga, muuqaalka guud, iyo tirtirka dukaanka.
+                    Maamul macluumaadka Ganacsigaaga, muuqaalka guud, iyo tirtirka Ganacsiga.
                 </p>
             </div>
 

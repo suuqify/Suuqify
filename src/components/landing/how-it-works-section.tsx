@@ -6,21 +6,21 @@ export function HowItWorksSection() {
         {
             num: "01",
             icon: UserCheck,
-            title: "Abuur Dukaankaaga",
-            desc: "Ku gal akoonkaaga Google, dooro magaca dukaankaaga iyo lambarkaaga WhatsApp-ka ee dalabka.",
+            title: "Abuur Ganacsigaaga",
+            desc: "Ku gal akoonkaaga Google, dooro magaca Ganacsigaaga iyo lambarkaaga WhatsApp-ka ee dalabka.",
         },
         {
             num: "02",
             icon: UploadCloud,
-            title: "Geli Alaabtaada",
-            desc: "Soo geli sawirka alaabta, qiimaha, midabbada, iyo cabbirrada adigoo isticmaalaya dashboard-kaaga.",
+            title: "Soo Bandhig Waxaad Haysid",
+            desc: "Soo geli sawirrada, qiimaha, iyo faahfaahinta waxa aad iibinayso ama adeeg ahaan u bixinayso adigoo isticmaalaya dashboard-kaaga.",
         },
-        {
-            num: "03",
-            icon: Share2,
-            title: "Ku Dhaji Bio-gaaga & Hel Dalabyo",
-            desc: "Link-gaaga gaarka ah (suuqify.com/dukaankaaga) ku dar TikTok/Instagram, macmiilkuna WhatsApp buu kugu soo dalbanayaa!",
-        },
+       {
+    num: "03",
+    icon: Share2,
+    title: "La wadaag Website-kaaga & Hel Dalabyo",
+    desc: "Link-ga Website-kaaga (suuqify.com/Ganacsigaaga) ku soo bandhig dhammaan barahaaga bulshada. Macaamiishu waxay si fudud u arkaan wax kasta oo kuu yaalla, toosna WhatsApp ugu soo dalbanayaan!",
+},
     ];
 
     return (
@@ -34,7 +34,7 @@ export function HowItWorksSection() {
                         Sida ay u Shaqeyso Suuqify
                     </h2>
                     <p className="text-sm text-muted-foreground mt-2">
-                        Kaliya 3 tallaabo oo fudud ayaa kugu xiraya dukaankaaga riyada.
+                        Kaliya 3 tallaabo oo fudud ayaa kugu xiraya Ganacsigaaga.
                     </p>
                 </div>
 

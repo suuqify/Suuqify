@@ -56,7 +56,7 @@ export function ProductsView({
                 <div>
                     <div className="flex items-center gap-3">
                         <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
-                            Alaabta Dukaanka
+                            Bandhigga Ganacsiga
                         </h1>
                         <Badge
                             variant="outline"
@@ -66,7 +66,7 @@ export function ProductsView({
                                     : "border-primary/40 text-primary bg-primary/5 font-semibold"
                             }
                         >
-                            {hasNoPlan ? "Qorshe Ma Jiro" : `${currentCount} / ${maxLimit} Alaab`}
+                           {hasNoPlan ? "Xirmo Ma Haysatid" : `${currentCount} / ${maxLimit} Boos`}
                         </Badge>
                     </div>
 
@@ -75,18 +75,21 @@ export function ProductsView({
                         {hasNoPlan ? (
                             <span className="text-destructive font-medium flex items-center gap-1">
                                 <AlertCircle className="h-3.5 w-3.5" />
-                                Ma haysatid qorshe firfircoon. Fadlan dooro qorshe si aad alaab u darto.
+                               Ma haysatid xirmo shaqaynaysa. Fadlan qaado xirmo si aad wax u soo geliso.
                             </span>
                         ) : isLimitReached ? (
                             <span className="text-destructive font-medium flex items-center gap-1">
                                 <AlertCircle className="h-3.5 w-3.5" />
-                                Xadkii qorshahaaga waa buuxsamay ({maxLimit}/{maxLimit}). Ma ku dari kartid alaab kale.
+                                <span className="text-destructive font-medium flex items-center gap-1">
+    <AlertCircle className="h-3.5 w-3.5" />
+    Waxaad buuxisay xadkii xirmadaada ({maxLimit}/{maxLimit}). Kordhi xirmada si aad wax kale ugu darto.
+</span>
                             </span>
                         ) : (
-                            <span>
-                                Waxaa kuu furan oo aad ku dari kartaa{" "}
-                                <strong className="text-foreground">{remaining} alaab</strong> oo dheeraad ah.
-                            </span>
+                           <span>
+    Waxaa kuu furan oo aad ku dari kartaa{" "}
+    <strong className="text-foreground">{remaining} boos</strong> oo dheeraad ah.
+</span>
                         )}
                     </p>
                 </div>
@@ -101,7 +104,7 @@ export function ProductsView({
                             })}
                         >
                             <Zap className="h-4 w-4 fill-current" />
-                            Dooro Qorshe Hadda
+                            Dooro Xirmo Hadda
                         </Link>
                     ) : isLimitReached ? (
                         <Link
@@ -111,14 +114,14 @@ export function ProductsView({
                             })}
                         >
                             <Zap className="h-4 w-4 fill-current" />
-                            Xadkii waa buuxsamay (Kordhi Qorshaha)
+                            Xadkii waa buuxsamay (Kordhi Xirmada)
                         </Link>
                     ) : (
                         <Button
                             onClick={handleOpenCreate}
                             className="bg-primary hover:bg-primary/90 text-primary-foreground gap-1.5 shadow-sm self-start sm:self-auto"
                         >
-                            <Plus className="h-4 w-4" /> Ku dar Alaab Cusub
+                            <Plus className="h-4 w-4" />+Add New
                         </Button>
                     )}
                 </div>

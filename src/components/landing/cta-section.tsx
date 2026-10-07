@@ -18,7 +18,7 @@ export function CTASection() {
                             Diyaar ma u tahay inaad ganacsigaaga kobciso?
                         </h2>
                         <p className="text-xs sm:text-sm text-emerald-100 leading-relaxed">
-                            Ha ku lumin waqti fariimaha DM-ka ee murugsan. Abuur dukaankaaga Suuqify maanta oo billow inaad dalabyo toos ah ku hesho WhatsApp.
+                            Ganacsigaaga online ka dhig Suuqify maanta! U soo bandhig macaamiishaada wax kasta oo kuu yaalla, si ay hal meel uga wada doortaan adiguna uga nasatid daalka fariimaha badan ee chat-ka.
                         </p>
                         <div className="pt-4">
                             <Link href="/signin">
@@ -26,7 +26,7 @@ export function CTASection() {
                                     size="lg"
                                     className="h-12 px-8 rounded-2xl font-bold text-sm bg-white text-emerald-900 hover:bg-emerald-50 shadow-md gap-2"
                                 >
-                                    <span>Abuur Dukaankaaga Hadda</span>
+                                    <span>Abuur Ganacsigaaga Hadda</span>
                                     <ArrowRight className="w-4 h-4" />
                                 </Button>
                             </Link>

@@ -41,7 +41,7 @@ export function StorefrontView({ store }: StorefrontViewProps) {
                 <Tabs defaultValue="products" className="w-full">
                     <TabsList className="grid w-full grid-cols-3 bg-muted/60 p-1 rounded-xl h-11">
                         <TabsTrigger value="products" className="gap-1.5 rounded-lg text-xs font-semibold">
-                            <Package className="h-4 w-4" /> Alaabta ({store.products.length})
+                           <Package className="h-4 w-4" /> Bandhigga ({store.products.length})
                         </TabsTrigger>
                         <TabsTrigger value="about" className="gap-1.5 rounded-lg text-xs font-semibold">
                             <Info className="h-4 w-4" /> Faahfaahin
@@ -60,14 +60,14 @@ export function StorefrontView({ store }: StorefrontViewProps) {
                     <TabsContent value="about" className="mt-4">
                         <Card className="rounded-2xl border-border/70 shadow-xs">
                             <CardContent className="p-6">
-                                <h3 className="text-base font-bold text-foreground mb-2">Ku Saabsan Dukaanka</h3>
+                                <h3 className="text-base font-bold text-foreground mb-2">Ku Saabsan Ganacsiga</h3>
                                 {store.about ? (
                                     <p className="text-sm text-muted-foreground whitespace-pre-line leading-relaxed">
                                         {store.about}
                                     </p>
                                 ) : (
                                     <p className="text-xs text-muted-foreground italic">
-                                        Dukaankani weli ma soo gelin faahfaahin dheeraad ah.
+                                        Ganacsigani weli ma soo gelin faahfaahin dheeraad ah.
                                     </p>
                                 )}
                             </CardContent>
@@ -97,8 +97,8 @@ export function StorefrontView({ store }: StorefrontViewProps) {
                                 {store.cities && store.cities.length > 0 && (
                                     <div className="pt-2 border-t border-border/60">
                                         <span className="text-xs font-semibold text-muted-foreground uppercase block mb-2">
-                                            Magaalooyinka aan u adeegno:
-                                        </span>
+    Magaalooyinka aan ka Hawlgalno:
+</span>
                                         <div className="flex flex-wrap gap-1.5">
                                             {store.cities.map((c: any) => (
                                                 <span

@@ -84,7 +84,7 @@ export function PaymentDialog({ plan, open, onOpenChange }: PaymentDialogProps) 
     };
 
     const whatsappHelpMessage = encodeURIComponent(
-        `Asc Suuqify, waxaan rabaa inaan qorshaha "${plan.name}" ($${plan.price}) ku bixiyo Zaad / Sahal / eDahab. Fadlan ii soo dira akoonka.`
+        `Asc Suuqify, "${plan.name}" ($${plan.price}) waxaan rabaa inaan Xirmada Lacag bixinta aan ku bixiyo Zaad / Sahal / eDahab. Fadlan ii soo dira akoonka number.`
     );
 
     return (
@@ -97,7 +97,7 @@ export function PaymentDialog({ plan, open, onOpenChange }: PaymentDialogProps) 
                     <div className="flex items-center justify-between gap-2">
                         <div>
                             <span className="text-[10px] font-bold text-primary tracking-wider uppercase">
-                                Xaqiijinta Qorshaha
+                                Xaqiijinta Lacag-Bixinta
                             </span>
                             <DialogTitle className="text-lg sm:text-xl font-black text-foreground tracking-tight">
                                 {plan.name}
@@ -116,7 +116,7 @@ export function PaymentDialog({ plan, open, onOpenChange }: PaymentDialogProps) 
                     </div>
 
                     <DialogDescription className="text-[11px] sm:text-xs text-muted-foreground leading-normal">
-                        Fadlan koodhkan hoose ku dir lacagta, kadibna lambarkaaga foomka ku xaqiiji.
+                        Fadlan koodhkan hoose ku dir lacagta, kadibna lambarkaa kasoo dirtay foomka ku xaqiiji.
                     </DialogDescription>
                 </DialogHeader>
 
@@ -228,10 +228,10 @@ export function PaymentDialog({ plan, open, onOpenChange }: PaymentDialogProps) 
                     <div className="bg-muted/40 rounded-xl p-2.5 flex flex-col xs:flex-row items-center justify-between gap-2">
                         <div className="text-center xs:text-left">
                             <p className="text-[11px] font-semibold text-foreground leading-tight">
-                                Ma Zaad, Sahal mise eDahab?
+                                Ma doonaysaa inaad ku bixiso Zaad, Sahal ama eDahab?
                             </p>
                             <p className="text-[10px] text-muted-foreground">
-                                Si toos ah WhatsApp noogala xariir.
+                                Fadlan WhatsApp nagala soo xiriir si ganacsigaagu u sii shaqeeyo.
                             </p>
                         </div>
 

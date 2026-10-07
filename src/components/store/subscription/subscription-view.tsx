@@ -60,13 +60,13 @@ export function SubscriptionView({ data }: SubscriptionViewProps) {
             {/* Header */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
-                    <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
-                        Heshiiska Dukaanka (Subscription)
-                    </h1>
-                    <p className="text-muted-foreground text-sm mt-1">
-                        Maamul qorshahaaga, hubi xadka alaabta kuu bannaan, iyo maalmaha kuu dhiman.
-                    </p>
-                </div>
+    <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
+        Xirmada Ganacsiga
+    </h1>
+    <p className="text-muted-foreground text-sm mt-1">
+        Maamul xirmadaada, hubi inta boos ee kuu furan, iyo maalmaha kuu dhiman.
+    </p>
+</div>
                 <Link
                     href="/store/plans"
                     className={cn(
@@ -75,7 +75,7 @@ export function SubscriptionView({ data }: SubscriptionViewProps) {
                     )}
                 >
                     <Zap className="h-4 w-4 fill-current" />
-                    {isExpired ? "Dib u Hawlgeli Qorshe" : "Kordhi Qorshaha (Upgrade)"}
+                   {isExpired ? "Dib u Hawlgeli Xirmada" : "Kordhi Xirmada"}
                 </Link>
             </div>
 
@@ -86,16 +86,16 @@ export function SubscriptionView({ data }: SubscriptionViewProps) {
                         <AlertTriangle className="h-7 w-7" />
                     </div>
                     <div className="space-y-1">
-                        <h3 className="text-lg font-bold text-foreground">Ma haysatid Qorshe Firfircoon</h3>
-                        <p className="text-sm text-muted-foreground">
-                            Dukaankaagu ma laha heshiis socda hadda. Dooro qorshe si aad u hesho awood buuxda.
-                        </p>
-                    </div>
+    <h3 className="text-lg font-bold text-foreground">Ma haysatid Xirmo Shaqaynaysa</h3>
+    <p className="text-sm text-muted-foreground">
+        Website-kaagu ma laha xirmo furan hadda. Dooro xirmo si aad u hesho awood buuxda.
+    </p>
+</div>
                     <Link
                         href="/store/plans"
                         className={cn(buttonVariants(), "bg-primary hover:bg-primary/90 text-primary-foreground")}
                     >
-                        Dooro Qorshe Hadda
+                        Dooro Xirmo Hadda
                     </Link>
                 </Card>
             ) : (
@@ -112,7 +112,7 @@ export function SubscriptionView({ data }: SubscriptionViewProps) {
                                 <div className="flex flex-wrap items-center justify-between gap-2">
                                     <div className="space-y-1">
                                         <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-                                            Qorshahaaga Rasmiga ah
+                                            Xirmadaada Hadda
                                         </span>
                                         <div className="flex items-center gap-3">
                                             <CardTitle className="text-2xl font-black text-foreground">
@@ -147,13 +147,13 @@ export function SubscriptionView({ data }: SubscriptionViewProps) {
                                 <div className="space-y-2.5 rounded-xl border bg-muted/20 p-4">
                                     <div className="flex items-center justify-between text-sm">
                                         <span className="font-semibold text-foreground flex items-center gap-2">
-                                            <Package className="h-4 w-4 text-primary" />
-                                            Xadka Alaabta aad Soo Galisay:
-                                        </span>
-                                        <span className="font-bold text-foreground">
-                                            {productCount} / {maxProducts}{" "}
-                                            <span className="text-xs font-normal text-muted-foreground">alaab</span>
-                                        </span>
+    <Package className="h-4 w-4 text-primary" />
+    Boosaska aad Isticmaashay:
+</span>
+<span className="font-bold text-foreground">
+    {productCount} / {maxProducts}{" "}
+    <span className="text-xs font-normal text-muted-foreground">boos</span>
+</span>
                                     </div>
                                     <Progress
                                         value={usagePercentage}
@@ -164,7 +164,7 @@ export function SubscriptionView({ data }: SubscriptionViewProps) {
                                         {isLimitReached ? (
                                             <span className="text-destructive font-medium">Xadkii waa buuxsamay!</span>
                                         ) : (
-                                            <span>{maxProducts - productCount} alaab ayaa kuu bannaan</span>
+                                           <span>{maxProducts - productCount} boos ayaa kuu furan</span>
                                         )}
                                     </div>
                                 </div>
@@ -176,16 +176,16 @@ export function SubscriptionView({ data }: SubscriptionViewProps) {
                                             <Sparkles className="h-3.5 w-3.5" />
                                         </div>
                                         <span>
-                                            VIP Muuqaalka Bogga Hore:{" "}
-                                            <strong>{currentSub.plan.is_feature ? "Haa (Shidan)" : "Kuma jiro"}</strong>
-                                        </span>
+    Ka Muuqashada Bogga Hore (VIP):{" "}
+    <strong>{currentSub.plan.is_feature ? "Haa (Diyaar)" : "Kuma jiro"}</strong>
+</span>
                                     </div>
 
                                     <div className="flex items-center gap-2.5 text-xs text-foreground p-2.5 rounded-lg border bg-card">
                                         <div className="p-1 rounded-full bg-primary/10 text-primary">
                                             <ShieldCheck className="h-3.5 w-3.5" />
                                         </div>
-                                        <span>Dalabka tooska ah ee WhatsApp: <strong>Shidan</strong></span>
+                                       <span>Xiriirka tooska ah ee WhatsApp: <strong>Furan</strong></span>
                                     </div>
                                 </div>
                             </CardContent>
@@ -231,8 +231,8 @@ export function SubscriptionView({ data }: SubscriptionViewProps) {
                                 </div>
                                 <p className="text-xs text-muted-foreground pt-2">
                                     {isExpired
-                                        ? "Qorshahaagii wuu dhacay. Alaabtaada lama arki doono haddii aadan cusboonaysiin."
-                                        : `${daysLeft} maalmood ka dib ayuu heshiiskaagu dhacayaa.`}
+    ? "Xirmadaadu way dhacday. Website-kaaga lama arki doono haddii aadan cusboonaysiin."
+    : `${daysLeft} maalmood ka dib ayay xirmadaadu dhacaysaa.`}
                                 </p>
                             </CardContent>
 
@@ -245,7 +245,7 @@ export function SubscriptionView({ data }: SubscriptionViewProps) {
                                     )}
                                 >
                                     <ArrowUpRight className="h-4 w-4" />
-                                    {isExpired ? "Dib u Fur Qorshaha" : "Cusboonaysii Hadda"}
+                                   {isExpired ? "Dib u Furo Xirmada" : "Cusboonaysii Hadda"}
                                 </Link>
                             </CardFooter>
                         </Card>

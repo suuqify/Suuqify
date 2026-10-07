@@ -338,9 +338,11 @@ export function ProductDialog({
                 : await createProductAction(payload);
 
             if (res.success) {
-                toast.success(
-                    isEditing ? "Alaabta waa la cusboonaysiiyay" : "Alaab cusub waa la daray"
-                );
+               toast.success(
+    isEditing 
+        ? "Si guul leh baa loo cusboonaysiiyay!" 
+        : "Si guul leh baa loogu daray website-kaaga!"
+);
                 onOpenChange(false);
             } else {
                 toast.error(res.error || "Khalad ayaa dhacay");
@@ -354,15 +356,15 @@ export function ProductDialog({
             <DialogContent className="w-[96vw] max-w-lg max-h-[90vh] overflow-y-auto p-4 sm:p-6 rounded-2xl sm:rounded-3xl border shadow-xl">
                 <DialogHeader className="pb-2 border-b">
                     <DialogTitle className="text-base sm:text-lg font-bold text-foreground">
-                        {isEditing ? "Wax ka beddel Alaabta" : "Ku dar Alaab Cusub"}
-                    </DialogTitle>
+    {isEditing ? "Wax ka beddel" : "Ku dar Shay Cusub"}
+</DialogTitle>
                 </DialogHeader>
 
                 <form onSubmit={handleSubmit} className="space-y-4 pt-2">
                     {/* 1. Sawirka Alaabta */}
                     <div className="space-y-1.5">
                         <Label className="text-xs font-semibold text-muted-foreground uppercase">
-                            Sawirka Alaabta
+                            Sawirka Adeega/Alaabta
                         </Label>
                         <div className="flex items-center gap-3">
                             {image ? (
@@ -402,11 +404,11 @@ export function ProductDialog({
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
                         <div className="sm:col-span-2 space-y-1">
                             <Label htmlFor="prod-name" className="text-xs font-semibold text-foreground">
-                                Magaca Alaabta *
+                                Magaca Adeega/Alaabta *
                             </Label>
                             <Input
                                 id="prod-name"
-                                placeholder="Tusaale: Cabaayad Dubai ama iPhone 15"
+                                placeholder="Geli Magaca....."
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
                                 required
@@ -434,13 +436,13 @@ export function ProductDialog({
 
                     {/* 3. Sharraxaadda Alaabta (Description) */}
                     <div className="space-y-1">
-                        <Label htmlFor="prod-desc" className="text-xs font-semibold text-foreground">
-                            Sharraxaadda Alaabta (Ikhtiyaari)
-                        </Label>
+                       <Label htmlFor="prod-desc" className="text-xs font-semibold text-foreground">
+    Faahfaahinta Dheeraadka ah (Ikhtiyaari)
+</Label>
                         <Textarea
                             id="prod-desc"
                             rows={2}
-                            placeholder="Faahfaahin kooban oo ku saabsan alaabta..."
+                            placeholder="Faahfaahin kooban oo ku saabsan..."
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
                             className="text-xs rounded-xl resize-none"
@@ -450,7 +452,7 @@ export function ProductDialog({
                     {/* 4. In Stock Toggle */}
                     <div className="flex items-center justify-between border border-border/80 rounded-xl p-2.5 bg-muted/20">
                         <div>
-                            <p className="text-xs font-semibold text-foreground">Alaabtu ma taallaa (In Stock)?</p>
+                            <p className="text-xs font-semibold text-foreground">Hada mala heli karaa (In Stock)?</p>
                             <p className="text-[10px] text-muted-foreground">Macaamiishu hadda ma dalban karaan?</p>
                         </div>
                         <Switch checked={inStock} onCheckedChange={setInStock} />
@@ -461,10 +463,10 @@ export function ProductDialog({
                         <div>
                             <Label className="text-xs font-bold uppercase tracking-wider text-foreground flex items-center gap-1.5">
                                 <Sparkles className="h-3.5 w-3.5 text-primary" />
-                                Kala-doorashooyinka (Options)
+                                doorashooyinka Kale(Options)
                             </Label>
                             <p className="text-[11px] text-muted-foreground">
-                                Farta ku taabo qiyamka aad haysato (Click to select)
+                                Taabo xulashooyinka kale oo diyaar kuu ah 
                             </p>
                         </div>
 
@@ -565,7 +567,7 @@ export function ProductDialog({
                             className="h-10 text-xs sm:text-sm font-semibold rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground w-full sm:w-auto gap-1.5"
                         >
                             {isPending && <Loader2 className="h-4 w-4 animate-spin" />}
-                            {isEditing ? "Keydi" : "Ku dar Alaabta"}
+                            {isEditing ? "Keydi" : "+ Add New"}
                         </Button>
                     </DialogFooter>
                 </form>

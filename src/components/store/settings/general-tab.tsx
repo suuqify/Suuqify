@@ -105,9 +105,9 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
         <Card className="border-border shadow-xs">
             <CardHeader className="flex flex-row items-center justify-between pb-4 border-b">
                 <div>
-                    <CardTitle className="text-lg font-bold">Macluumaadka Dukaanka</CardTitle>
+                    <CardTitle className="text-lg font-bold">Macluumaadka Ganacsigaaga</CardTitle>
                     <CardDescription>
-                        Faahfaahinta xiriirka iyo sharraxaadda dukaankaaga.
+                        Faahfaahinta iyo sharraxaadda Ganacsigaaga.
                     </CardDescription>
                 </div>
                 {!isEditing ? (
@@ -150,13 +150,13 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                             className="bg-muted/40 text-muted-foreground cursor-not-allowed"
                         />
                         <p className="text-[11px] text-muted-foreground">
-                            Email-kan wuxuu ku xiran yahay Google-kaaga, lagama beddeli karo halkan.
+                            Email-kan wuxuu ku xiran yahay Google-kaaga, Wax ba lagama beddeli karo halkan.
                         </p>
                     </div>
 
                     {/* Magaca Dukaanka */}
                     <div className="space-y-1.5">
-                        <Label className="text-xs font-medium">Magaca Dukaanka</Label>
+                        <Label className="text-xs font-medium">Magaca Ganacsiga</Label>
                         {isEditing ? (
                             <Input
                                 value={formData.name}
@@ -204,14 +204,14 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
 
                     {/* Magaalooyinka (Multi-City Selection) */}
                     <div className="space-y-2">
-                        <div className="flex items-center justify-between">
-                            <Label className="text-xs font-medium">Magaalooyinka aad ka hawlgasho</Label>
-                            {isEditing && (
-                                <span className="text-[11px] text-primary font-medium">
-                                    (Dooro dhammaan magaalooyinka aad gaarsiin karto)
-                                </span>
-                            )}
-                        </div>
+                       <div className="flex items-center justify-between">
+    <Label className="text-xs font-medium">Magaalooyinka aad ka Hawlgasho</Label>
+    {isEditing && (
+        <span className="text-[11px] text-primary font-medium">
+            (Dooro magaalooyinka aad xarumaha ku leedahay ama adeeggaagu gaaro)
+        </span>
+    )}
+</div>
 
                         {isEditing ? (
                             <div className="flex flex-wrap gap-2 pt-1">
@@ -273,7 +273,7 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                         </div>
 
                         <div className="space-y-1.5">
-                            <Label className="text-xs font-medium">Goobta Dukaanka (Degmada / Laamiga)</Label>
+                            <Label className="text-xs font-medium">Goobta Ganacsiga (Degmada / Laamiga)</Label>
                             {isEditing ? (
                                 <Input
                                     value={formData.location}
@@ -291,7 +291,7 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                     {/* Bio (Max 160) */}
                     <div className="space-y-1.5">
                         <div className="flex justify-between items-center">
-                            <Label className="text-xs font-medium">Bio Kooban (Link-in-Bio)</Label>
+                            <Label className="text-xs font-medium">Faahfaahin Kooban oo Website-ka ah</Label>
                             <span className="text-[11px] text-muted-foreground font-mono">
                                 {formData.bio.length}/160
                             </span>
@@ -302,7 +302,7 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                                 rows={2}
                                 value={formData.bio}
                                 onChange={(e) => setFormData({ ...formData, bio: e.target.value })}
-                                placeholder="Qoraal gaaban oo dukaankaaga ku saabsan (max 160 xaraf)..."
+                                placeholder="Qoraal gaaban oo Ganacsigaaga ku saabsan (max 160 xaraf)..."
                             />
                         ) : (
                             <div className="p-3 rounded-lg border bg-muted/20 text-sm italic text-foreground min-h-50px">
@@ -314,7 +314,7 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                     {/* About (Max 1000) */}
                     <div className="space-y-1.5">
                         <div className="flex justify-between items-center">
-                            <Label className="text-xs font-medium">Faahfaahinta Dukaanka (About Us)</Label>
+                            <Label className="text-xs font-medium">Faahfaahinta Ganacsiga (About Us)</Label>
                             <span className="text-[11px] text-muted-foreground font-mono">
                                 {formData.about.length}/1000
                             </span>
@@ -325,7 +325,7 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                                 rows={4}
                                 value={formData.about}
                                 onChange={(e) => setFormData({ ...formData, about: e.target.value })}
-                                placeholder="Faahfaahin dheer oo ku saabsan dukaankaaga..."
+                                placeholder="Faahfaahin dheer oo ku saabsan Ganacsigaaga..."
                             />
                         ) : (
                             <div className="p-3 rounded-lg border bg-muted/20 text-sm whitespace-pre-line text-foreground min-h-80px">

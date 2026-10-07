@@ -22,29 +22,29 @@ export function NoSubscriptionView({ storeName, isExpired = false }: NoSubscript
                     </div>
 
                     <CardTitle className="text-xl sm:text-2xl font-bold tracking-tight">
-                        {isExpired ? "Heshiiskaagii Wuu Dhacay!" : "Qorshe Firfircoon Ma Haysatid"}
-                    </CardTitle>
+    {isExpired ? "Xirmadaadii Way Dhacday!" : "Ma Haysatid Xirmo Shaqaynaysa"}
+</CardTitle>
 
                     <CardDescription className="text-sm sm:text-base text-muted-foreground mt-2 leading-relaxed wrap-break-word">
-                        {isExpired
-                            ? `Dukaanka "${storeName}" heshiiskii uu ku shaqaynayay wuu dhacay. Fadlan cusboonaysii si dukaankaagu dib ugu hawlgalo.`
-                            : `Dukaanka "${storeName}" ma laha xirmo shaqaynaysa hadda. Dooro qorshe si aad u bilowdo soo gelinta alaabta iyo iibka.`}
-                    </CardDescription>
+    {isExpired
+        ? `Website-ka "${storeName}" xirmadii uu ku shaqaynayay way dhacday. Fadlan cusboonaysii si ganacsigaagu dib ugu hawlgalo.`
+        : `Website-ka "${storeName}" ma laha xirmo shaqaynaysa hadda. Dooro xirmo si aad u bilowdo soo bandhigidda ganacsigaaga.`}
+</CardDescription>
                 </CardHeader>
 
                 {/* Benefits Section */}
                 <CardContent className="px-4 sm:px-6 py-2">
-                    <div className="rounded-lg border bg-muted/40 p-4 text-left">
-                        <h4 className="text-xs font-semibold uppercase tracking-wider text-foreground mb-2">
-                            Maxaad helaysaa markaad qorshe doorato?
-                        </h4>
-                        <ul className="text-xs sm:text-sm text-muted-foreground space-y-2 list-disc list-inside">
-                            <li>Soo gelinta alaabta dukaankaaga adigoo xor ah.</li>
-                            <li>Dalabaadka tooska ah ee WhatsApp-ka macmiilka.</li>
-                            <li>Xiriirka tooska ah ee Link-in-bio ee dukaankaaga.</li>
-                        </ul>
-                    </div>
-                </CardContent>
+    <div className="rounded-lg border bg-muted/40 p-4 text-left">
+        <h4 className="text-xs font-semibold uppercase tracking-wider text-foreground mb-2">
+            Maxaad helaysaa markaad xirmo qaadato?
+        </h4>
+        <ul className="text-xs sm:text-sm text-muted-foreground space-y-2 list-disc list-inside">
+            <li>Xorriyad buuxda oo aad wax ugu soo bandhigto website-kaaga.</li>
+            <li>Xiriir toos ah oo WhatsApp ah oo aad macaamiisha kula hadasho.</li>
+            <li>Website casri ah oo u gaar ah sumadda ganacsigaaga.</li>
+        </ul>
+    </div>
+</CardContent>
 
                 {/* Actions Footer */}
                 <CardFooter className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 p-4 sm:p-6 border-t mt-4">
@@ -56,7 +56,7 @@ export function NoSubscriptionView({ storeName, isExpired = false }: NoSubscript
                         })}
                     >
                         <Zap className="h-4 w-4 fill-current" />
-                        <span>{isExpired ? "Cusboonaysii Qorshaha" : "Dooro Qorshe Hadda"}</span>
+                        <span>{isExpired ? "Cusboonaysii Xirmada" : "Dooro Xirmo Hadda"}</span>
                     </Link>
 
                     {/* Secondary Action: Billing */}

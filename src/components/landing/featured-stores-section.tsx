@@ -22,10 +22,10 @@ export function FeaturedStoresSection({ stores }: FeaturedStoresSectionProps) {
                             <span>VIP Merchant Showcase</span>
                         </div>
                         <h2 className="text-2xl sm:text-3xl font-extrabold text-foreground">
-                            Dukaamada VIP-da ee ugu Caansan
+                            Ganacsiyada VIP-da ee ugu Caansan
                         </h2>
                         <p className="text-xs sm:text-sm text-muted-foreground mt-1">
-                            Dukaamadan waxay isticmaalaan qorshaha VIP-da ee Suuqify iyagoo maalin kasta hesha boqolaal dalab.
+                            Ganacsiyadan waxay isticmaalaan qorshaha VIP-da ee Suuqify iyagoo maalin kasta hela boqolaal Macaamiil cusub oo soo booqda.
                         </p>
                     </div>
                 </div>
@@ -80,7 +80,7 @@ export function FeaturedStoresSection({ stores }: FeaturedStoresSectionProps) {
                                     )}
                                 </div>
                                 <div className="mt-4 pt-3 border-t border-border/60 flex items-center justify-between text-xs font-semibold text-primary">
-                                    <span>Booqo Dukaanka</span>
+                                    <span>Booqo Ganacsigaga</span>
                                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                                 </div>
                             </div>

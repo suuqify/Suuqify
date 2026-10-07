@@ -47,9 +47,9 @@ export function ProductsTable({ products, onEdit, onDelete }: ProductsTableProps
         return (
             <div className="flex flex-col items-center justify-center p-12 text-center bg-card rounded-xl border border-dashed">
                 <Package className="h-10 w-10 text-muted-foreground/60 mb-3" />
-                <h3 className="font-semibold text-base">Weli wax alaab ah ma lihid</h3>
+                <h3 className="font-semibold text-base">Weli waxba kuma aadan darin website-kaaga</h3>
                 <p className="text-sm text-muted-foreground mt-1">
-                    Guji badhanka sare si aad ugu darto alaabtaadii ugu horreysay.
+                    Taabo badhanka sare si aad u bilowdo soo gelinta waxaad haysato.
                 </p>
             </div>
         );
@@ -96,7 +96,7 @@ export function ProductsTable({ products, onEdit, onDelete }: ProductsTableProps
                                             ))}
                                         </div>
                                     ) : (
-                                        <span className="text-xs text-muted-foreground">Kala-doorasho maleh</span>
+                                        <span className="text-xs text-muted-foreground">Xulasho ma leh</span>
                                     )}
                                 </TableCell>
                                 <TableCell>

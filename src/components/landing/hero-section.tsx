@@ -29,23 +29,23 @@ export function HeroSection() {
                         {/* shadcn Badge */}
                         <Badge variant="secondary" className="gap-2 px-3.5 py-1 text-xs font-semibold text-primary">
                             <Sparkles className="h-3.5 w-3.5" />
-                            <span>Link-in-Bio Storefront-ka #1 ee Soomaalida</span>
+                            <span>The #1 in Somalia Platform to Take Your Business Online</span>
                         </Badge>
 
                         {/* Main Headline */}
                         <h1 className="mt-6 text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-                            Taageerayaashaada TikTok & IG u beddel{" "}
-                            <span className="text-primary underline decoration-primary/30 decoration-wavy underline-offset-8">
-                                Iib Toos ah
-                            </span>
-                        </h1>
+    Followers-kaaga Baraha Bulshada u beddel{" "}
+    <span className="text-primary underline decoration-primary/30 decoration-wavy underline-offset-8">
+        Iib Toos ah
+    </span>
+</h1>
 
                         {/* Subtitle */}
-                        <p className="mt-6 max-w-2xl text-base text-muted-foreground sm:text-lg">
-                            Ku dhis dukaankaaga Link-in-Bio wax ka yar <strong>2 daqiiqo</strong>.
-                            Macaamiishaadu waxay kugu soo dalbanayaan toos <strong>WhatsApp</strong> iyagoo
-                            wata cabbirka iyo midabka ay doorteen.
-                        </p>
+                       <p className="mt-6 max-w-2xl text-base text-muted-foreground sm:text-lg">
+    Ku dhis <strong>Website-kaaga ganacsi</strong> wax ka yar <strong>5 daqiiqo</strong> adigoo leh Dashboard kuu gaar ah.
+    Macaamiishaadu waxay toos <strong>WhatsApp</strong> kuugu soo dalbanayaan iyagoo wata 
+    dalabkooda oo dhammaystiran iyo dhammaan xulashooyinka ay rabaan.
+</p>
 
                         {/* CTA Links styled with shadcn buttonVariants */}
                         <div className="mt-8 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
@@ -53,7 +53,7 @@ export function HeroSection() {
                                 href="/signin"
                                 className={buttonVariants({ size: "lg", className: "h-12 px-7 text-base shadow-md gap-2" })}
                             >
-                                <span>Bilow Dukaankaaga Bilaash</span>
+                                <span>Bilow Ganacsigaaga Bilaash</span>
                                 <ArrowRight className="h-4 w-4" />
                             </Link>
 
@@ -61,7 +61,7 @@ export function HeroSection() {
                                 href="#featured-stores"
                                 className={buttonVariants({ variant: "outline", size: "lg", className: "h-12 px-6 text-base" })}
                             >
-                                <span>Daawo Tusaale Dukaan</span>
+                                <span>Daawo Tusaale Ganacsi</span>
                             </Link>
                         </div>
 
@@ -69,15 +69,15 @@ export function HeroSection() {
                         <div className="mt-10 grid grid-cols-2 gap-4 border-t border-border pt-6 sm:grid-cols-3">
                             <div className="flex items-center gap-2">
                                 <CheckCircle2 className="h-4 w-4 text-primary" />
-                                <span className="text-xs font-medium text-muted-foreground">Hal gujiso WhatsApp</span>
+                                <span className="text-xs font-medium text-muted-foreground">Hal gujis WhatsApp</span>
                             </div>
                             <div className="flex items-center gap-2">
                                 <Zap className="h-4 w-4 text-primary" />
-                                <span className="text-xs font-medium text-muted-foreground">EVC Plus, Zaad, Sahal</span>
+                                <span className="text-xs font-medium text-muted-foreground">EVC Plus, Zaad, Sahal &eDahab </span>
                             </div>
                             <div className="flex items-center gap-2 col-span-2 sm:col-span-1">
                                 <ShieldCheck className="h-4 w-4 text-primary" />
-                                <span className="text-xs font-medium text-muted-foreground">Dukaamo La Xaqiijiyay</span>
+                                <span className="text-xs font-medium text-muted-foreground">Ganacsiyo La Xaqiijiyay</span>
                             </div>
                         </div>
                     </div>
