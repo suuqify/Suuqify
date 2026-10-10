@@ -28,7 +28,7 @@ export async function submitPaymentAction(data: SubmitPaymentInput) {
         .single();
 
     if (storeError || !store) {
-        return { success: false, error: "Dukaan lama helin." };
+        return { success: false, error: "Ganacsigan lama helin." };
     }
 
     // Xaqiiji qorshaha la doortay
@@ -39,7 +39,7 @@ export async function submitPaymentAction(data: SubmitPaymentInput) {
         .single();
 
     if (planError || !plan) {
-        return { success: false, error: "Qorshaha la doortay ma jiro." };
+        return { success: false, error: "Xirmo la doortay ma jiro." };
     }
 
     // Hubi haddii uu jiro payment weli 'pending' ah oo qofku hore u soo diray
@@ -53,7 +53,7 @@ export async function submitPaymentAction(data: SubmitPaymentInput) {
     if (existingPending && existingPending.length > 0) {
         return {
             success: false,
-            error: "Waxaad horey u dirtay dalab lacag-bixin ah oo weli sugitaan ku jira. Fadlan sug inta maamulku ka hubinayo.",
+            error: "Waxaad horey u dirtay dalab lacag-bixin ah oo weli sugitaan ku jira. Fadlan sug inta systemka ka hubinayo.",
         };
     }
 

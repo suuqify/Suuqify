@@ -25,20 +25,20 @@ export default function NotFound() {
                 </div>
 
                 {/* Heading */}
-                <h1 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
-                    Boggan Lama Helin!
-                </h1>
+<h1 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
+    Website-kan Lama Helin!
+</h1>
 
-                {/* Description */}
-                <p className="mt-3 text-base text-muted-foreground sm:text-lg">
-                    Waxay u muuqataa in link-ga aad raadinayso uusan jirin, magaca dukaanka si khaldan loo qoray, ama bogga meel kale loo raray.
-                </p>
+{/* Description */}
+<p className="mt-3 text-base text-muted-foreground sm:text-lg">
+    Waxay u muuqataa in cinwaanka aad raadinayso uusan jirin, magaca ganacsiga si khaldan loo qoray, ama website-ka meel kale loo raray.
+</p>
 
-                {/* Hint Box */}
-                <div className="mt-6 flex items-center gap-2.5 rounded-2xl border border-border/80 bg-muted/30 px-4 py-3 text-xs sm:text-sm text-muted-foreground">
-                    <ShoppingBag className="h-4 w-4 shrink-0 text-primary" />
-                    <span>Ma dukaan ayaad raadinaysay? Hubi higgaadda link-ga saxda ah.</span>
-                </div>
+{/* Hint Box */}
+<div className="mt-6 flex items-center gap-2.5 rounded-2xl border border-border/80 bg-muted/30 px-4 py-3 text-xs sm:text-sm text-muted-foreground">
+    <ShoppingBag className="h-4 w-4 shrink-0 text-primary" />
+    <span>Hubi in xarfaha magaca ganacsiga iyo link-gu ay sax yihiin.</span>
+</div>
 
                 <div className="mt-8 flex w-full flex-col gap-3.5 sm:w-auto sm:flex-row sm:items-center">
                     <button
@@ -62,7 +62,7 @@ export default function NotFound() {
                         })}
                     >
                         <PlusCircle className="h-5 w-5 text-muted-foreground" />
-                        <span>Abuur Dukaankaaga</span>
+                        <span>Abuur Ganacsigaaga</span>
                     </Link>
                 </div>
 

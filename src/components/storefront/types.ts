@@ -1,9 +1,15 @@
+export interface ProductOption {
+    name: string;
+    values: string[];
+}
+
 export interface StorefrontProduct {
     id: string;
     name: string;
     price: number;
+    description?: string | null; // <-- Kani ayaa lagu daray
     image: string | null;
-    options: any;
+    options?: ProductOption[] | any; // <-- Kani ayaa opt 'any' ka saaraya
     in_stock: boolean;
     created_at: string;
 }
@@ -18,7 +24,6 @@ export interface StorefrontData {
     about: string | null;
     location: string | null;
     city_ids?: string[];
-    // Halkan ku dar labadan si TypeScript uusan cilad u bixin:
     city?: { name: string } | null;
     cities?: { id?: string; name: string }[];
     category?: { name: string } | null;
