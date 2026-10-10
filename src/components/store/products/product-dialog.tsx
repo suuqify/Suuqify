@@ -414,7 +414,7 @@ export function ProductDialog({
                     {/* 1. Sawirka */}
                     <div className="space-y-1.5">
                         <Label className="text-xs font-semibold text-muted-foreground uppercase">
-                            Sawirka ugu Weyn
+                            Sawirka Adeega ama Alaabta
                         </Label>
                         <div className="flex items-center gap-3">
                             {image ? (
@@ -454,11 +454,11 @@ export function ProductDialog({
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
                         <div className="sm:col-span-2 space-y-1">
                             <Label htmlFor="prod-name" className="text-xs font-semibold text-foreground">
-                                Magaca ama Cinwaanka *
+                                Magaca Adeega ama Alaabta *
                             </Label>
                             <Input
                                 id="prod-name"
-                                placeholder="Geli magaca ama cinwaanka..."
+                                placeholder="Geli magaca..."
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
                                 required
