@@ -94,7 +94,7 @@ export default async function StorefrontPage({ params }: StorefrontPageProps) {
     // 4. Soo qaado alaabta
     const { data: products } = await supabase
         .from("products")
-        .select("id, name, price, image, options, in_stock, created_at")
+        .select("id, name,description, price, image, options, in_stock, created_at")
         .eq("store_id", store.id)
         .order("created_at", { ascending: false });
 
