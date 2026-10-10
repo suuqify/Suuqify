@@ -13,16 +13,33 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product, onOrder }: ProductCardProps) {
-    // Xaaladda faahfaahinta: Bilowga waa xiran tahay (false)
+    // Xaaladda faahfaahinta: Bilowga waa xiran tahay
     const [showDescription, setShowDescription] = useState(false);
 
-    const hasOptions = Array.isArray(product.options) && product.options.length > 0;
-    const hasDescription = Boolean(product.description && product.description.trim().length > 0);
+    // 1. Si ammaan ah u fur options haddii ay JSON String ahaan ku jiraan
+    let optionsList: ProductOption[] = [];
+    if (Array.isArray(product.options)) {
+        optionsList = product.options;
+    } else if (typeof product.options === "string") {
+        try {
+            const parsed = JSON.parse(product.options);
+            if (Array.isArray(parsed)) optionsList = parsed;
+        } catch {
+            optionsList = [];
+        }
+    }
+
+    const hasOptions = optionsList.length > 0;
+    const hasDescription = Boolean(
+        product.description && 
+        typeof product.description === "string" && 
+        product.description.trim().length > 0
+    );
 
     return (
-        <div className="group flex flex-col justify-between rounded-2xl border border-border/80 bg-card overflow-hidden shadow-xs hover:shadow-md transition-all duration-200">
+        <div className="group flex flex-col h-full rounded-2xl border border-border/80 bg-card overflow-hidden shadow-xs hover:shadow-md transition-all duration-200">
             {/* 1. Sawirka & Stock Badge */}
-            <div className="relative aspect-square w-full bg-muted overflow-hidden">
+            <div className="relative aspect-square w-full bg-muted overflow-hidden shrink-0">
                 {product.image ? (
                     <Image
                         src={product.image}
@@ -38,8 +55,8 @@ export function ProductCard({ product, onOrder }: ProductCardProps) {
                     </div>
                 )}
 
-                {/* Badge-ka Stock-ga */}
-                <div className="absolute top-2.5 left-2.5">
+                {/* Badge-ka Stock-ga & Xulashada */}
+                <div className="absolute top-2.5 left-2.5 flex flex-col gap-1">
                     {!product.in_stock ? (
                         <Badge variant="destructive" className="text-[11px] font-semibold px-2 py-0.5 shadow-sm">
                             Waa Dhammaaday
@@ -53,26 +70,26 @@ export function ProductCard({ product, onOrder }: ProductCardProps) {
                 </div>
             </div>
 
-            {/* 2. Macluumaadka Sheyga */}
-            <div className="p-3.5 flex flex-col justify-between flex-1 gap-3">
+            {/* 2. Qaybta Xogta Card-ka */}
+            <div className="p-3.5 flex flex-col flex-1 justify-between gap-3">
                 <div className="space-y-2">
-                    {/* Magaca & Qiimaha */}
+                    {/* Magaca iyo Qiimaha */}
                     <div>
-                        <h3 className="font-semibold text-sm text-foreground line-clamp-1 group-hover:text-primary transition-colors">
+                        <h3 className="font-semibold text-sm text-foreground line-clamp-2 leading-snug group-hover:text-primary transition-colors">
                             {product.name}
                         </h3>
-                        <p className="text-base font-black text-emerald-600 mt-0.5">
+                        <p className="text-base font-black text-emerald-600 mt-1">
                             ${Number(product.price).toFixed(2)}
                         </p>
                     </div>
 
-                    {/* 3. Xulashooyinka la Doortay (Options/Presets Pills) */}
+                    {/* 3. Options Pills (Haddii ay jiraan oo kaliya) */}
                     {hasOptions && (
-                        <div className="flex flex-wrap gap-1.5 pt-1">
-                            {product.options!.map((opt: ProductOption) => (
+                        <div className="flex flex-wrap gap-1 pt-0.5">
+                            {optionsList.map((opt) => (
                                 <div
                                     key={opt.name}
-                                    className="inline-flex items-center text-[10px] bg-muted/60 text-foreground/90 border border-border/70 rounded-md px-2 py-0.5 font-medium"
+                                    className="inline-flex items-center text-[10px] bg-muted/60 text-foreground/90 border border-border/70 rounded-md px-1.5 py-0.5 font-medium"
                                 >
                                     <span className="text-muted-foreground mr-1">{opt.name}:</span>
                                     <span className="font-semibold text-primary">{opt.values.join(", ")}</span>
@@ -81,25 +98,25 @@ export function ProductCard({ product, onOrder }: ProductCardProps) {
                         </div>
                     )}
 
-                    {/* 4. Qaybta Faahfaahinta (Arag / Qari Accordion) */}
+                    {/* 4. Faahfaahinta: Aqri Faahfaahinta / Qari Faahfaahinta */}
                     {hasDescription && (
-                        <div className="pt-1 border-t border-border/40">
+                        <div className="pt-1.5 border-t border-border/40">
                             <button
                                 type="button"
                                 onClick={() => setShowDescription(!showDescription)}
-                                className="flex items-center gap-1 text-[11px] font-medium text-primary hover:text-primary/80 transition-colors cursor-pointer select-none"
+                                className="inline-flex items-center gap-1 text-[11px] font-semibold text-primary hover:text-primary/80 transition-colors cursor-pointer select-none"
                             >
-                                <span>{showDescription ? "Qari Faahfaahinta" : "Arag Faahfaahinta"}</span>
+                                <span>{showDescription ? "Qari Faahfaahinta" : "Aqri Faahfaahinta"}</span>
                                 {showDescription ? (
-                                    <ChevronUp className="h-3 w-3" />
+                                    <ChevronUp className="h-3.5 w-3.5" />
                                 ) : (
-                                    <ChevronDown className="h-3 w-3" />
+                                    <ChevronDown className="h-3.5 w-3.5" />
                                 )}
                             </button>
 
-                            {/* Qoraalka Faahfaahinta oo furmaya */}
+                            {/* Qoraalka Faahfaahinta */}
                             {showDescription && (
-                                <p className="text-xs text-muted-foreground mt-1.5 bg-muted/30 p-2.5 rounded-xl border border-border/60 leading-relaxed whitespace-pre-wrap animate-in fade-in-50 duration-200">
+                                <p className="text-xs text-muted-foreground mt-1.5 bg-muted/40 p-2.5 rounded-xl border border-border/60 leading-relaxed whitespace-pre-wrap animate-in fade-in-50 duration-200">
                                     {product.description}
                                 </p>
                             )}
@@ -107,8 +124,8 @@ export function ProductCard({ product, onOrder }: ProductCardProps) {
                     )}
                 </div>
 
-                {/* 5. Badhanka Ficilka (WhatsApp Order / Contact) */}
-                <div className="pt-1">
+                {/* 5. Badhanka Ficilka (Had iyo jeer si siman ugu fadhiya hoosta) */}
+                <div className="pt-2 mt-auto">
                     {product.in_stock ? (
                         <Button
                             size="sm"

@@ -7,9 +7,9 @@ export interface StorefrontProduct {
     id: string;
     name: string;
     price: number;
-    description?: string | null; // <-- Kani ayaa lagu daray
+    description?: string | null;
     image: string | null;
-    options?: ProductOption[] | any; // <-- Kani ayaa opt 'any' ka saaraya
+    options?: ProductOption[] | any;
     in_stock: boolean;
     created_at: string;
 }
