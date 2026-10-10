@@ -50,19 +50,13 @@ export function ProductCard({ product, onOrder }: ProductCardProps) {
                 )}
 
                 {/* Badges */}
-                <div className="absolute top-2 left-2 flex flex-col gap-1">
-                    {!product.in_stock ? (
-                        /* Kooban, cad, oo shaashad kasta ku habboon */
-                        <Badge variant="destructive" className="text-[10px] font-bold px-2 py-0.5 tracking-tight">
+                 {!product.in_stock && (
+                    <div className="absolute top-2 left-2">
+                        <Badge variant="destructive" className="text-[10px] font-bold px-2 py-0.5 tracking-tight shadow-sm">
                             Lama heli karo
                         </Badge>
-                    ) : hasOptions ? (
-                        <Badge variant="secondary" className="bg-background/90 text-foreground text-[10px] font-semibold px-2 py-0.5 shadow-xs flex items-center gap-1">
-                            <Layers className="h-3 w-3 text-primary" />
-                            Xulashooyin leh
-                        </Badge>
-                    ) : null}
-                </div>
+                    </div>
+                )}
             </div>
 
             {/* Xogta Card-ka */}
