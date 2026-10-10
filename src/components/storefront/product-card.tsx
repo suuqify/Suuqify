@@ -52,13 +52,14 @@ export function ProductCard({ product, onOrder }: ProductCardProps) {
                 {/* Badges */}
                 <div className="absolute top-2 left-2 flex flex-col gap-1">
                     {!product.in_stock ? (
-                        <Badge variant="destructive" className="text-[10px] font-bold px-2 py-0.5">
-                            Waa Dhammaaday
+                        /* Kooban, cad, oo shaashad kasta ku habboon */
+                        <Badge variant="destructive" className="text-[10px] font-bold px-2 py-0.5 tracking-tight">
+                            Lama heli karo
                         </Badge>
                     ) : hasOptions ? (
                         <Badge variant="secondary" className="bg-background/90 text-foreground text-[10px] font-semibold px-2 py-0.5 shadow-xs flex items-center gap-1">
                             <Layers className="h-3 w-3 text-primary" />
-                            Xulasho leh
+                            Xulashooyin leh
                         </Badge>
                     ) : null}
                 </div>
@@ -77,7 +78,7 @@ export function ProductCard({ product, onOrder }: ProductCardProps) {
                         </p>
                     </div>
 
-                    {/* Options (Haddii ay jiraan oo kaliya) */}
+                    {/* Options (Haddii ay jiraan) */}
                     {hasOptions && (
                         <div className="flex flex-wrap gap-1 pt-1">
                             {optionsList.map((opt) => (
@@ -92,7 +93,7 @@ export function ProductCard({ product, onOrder }: ProductCardProps) {
                         </div>
                     )}
 
-                    {/* Faahfaahinta (Toggle Accordion) */}
+                    {/* Faahfaahinta */}
                     {hasDescription && (
                         <div className="pt-1 border-t border-border/50">
                             <button
@@ -100,7 +101,7 @@ export function ProductCard({ product, onOrder }: ProductCardProps) {
                                 onClick={() => setShowDescription(!showDescription)}
                                 className="inline-flex items-center gap-1 text-[11px] font-semibold text-primary hover:underline cursor-pointer select-none"
                             >
-                                <span>{showDescription ? "Qari Faahfaahinta" : "Aqri Faahfaahinta"}</span>
+                                <span>{showDescription ? "Qari faahfaahinta" : "Faahfaahin dheeraad ah"}</span>
                                 {showDescription ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />}
                             </button>
 
@@ -113,7 +114,7 @@ export function ProductCard({ product, onOrder }: ProductCardProps) {
                     )}
                 </div>
 
-                {/* Badhanka Dalabka - Had iyo jeer hoosta ayuu ku dhaggan yahay */}
+                {/* Badhanka Hoose */}
                 <div className="pt-2 mt-auto">
                     {product.in_stock ? (
                         <Button
@@ -132,7 +133,7 @@ export function ProductCard({ product, onOrder }: ProductCardProps) {
                             className="w-full text-xs text-muted-foreground gap-1.5 h-8.5 rounded-xl border-dashed cursor-not-allowed bg-muted/40"
                         >
                             <Ban className="h-3.5 w-3.5 text-destructive" />
-                            Waa Dhammaaday
+                            Hadda lama heli karo
                         </Button>
                     )}
                 </div>
