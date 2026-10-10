@@ -79,12 +79,12 @@ export async function updateStoreGeneralAction(formData: {
         .eq("owner_id", user.id);
 
     if (error) {
-        return { error: "Khalad ayaa dhacay markii la cusboonaysiinayay xogta dukaanka." };
+        return { error: "Khalad ayaa dhacay markii la cusboonaysiinayay xogta Ganacsiga." };
     }
 
     revalidatePath("/store/settings");
     revalidatePath("/store");
-    return { success: true, message: "Xogta dukaanka si guul leh ayaa loo cusboonaysiiyay!" };
+    return { success: true, message: "Xogta ganacsiga si guul leh ayaa loo cusboonaysiiyay!" };
 }
 
 // 2. Cusboonaysii Sawirrada Dukaanka (Logo & Banner)

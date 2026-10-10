@@ -30,14 +30,14 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 
-// 1. JSON-ka Category walba u gaarka ah
 interface PresetGroup {
     name: string;
     presetValues: string[];
 }
 
+// 1. Dhammaan 7-da Qaybood (Waa wada xarfo yaryar si uusan marnaba u crash-gareyn)
 const CATEGORY_SCHEMAS: Record<string, PresetGroup[]> = {
-    // Dharka & Fashion
+    // 1. Dharka, Fashion & Kabaha
     fashion: [
         {
             name: "Cabbir (Size)",
@@ -47,145 +47,202 @@ const CATEGORY_SCHEMAS: Record<string, PresetGroup[]> = {
             name: "Midab (Color)",
             presetValues: ["Madow", "Caddaan", "Buluug", "Casaan", "Cagaar", "Bunni", "Jaalle"],
         },
-         {
-           name: "Size-ka Kabaha",
-           presetValues: [
-                          "20", "21", "22", "23", "24", "25", // Ilmaha yaryar (1-3 jir)
-                          "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", // Carruurta (4-10 jir)
-                          "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46" // Dhalinyarada & Dadka waaweyn
-                          ],
-           },
-        
-    ],
-    // Kabaha
-    shoes: [
         {
-            name: "Size-ka Kabaha",
-            presetValues: ["38", "39", "40", "41", "42", "43", "44", "45"],
-        },
-        {
-            name: "Midabka",
-            presetValues: ["Madow", "Caddaan", "Bunni", "Buluug"],
+            name: "Cabbirka Kabaha (Shoe Size)",
+            presetValues: [
+                "36", "37", "38", "39", "40", "41", "42", "43", "44", "45"
+            ],
         },
     ],
-    // Electronics & Moobillada & laptops
+
+    // 2. Electronics & Moobillada
     electronics: [
         {
-            name: "Xaalada (Condition)",
+            name: "Xaaladda (Condition)",
             presetValues: ["Cusub (New)", "Gacan Labaad (Used)"],
         },
         {
+            name: "Kaydka (Storage)",
+            presetValues: ["64GB", "128GB", "256GB", "512GB", "1TB"],
+        },
+        {
             name: "Midabka",
-            presetValues: ["Black", "Silver", "Gold", "Blue", "Gray"],
+            presetValues: ["Black", "Silver", "Gold", "Blue", "Gray", "Titanium"],
         },
     ],
-    // Beauty, Cadar Fregnances & Skincare
+
+    // 3. Beauty, Skincare & Cadar
     beauty: [
         {
-            name: "Ku Habboon (Target / Gender)",
+            name: "Ku Habboon (Target)",
             presetValues: ["Dumar (Women)", "Rag (Men)", "Labada Qofba (Unisex)"],
         },
         {
             name: "Nooca Maqaarka (Skin Type)",
             presetValues: [
-                "Oily (Dux leh)",
-                "Dry (Qallalan)",
-                "Sensitive (Xasaasi)",
-                "Combination (Isku-dhaf)",
-                "All Skin Types (Dhammaan)"
+                "Dux leh (Oily)",
+                "Qallalan (Dry)",
+                "Xasaasi (Sensitive)",
+                "Isku-dhaf (Combination)",
+                "Dhammaan Maqaarka"
             ],
         },
     ],
-    // Cunto & Maqaayado
-    food: [
+
+    // 4. Borotiinka & Jimicsiga (Supplements)
+    supplements: [
         {
-            name: "Qaybta",
-            presetValues: ["Hal Qof", "Labo Qof", "Family Pack"],
+            name: "Ujeeddada (Goal)",
+            presetValues: [
+                "Dhisidda Muruqa (Muscle Build)",
+                "Miisaan Kordhin (Weight Gain)",
+                "Miisaan Dhimis (Fat Loss)",
+                "Awood & Tamar (Pre-Workout)"
+            ],
         },
         {
-            name: "Dookha",
-            presetValues: ["Basbaas leh", "Basbaas la'aan"],
+            name: "Dhadhanka (Flavor)",
+            presetValues: ["Chocolate", "Vanilla", "Strawberry", "Banana", "Unflavored"],
         },
     ],
-    // Haddii la waayo wax la mid ah (General fallback)
-    General: [
-         {
+
+    // 5. Fiisooyinka & Safarrada (Travel & Visas)
+    travel: [
+        {
+            name: "Nooca Fiisaha (Visa Type)",
+            presetValues: [
+                "Dalxiis (Tourist)",
+                "Waxbarasho (Student)",
+                "Ganacsi (Business)",
+                "Caafimaad (Medical)",
+                "Cumro & Xajj",
+                "Shaqo (Employment)"
+            ],
+        },
+        {
+            name: "Muddada (Duration)",
+            presetValues: ["14 Maalmood", "1 Bil", "2 Bilood", "3 Bilood", "6 Bilood", "1 Sano"],
+        },
+    ],
+
+    // 6. Baabuurta & Gaadiidka (Vehicles)
+    vehicles: [
+        {
             name: "Xaaladda (Condition)",
             presetValues: ["Cusub (New)", "Gacan Labaad (Used)"],
         },
-        {
-            name: "Qaybta Guriga (Room / Space)",
-            presetValues: [
-                "Qolka Fadhiga (Living Room)",
-                "Qolka Jiifka (Bedroom)",
-                "Jikada (Kitchen)",
-                "Musqusha (Bathroom)",
-                "Guud ahaan Guriga (General Home)"
-            ],
-        },
-        {
-            name: "Maaddada (Material)",
-            presetValues: [
-                "Alwaax (Wood)",
-                "Bir (Metal)",
-                "Caag (Plastic)",
-                "Dhalo (Glass)",
-                "Maro / Suuf (Fabric)",
-                "Dhoobo / Ceramics"
-            ],
-        },
-    ],
-    Supplements: [
-        {
-            name: "Body Type",
-            presetValues: ["Slim / Weight Gain", "Weight Loss / Cutting", "Lean Muscle / Athletic", "All Bodies"],
-        },
-        
-    ],
-     Travel: [
-        {
-            name: "Visa Type",
-            presetValues: ["Tourist / Vacation", "Student / Education", "Medical / Health", "Business", "Work / Employment", "Visit / Family", "Transit", "Umrah & Hajj"],
-        },
-         {
-            name: "Visa Duration",
-            presetValues: ["7 Days", "14 Days", "1 Month", "2 Months", "3 Months", "6 Months", "1 Year", "2+ Years"],
-        },
-       
-    ],
-   Vehicles: [
         {
             name: "Nooca (Status)",
             presetValues: ["Iib (For Sale)", "Kiro (For Rent)"],
         },
         {
-            name: "Xaaladda (Condition)",
-            presetValues: ["Cusub (New)", "Gacan Labaad (Used)"],
+            name: "Transmishinka (Gear)",
+            presetValues: ["Automatic", "Manual"],
         },
     ],
-    RealState: [
+
+    // 7. Guryaha & Dhulka (Real Estate)
+    realestate: [
         {
             name: "Nooca (Status)",
             presetValues: ["Iib (For Sale)", "Kiro (For Rent)"],
         },
         {
             name: "Nooca Hantida (Property Type)",
-            presetValues: ["Guri (House)", "Dabaq (Apartment)", "Dhul (Land)", "Ganacsi (Commercial)"],
+            presetValues: [
+                "Guri (House)",
+                "Dabaq (Apartment)",
+                "Dhul (Land)",
+                "Villa",
+                "Xafiis / Ganacsi"
+            ],
         },
     ],
-   
+
+    // Fallback Guud (General)
+    general: [
+        {
+            name: "Xaaladda (Condition)",
+            presetValues: ["Cusub (New)", "Gacan Labaad (Used)"],
+        },
+        {
+            name: "Nooca (Status)",
+            presetValues: ["Iib (For Sale)", "Kiro (For Rent)"],
+        },
+    ],
 };
 
-// Function si automatic ah u ogaanaya Category-ga saxda ah ee dukaanka
+// 2. Shaqada garanaysa Category walba oo aan marnaba qalad samaynayn
 function matchCategoryKey(catName?: string): string {
-    if (!catName) return "fashion";
-    const name = catName.toLowerCase();
+    if (!catName) return "general";
+    const name = catName.toLowerCase().trim();
 
-    if (name.includes("kabo") || name.includes("shoe")) return "shoes";
-    if (name.includes("elect") || name.includes("moobil") || name.includes("phone") || name.includes("tech")) return "electronics";
-    if (name.includes("beauty") || name.includes("cadar") || name.includes("skincare") || name.includes("cosmetic")) return "beauty";
-    if (name.includes("food") || name.includes("cunto") || name.includes("maqaayad")) return "food";
-    if (name.includes("dhar") || name.includes("fashion") || name.includes("maro") || name.includes("style")) return "fashion";
+    // Vehicles
+    if (
+        name.includes("vehic") ||
+        name.includes("gaari") ||
+        name.includes("baabuur") ||
+        name.includes("car") ||
+        name.includes("moto")
+    ) return "vehicles";
+
+    // Real Estate
+    if (
+        name.includes("real") ||
+        name.includes("estate") ||
+        name.includes("guri") ||
+        name.includes("dhul") ||
+        name.includes("property") ||
+        name.includes("dabaq")
+    ) return "realestate";
+
+    // Travel & Visas
+    if (
+        name.includes("travel") ||
+        name.includes("visa") ||
+        name.includes("fiiso") ||
+        name.includes("dalxiis") ||
+        name.includes("saf") ||
+        name.includes("umrah") ||
+        name.includes("hajj")
+    ) return "travel";
+
+    // Supplements & Gym
+    if (
+        name.includes("supp") ||
+        name.includes("protein") ||
+        name.includes("borotiin") ||
+        name.includes("gym") ||
+        name.includes("fit")
+    ) return "supplements";
+
+    // Electronics & Tech
+    if (
+        name.includes("elect") ||
+        name.includes("moobil") ||
+        name.includes("phone") ||
+        name.includes("laptop") ||
+        name.includes("tech")
+    ) return "electronics";
+
+    // Beauty & Skincare
+    if (
+        name.includes("beauty") ||
+        name.includes("cadar") ||
+        name.includes("perfume") ||
+        name.includes("skincare") ||
+        name.includes("cosmetic")
+    ) return "beauty";
+
+    // Fashion & Shoes
+    if (
+        name.includes("dhar") ||
+        name.includes("fashion") ||
+        name.includes("kabo") ||
+        name.includes("shoe") ||
+        name.includes("maro") ||
+        name.includes("style")
+    ) return "fashion";
 
     return "general";
 }
@@ -194,7 +251,7 @@ interface ProductDialogProps {
     open: boolean;
     onOpenChange: (open: boolean) => void;
     product?: Product | null;
-    storeCategoryName?: string; // Waxaa soo diraya dukaanka
+    storeCategoryName?: string;
 }
 
 export function ProductDialog({
@@ -213,13 +270,11 @@ export function ProductDialog({
     const [image, setImage] = useState<string | null>(null);
     const [uploading, setUploading] = useState(false);
 
-    // Xulashada Category-ga dukaanka toos
+    // Xulashada Category-ga dukaanka (Haddii la waayo waxay had iyo jeer si nabad ah u aadaysaa general)
     const categoryKey = matchCategoryKey(storeCategoryName);
-    const categoryPresets = CATEGORY_SCHEMAS[categoryKey] || CATEGORY_SCHEMAS.general;
+    const categoryPresets = CATEGORY_SCHEMAS[categoryKey] || CATEGORY_SCHEMAS["general"] || [];
 
-    // Qiimayaasha la doortay: { "Cabbir (Size)": ["M", "L"] }
     const [selectedValues, setSelectedValues] = useState<Record<string, string[]>>({});
-    // Input-yada mid cusub lagu darsanayo
     const [customInputs, setCustomInputs] = useState<Record<string, string>>({});
 
     useEffect(() => {
@@ -247,7 +302,6 @@ export function ProductDialog({
         }
     }, [product, open]);
 
-    // Pill Toggle (Hal-gujis ku dooro / ka noqo)
     const toggleValue = (groupName: string, value: string) => {
         setSelectedValues((prev) => {
             const current = prev[groupName] || [];
@@ -258,7 +312,6 @@ export function ProductDialog({
         });
     };
 
-    // Ku dar qiimo cusub oo gacanta ah
     const handleAddCustomValue = (groupName: string) => {
         const val = customInputs[groupName]?.trim();
         if (!val) return;
@@ -274,7 +327,6 @@ export function ProductDialog({
         setCustomInputs((prev) => ({ ...prev, [groupName]: "" }));
     };
 
-    // Image Upload
     const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (!file) return;
@@ -315,7 +367,6 @@ export function ProductDialog({
             return;
         }
 
-        // Options-ka la doortay oo kaliya u dir database-ka
         const formattedOptions: ProductOption[] = Object.entries(selectedValues)
             .filter(([_, vals]) => vals && vals.length > 0)
             .map(([groupName, vals]) => ({
@@ -338,11 +389,11 @@ export function ProductDialog({
                 : await createProductAction(payload);
 
             if (res.success) {
-               toast.success(
-    isEditing 
-        ? "Si guul leh baa loo cusboonaysiiyay!" 
-        : "Si guul leh baa loogu daray website-kaaga!"
-);
+                toast.success(
+                    isEditing
+                        ? "Si guul leh baa loo cusboonaysiiyay!"
+                        : "Si guul leh baa loogu daray website-kaaga!"
+                );
                 onOpenChange(false);
             } else {
                 toast.error(res.error || "Khalad ayaa dhacay");
@@ -352,24 +403,23 @@ export function ProductDialog({
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            {/* Modal Responsive: Full-width on mobile with comfortable padding and auto scroll */}
             <DialogContent className="w-[96vw] max-w-lg max-h-[90vh] overflow-y-auto p-4 sm:p-6 rounded-2xl sm:rounded-3xl border shadow-xl">
                 <DialogHeader className="pb-2 border-b">
                     <DialogTitle className="text-base sm:text-lg font-bold text-foreground">
-    {isEditing ? "Wax ka beddel" : "Ku dar Shay Cusub"}
-</DialogTitle>
+                        {isEditing ? "Wax ka beddel" : "Ku dar mid Cusub"}
+                    </DialogTitle>
                 </DialogHeader>
 
                 <form onSubmit={handleSubmit} className="space-y-4 pt-2">
-                    {/* 1. Sawirka Alaabta */}
+                    {/* 1. Sawirka */}
                     <div className="space-y-1.5">
                         <Label className="text-xs font-semibold text-muted-foreground uppercase">
-                            Sawirka Adeega/Alaabta
+                            Sawirka ugu Weyn
                         </Label>
                         <div className="flex items-center gap-3">
                             {image ? (
                                 <div className="relative h-16 w-16 sm:h-20 sm:w-20 rounded-xl overflow-hidden border border-border shrink-0">
-                                    <Image src={image} alt="Product" fill className="object-cover" />
+                                    <Image src={image} alt="Sawirka" fill className="object-cover" />
                                     <button
                                         type="button"
                                         onClick={() => setImage(null)}
@@ -400,15 +450,15 @@ export function ProductDialog({
                         </div>
                     </div>
 
-                    {/* 2. Magaca & Qiimaha (Single Row or clean grid) */}
+                    {/* 2. Magaca & Qiimaha */}
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
                         <div className="sm:col-span-2 space-y-1">
                             <Label htmlFor="prod-name" className="text-xs font-semibold text-foreground">
-                                Magaca Adeega/Alaabta *
+                                Magaca ama Cinwaanka *
                             </Label>
                             <Input
                                 id="prod-name"
-                                placeholder="Geli Magaca....."
+                                placeholder="Geli magaca ama cinwaanka..."
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
                                 required
@@ -434,11 +484,11 @@ export function ProductDialog({
                         </div>
                     </div>
 
-                    {/* 3. Sharraxaadda Alaabta (Description) */}
+                    {/* 3. Faahfaahinta */}
                     <div className="space-y-1">
-                       <Label htmlFor="prod-desc" className="text-xs font-semibold text-foreground">
-    Faahfaahinta Dheeraadka ah (Ikhtiyaari)
-</Label>
+                        <Label htmlFor="prod-desc" className="text-xs font-semibold text-foreground">
+                            Faahfaahinta Dheeraadka ah (Ikhtiyaari)
+                        </Label>
                         <Textarea
                             id="prod-desc"
                             rows={2}
@@ -449,24 +499,24 @@ export function ProductDialog({
                         />
                     </div>
 
-                    {/* 4. In Stock Toggle */}
+                    {/* 4. Diyaar ma yahay? */}
                     <div className="flex items-center justify-between border border-border/80 rounded-xl p-2.5 bg-muted/20">
                         <div>
-                            <p className="text-xs font-semibold text-foreground">Hada mala heli karaa (In Stock)?</p>
-                            <p className="text-[10px] text-muted-foreground">Macaamiishu hadda ma dalban karaan?</p>
+                            <p className="text-xs font-semibold text-foreground">Diyaar ma yahay hadda?</p>
+                            <p className="text-[10px] text-muted-foreground">Macaamiishu hadda ma arki karaan oo ma heli karaan?</p>
                         </div>
                         <Switch checked={inStock} onCheckedChange={setInStock} />
                     </div>
 
-                    {/* 5. Automatic Options by Store Category (Zero Switcher - Only Store Category) */}
+                    {/* 5. Kala-doorashooyinka (Options) */}
                     <div className="pt-2 border-t space-y-3">
                         <div>
                             <Label className="text-xs font-bold uppercase tracking-wider text-foreground flex items-center gap-1.5">
                                 <Sparkles className="h-3.5 w-3.5 text-primary" />
-                                doorashooyinka Kale(Options)
+                                Kala-doorashooyinka (Options)
                             </Label>
                             <p className="text-[11px] text-muted-foreground">
-                                Taabo xulashooyinka kale oo diyaar kuu ah 
+                                Taabo xulashooyinka diyaar kuu ah
                             </p>
                         </div>
 
@@ -494,7 +544,7 @@ export function ProductDialog({
                                             )}
                                         </div>
 
-                                        {/* Clickable Pills (Mobile-Friendly Wrapping) */}
+                                        {/* Clickable Pills */}
                                         <div className="flex flex-wrap gap-1.5">
                                             {allDisplayValues.map((val) => {
                                                 const isSelected = selectedInThisGroup.includes(val);
@@ -515,7 +565,7 @@ export function ProductDialog({
                                             })}
                                         </div>
 
-                                        {/* Ku dar mid kale (Mobile Responsive Row) */}
+                                        {/* Ku dar mid kale */}
                                         <div className="flex items-center gap-1.5 pt-1">
                                             <Input
                                                 placeholder={`Mid kale (${group.name})...`}
@@ -550,7 +600,7 @@ export function ProductDialog({
                         </div>
                     </div>
 
-                    {/* Dialog Footer (Equally split on mobile) */}
+                    {/* Dialog Footer */}
                     <DialogFooter className="pt-2 border-t grid grid-cols-2 gap-2 sm:flex sm:justify-end">
                         <Button
                             type="button"
@@ -567,7 +617,7 @@ export function ProductDialog({
                             className="h-10 text-xs sm:text-sm font-semibold rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground w-full sm:w-auto gap-1.5"
                         >
                             {isPending && <Loader2 className="h-4 w-4 animate-spin" />}
-                            {isEditing ? "Keydi" : "Add New"}
+                            {isEditing ? "Keydi Isbeddelka" : "Ku dar Hadda"}
                         </Button>
                     </DialogFooter>
                 </form>
