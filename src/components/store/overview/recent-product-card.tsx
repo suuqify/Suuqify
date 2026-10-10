@@ -34,7 +34,7 @@ export function RecentProductsCard({ products }: RecentProductsCardProps) {
                     </p>
                     <Link href="/store/products">
                         <Button size="sm" className="rounded-xl text-xs bg-primary text-primary-foreground font-semibold gap-1.5">
-                            <Plus className="w-4 h-4" />+ Add New
+                            <Plus className="w-4 h-4" />Add New
                         </Button>
                     </Link>
                 </div>

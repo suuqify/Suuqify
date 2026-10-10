@@ -18,7 +18,7 @@ export function CTASection() {
                             Diyaar ma u tahay inaad ganacsigaaga kobciso?
                         </h2>
                         <p className="text-xs sm:text-sm text-emerald-100 leading-relaxed">
-                            Ganacsigaaga online ka dhig Suuqify maanta! U soo bandhig macaamiishaada wax kasta oo kuu yaalla, si ay hal meel uga wada doortaan adiguna uga nasatid daalka fariimaha badan ee chat-ka.
+                            Ganacsigaaga online ka dhig, Suuqify maanta! U soo bandhig macaamiishaada wax kasta oo kuu yaalla, si ay hal meel uga wada doortaan adiguna uga nasatid daalka fariimaha badan ee chat-ka.
                         </p>
                         <div className="pt-4">
                             <Link href="/signin">

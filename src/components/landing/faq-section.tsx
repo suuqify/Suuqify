@@ -22,7 +22,7 @@ export function FAQSection() {
         },
         {
             q: "Maxay tahay faa'iidada VIP Plan-ka?",
-            a: "Dukaamada qaatay qorshaha Pro VIP waxay si toos ah uga dhex muuqanayaan bogga hore ee website-ka Suuqify (Featured Stores), taas oo kuu keenaysa macaamiil cusub oo dheeraad ah.",
+            a: "Dukaamada qaatay xirmada Pro VIP waxay si toos ah uga dhex muuqanayaan bogga hore ee website-ka Suuqify (Featured Stores), taas oo kuu keenaysa macaamiil cusub oo dheeraad ah.",
         },
     ];
 

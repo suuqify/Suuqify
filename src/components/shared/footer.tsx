@@ -58,9 +58,9 @@ export function Footer() {
 
                {/* Bottom Bar */}
 <div className="mt-12 pt-8 border-t border-border/60 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
-    <p>© {new Date().getFullYear()} Suuqify Inc. Xuquuqda oo dhan waa dhowran tahay.</p>
+    <p>© {new Date().getFullYear()} Suuqify Inc. Xuquuqda oo dhan way dhowran tahay.</p>
     <p className="flex items-center gap-1">
-        Lagu dhisay <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500 inline-block" /> looguna talagalay ganacsatada Soomaaliyeed.
+        Waxaa loo dhisay <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500 inline-block" /> ganacsatada Soomaaliyeed.
     </p>
 </div>
             </div>

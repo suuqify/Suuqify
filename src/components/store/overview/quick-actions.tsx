@@ -5,7 +5,7 @@ import { PlusCircle, Sliders, Layers, Receipt } from "lucide-react";
 export function QuickActions() {
     const actions = [
         {
-            title: "+ Add New",
+            title: "Add New",
             desc: "Soo bandhig wax kasta oo cusub oo aad u haysid macaamiishaada",
             href: "/store/products",
             icon: PlusCircle,

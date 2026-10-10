@@ -567,7 +567,7 @@ export function ProductDialog({
                             className="h-10 text-xs sm:text-sm font-semibold rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground w-full sm:w-auto gap-1.5"
                         >
                             {isPending && <Loader2 className="h-4 w-4 animate-spin" />}
-                            {isEditing ? "Keydi" : "+ Add New"}
+                            {isEditing ? "Keydi" : "Add New"}
                         </Button>
                     </DialogFooter>
                 </form>

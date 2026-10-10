@@ -116,7 +116,7 @@ export function PaymentDialog({ plan, open, onOpenChange }: PaymentDialogProps) 
                     </div>
 
                     <DialogDescription className="text-[11px] sm:text-xs text-muted-foreground leading-normal">
-                        Fadlan koodhkan hoose ku dir lacagta, kadibna lambarkaa kasoo dirtay foomka ku xaqiiji.
+                        Fadlan Numbarkan hoose ku dir lacagta, kadibna lambarkaa kasoo dirtay foomka ku xaqiiji.
                     </DialogDescription>
                 </DialogHeader>
 

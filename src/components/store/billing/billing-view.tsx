@@ -102,7 +102,7 @@ export function BillingView({ data }: BillingViewProps) {
                     )}
                 >
                     <CreditCard className="h-4 w-4" />
-                    <span>Qorshe Cusub Iibso</span>
+                    <span>Xirmo Cusub iibso</span>
                 </Link>
             </div>
 
@@ -196,7 +196,7 @@ export function BillingView({ data }: BillingViewProps) {
                             </div>
                             <h3 className="font-bold text-foreground text-sm">Weli ma jirto lacag-bixin</h3>
                             <p className="text-xs text-muted-foreground max-w-sm mx-auto">
-                                Ma aadan samayn wax dalab lacag-bixin ah. Dooro qorshe si aad u bilowdo isticmaalka Ganacsigaaga.
+                                Ma aadan samayn wax dalab lacag-bixin ah. Dooro Xirmo si aad u bilowdo isticmaalka Ganacsigaaga.
                             </p>
                             <Link
                                 href="/store/plans"
@@ -205,7 +205,7 @@ export function BillingView({ data }: BillingViewProps) {
                                     "mt-2 rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground font-medium"
                                 )}
                             >
-                                Eeg Qorshayaasha
+                                Eeg Xirmayasha
                             </Link>
                         </div>
                     ) : (
@@ -216,7 +216,7 @@ export function BillingView({ data }: BillingViewProps) {
                                     <TableHeader>
                                         <TableRow className="border-b border-border/50 bg-muted/10 hover:bg-transparent">
                                             <TableHead className="font-semibold text-muted-foreground uppercase text-[11px] tracking-wider pl-6">
-                                                Qorshaha
+                                                Xirmada
                                             </TableHead>
                                             <TableHead className="font-semibold text-muted-foreground uppercase text-[11px] tracking-wider">
                                                 Lacagta

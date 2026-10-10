@@ -33,18 +33,18 @@ export function HeroSection() {
                         </Badge>
 
                         {/* Main Headline */}
-                        <h1 className="mt-6 text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-    Followers-kaaga Baraha Bulshada u beddel{" "}
+                       <h1 className="mt-6 text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+    U Fududee Macaamiishaada inay Hal Meel ku Arkaan{" "}
     <span className="text-primary underline decoration-primary/30 decoration-wavy underline-offset-8">
-        Iib Toos ah
+        Wax Walba oo Aad Haysato
     </span>
 </h1>
 
                         {/* Subtitle */}
                        <p className="mt-6 max-w-2xl text-base text-muted-foreground sm:text-lg">
-    Ku dhis <strong>Website-kaaga ganacsi</strong> wax ka yar <strong>5 daqiiqo</strong> adigoo leh Dashboard kuu gaar ah.
-    Macaamiishaadu waxay toos <strong>WhatsApp</strong> kuugu soo dalbanayaan iyagoo wata 
-    dalabkooda oo dhammaystiran iyo dhammaan xulashooyinka ay rabaan.
+    Ku dhis <strong>Website-kaaga ganacsi</strong> wax ka yar <strong>5 daqiiqo</strong>. 
+    Macaamiishaadu waxay si toos ah u arkayaan dhammaan waxaad u hayso, qiimahooda, iyo faahfaahin kasta—iyagoo 
+    toos <strong>WhatsApp</strong> kuugala soo xiriiraya iyagoo garanaya waxay rabaan, bilaa wareer.
 </p>
 
                         {/* CTA Links styled with shadcn buttonVariants */}
@@ -73,7 +73,7 @@ export function HeroSection() {
                             </div>
                             <div className="flex items-center gap-2">
                                 <Zap className="h-4 w-4 text-primary" />
-                                <span className="text-xs font-medium text-muted-foreground">EVC Plus, Zaad, Sahal &eDahab </span>
+                                <span className="text-xs font-medium text-muted-foreground">EVC Plus, Zaad, Sahal & eDahab </span>
                             </div>
                             <div className="flex items-center gap-2 col-span-2 sm:col-span-1">
                                 <ShieldCheck className="h-4 w-4 text-primary" />

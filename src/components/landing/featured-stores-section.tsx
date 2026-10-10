@@ -25,7 +25,7 @@ export function FeaturedStoresSection({ stores }: FeaturedStoresSectionProps) {
                             Ganacsiyada VIP-da ee ugu Caansan
                         </h2>
                         <p className="text-xs sm:text-sm text-muted-foreground mt-1">
-                            Ganacsiyadan waxay isticmaalaan qorshaha VIP-da ee Suuqify iyagoo maalin kasta hela boqolaal Macaamiil cusub oo soo booqda.
+                            Ganacsiyadan waxay isticmaalaan Xirmada VIP-da ee Suuqify iyagoo maalin kasta hela boqolaal Macaamiil cusub oo soo booqda.
                         </p>
                     </div>
                 </div>

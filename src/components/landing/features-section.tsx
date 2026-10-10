@@ -31,7 +31,7 @@ export function FeaturesSection() {
         {
             icon: ShieldCheck,
             title: "Calaamadda Rasmiga ah (Verified)",
-            desc: "Dhis kalsoonida macaamiishaada adigoo helaya calaamadda hubinta ganacsiga ee maamulka Suuqify.",
+            desc: "Dhis kalsoonida macaamiishaada adigoo helaya calaamadda hubinta ganacsiga ee Suuqify.",
         },
     ];
 

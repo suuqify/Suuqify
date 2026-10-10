@@ -12,18 +12,20 @@ export function PricingSection({ plans }: PricingSectionProps) {
     return (
         <section id="pricing" className="py-20 bg-background">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                {/* Header Section */}
                 <div className="text-center max-w-3xl mx-auto mb-16">
                     <span className="text-xs font-bold uppercase tracking-wider text-primary">
-                        Qiimo Jaban & Hufan
+                        Qiimo Macquul ah & Hufnaan
                     </span>
                     <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground mt-2">
-                        Dooro Qorshaha Ganacsigaaga Ku Habboon
+                        Dooro Xirmada ku Habboon Ganacsigaaga
                     </h2>
                     <p className="text-sm text-muted-foreground mt-2">
-                        Ku bixi EVC Plus, Zaad, Sahal, ama eDahab.
+                        Ku bixi qaababka fudud: EVC Plus, Zaad, Sahal, ama eDahab.
                     </p>
                 </div>
 
+                {/* Cards Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto items-stretch">
                     {plans.map((p) => (
                         <div
@@ -33,6 +35,7 @@ export function PricingSection({ plans }: PricingSectionProps) {
                                     : "border-border/80"
                                 }`}
                         >
+                            {/* VIP Ribbon */}
                             {p.isFeature && (
                                 <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
                                     <span className="inline-flex items-center gap-1 bg-primary text-primary-foreground text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
@@ -45,31 +48,41 @@ export function PricingSection({ plans }: PricingSectionProps) {
                                 <h3 className="text-xl font-bold text-foreground">{p.name}</h3>
                                 <div className="mt-4 flex items-baseline gap-1">
                                     <span className="text-4xl font-extrabold text-foreground">${p.price}</span>
-                                    <span className="text-xs text-muted-foreground">/ {p.duration} maalmood</span>
+                                    <span className="text-xs text-muted-foreground">
+                                        / {p.duration === 30 ? "bishii" : `${p.duration} maalmood`}
+                                    </span>
                                 </div>
 
                                 <ul className="mt-6 space-y-3 text-xs sm:text-sm text-foreground/80 border-t border-border/60 pt-6">
+                                    {/* 1. Limit Item (Fits all 7 categories) */}
                                     <li className="flex items-center gap-2">
                                         <Check className="w-4 h-4 text-primary shrink-0" />
-                                        <span>Xadka Alaabta: <strong>{p.maxProduct}</strong> alaab</span>
+                                        <span>Soo bandhig ilaa: <strong>{p.maxProduct} boos</strong></span>
                                     </li>
+
+                                    {/* 2. Direct WhatsApp Connection */}
                                     <li className="flex items-center gap-2">
                                         <Check className="w-4 h-4 text-primary shrink-0" />
-                                        <span>WhatsApp Instant Checkout</span>
+                                        <span>Xiriirka tooska ah ee WhatsApp</span>
                                     </li>
+
+                                    {/* 3. Modern Dedicated Website */}
                                     <li className="flex items-center gap-2">
                                         <Check className="w-4 h-4 text-primary shrink-0" />
-                                       <span>Smart Business Websites</span>
+                                        <span>Website ganacsi oo casri ah & QR Code</span>
                                     </li>
+
+                                    {/* 4. Featured on Homepage */}
                                     {p.isFeature && (
                                         <li className="flex items-center gap-2 text-primary font-semibold">
                                             <Crown className="w-4 h-4 shrink-0" />
-                                            <span>Ka dhex muuqo Bogga Hore (VIP)</span>
+                                            <span>Ka muuqashada Bogga Hore (VIP)</span>
                                         </li>
                                     )}
                                 </ul>
                             </div>
 
+                            {/* Action Button */}
                             <div className="mt-8 pt-6 border-t border-border/60">
                                 <Link href="/signin">
                                     <Button
@@ -79,7 +92,7 @@ export function PricingSection({ plans }: PricingSectionProps) {
                                             }`}
                                         variant={p.isFeature ? "default" : "outline"}
                                     >
-                                        <span>Bilow Qorshahan</span>
+                                        <span>Dooro Xirmadan</span>
                                         <ArrowRight className="w-4 h-4" />
                                     </Button>
                                 </Link>
