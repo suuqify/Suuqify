@@ -6,6 +6,7 @@ import { ProductOption } from "@/components/store/products/types";
 
 interface ProductInput {
     name: string;
+    description?: string | null;
     price: number;
     image?: string | null;
     options?: ProductOption[];
@@ -27,7 +28,7 @@ function extractStoragePath(url: string, bucketName: string): string | null {
     }
 }
 
-// 1. Abuur Alaab Cusub (oo leh xakamaynta Subscription-ka & Xadka Alaabta)
+// 1. Abuur Alaab Cusub (oo wadata description, subscription check & limit check)
 export async function createProductAction(data: ProductInput) {
     const supabase = await createClient();
 
@@ -84,10 +85,11 @@ export async function createProductAction(data: ProductInput) {
         };
     }
 
-    // 3. Geli alaabta miiska products
+    // 3. Geli alaabta miiska products (oo leh description)
     const { error } = await supabase.from("products").insert({
         store_id: store.id,
         name: data.name.trim(),
+        description: data.description ? data.description.trim() : null,
         price: data.price,
         image: data.image || null,
         options: data.options || [],
@@ -103,7 +105,7 @@ export async function createProductAction(data: ProductInput) {
     return { success: true };
 }
 
-// 2. Wax ka beddel Alaabta (haddii sawir cusub la geliyo, kii hore waa la tirtirayaa)
+// 2. Wax ka beddel Alaabta (oo leh description & sawir nadiifin)
 export async function updateProductAction(id: string, data: ProductInput) {
     const supabase = await createClient();
 
@@ -134,6 +136,7 @@ export async function updateProductAction(id: string, data: ProductInput) {
         .from("products")
         .update({
             name: data.name.trim(),
+            description: data.description ? data.description.trim() : null,
             price: data.price,
             image: data.image,
             options: data.options || [],
