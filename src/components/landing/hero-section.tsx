@@ -34,9 +34,9 @@ export function HeroSection() {
 
                         {/* Main Headline */}
                        <h1 className="mt-6 text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-    U Fududee Macaamiishaada inay Hal Meel ku Arkaan{" "}
+    U Fududee Macaamiishaada inay Hal Meel ka Arkaan{" "}
     <span className="text-primary underline decoration-primary/30 decoration-wavy underline-offset-8">
-        Wax Walba oo Aad Haysato
+        Wax Walba oo Aad u Hayso
     </span>
 </h1>
 

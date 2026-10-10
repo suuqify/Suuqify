@@ -47,7 +47,7 @@ export function RecentPayments({ payments }: RecentPaymentsProps) {
                             <thead className="bg-muted/40 text-muted-foreground text-xs uppercase tracking-wider border-b border-border/60">
                                 <tr>
                                     <th className="py-3 px-4 font-medium">Dukaanka</th>
-                                    <th className="py-3 px-4 font-medium">Qorshaha</th>
+                                    <th className="py-3 px-4 font-medium">Xirmada</th>
                                     <th className="py-3 px-4 font-medium">Qiimaha</th>
                                     <th className="py-3 px-4 font-medium">Habka & Taleefanka</th>
                                     <th className="py-3 px-4 font-medium text-right">Xaaladda</th>

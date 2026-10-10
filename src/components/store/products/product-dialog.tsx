@@ -48,13 +48,13 @@ const CATEGORY_SCHEMAS: Record<string, PresetGroup[]> = {
             presetValues: ["Madow", "Caddaan", "Buluug", "Casaan", "Cagaar", "Bunni", "Jaalle"],
         },
          {
-    name: "Size-ka Kabaha",
-    presetValues: [
-        "20", "21", "22", "23", "24", "25", // Ilmaha yaryar (1-3 jir)
-        "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", // Carruurta (4-10 jir)
-        "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46" // Dhalinyarada & Dadka waaweyn
-    ],
-},
+           name: "Size-ka Kabaha",
+           presetValues: [
+                          "20", "21", "22", "23", "24", "25", // Ilmaha yaryar (1-3 jir)
+                          "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", // Carruurta (4-10 jir)
+                          "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46" // Dhalinyarada & Dadka waaweyn
+                          ],
+           },
         
     ],
     // Kabaha

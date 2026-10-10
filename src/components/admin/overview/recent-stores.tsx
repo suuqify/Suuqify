@@ -23,8 +23,8 @@ export function RecentStores({ stores }: RecentStoresProps) {
         <div className="bg-card border border-border/80 rounded-2xl shadow-xs overflow-hidden flex flex-col h-full">
             <div className="p-5 border-b border-border/70 flex items-center justify-between">
                 <div>
-                    <h3 className="font-semibold text-base text-foreground">Dukaamadii Ugu Dambeeyay</h3>
-                    <p className="text-xs text-muted-foreground">Dukaamada dhawaan is diiwaangeliyay</p>
+                    <h3 className="font-semibold text-base text-foreground">Ganacsiyadii Ugu Dambeeyay</h3>
+                    <p className="text-xs text-muted-foreground">Ganacsiyada dhawaan is diiwaangeliyay</p>
                 </div>
                 <Link
                     href="/admin/stores"
@@ -37,7 +37,7 @@ export function RecentStores({ stores }: RecentStoresProps) {
             {stores.length === 0 ? (
                 <div className="p-8 text-center text-sm text-muted-foreground flex flex-col items-center justify-center flex-1">
                     <Store className="w-8 h-8 text-muted-foreground/40 mb-2" />
-                    Weli ma jiraan dukaamo diiwaangashan.
+                    Weli ma jiraan Ganacsiyo diiwaangashan.
                 </div>
             ) : (
                 <>
@@ -46,7 +46,7 @@ export function RecentStores({ stores }: RecentStoresProps) {
                         <table className="w-full text-left text-sm">
                             <thead className="bg-muted/40 text-muted-foreground text-xs uppercase tracking-wider border-b border-border/60">
                                 <tr>
-                                    <th className="py-3 px-4 font-medium">Dukaanka</th>
+                                    <th className="py-3 px-4 font-medium">Ganacsiga</th>
                                     <th className="py-3 px-4 font-medium">Milkiilaha</th>
                                     <th className="py-3 px-4 font-medium">Magaalada & Qaybta</th>
                                     <th className="py-3 px-4 font-medium text-right">Xaaladda</th>

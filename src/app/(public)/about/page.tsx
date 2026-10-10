@@ -43,12 +43,12 @@ export default function AboutPage() {
                         <div className="bg-muted/30 border border-border/80 rounded-2xl p-6 text-center space-y-2">
                             <Target className="w-6 h-6 text-primary mx-auto" />
                             <h3 className="font-bold text-foreground text-sm">Hadafkeenna</h3>
-                            <p className="text-xs text-muted-foreground">In qof kasta oo ganacsade ah uu ku yeesho dukaan casri ah 60 ilbiriqsi gudahood.</p>
+                            <p className="text-xs text-muted-foreground">In qof kasta oo ganacsade ah uu ku yeesho Ganacsi online casri ah 5 daqiiqo gudahood.</p>
                         </div>
                         <div className="bg-muted/30 border border-border/80 rounded-2xl p-6 text-center space-y-2">
                             <Zap className="w-6 h-6 text-primary mx-auto" />
-                            <h3 className="font-bold text-foreground text-sm">Fududeynta Iibka</h3>
-                            <p className="text-xs text-muted-foreground">Meesha ka saarista nidaamyada lacag-bixineed ee murugsan iyadoo toos WhatsApp loo adeegsanayo.</p>
+                            <h3 className="font-bold text-foreground text-sm">Fududeynta iibka</h3>
+                            <p className="text-xs text-muted-foreground">Meesha ka saarista nidaamyada lacag-bixineed ee adag iyadoo toos WhatsApp loo adeegsanayo.</p>
                         </div>
                         <div className="bg-muted/30 border border-border/80 rounded-2xl p-6 text-center space-y-2">
                             <Users className="w-6 h-6 text-primary mx-auto" />

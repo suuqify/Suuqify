@@ -86,7 +86,7 @@ export function PlanDialog({ plan, isOpen, onClose }: PlanDialogProps) {
                 <form onSubmit={handleSubmit} className="space-y-4 pt-2">
                     {/* Plan Name */}
                     <div className="space-y-1.5">
-                        <Label className="text-xs font-semibold">Magaca Qorshaha (Plan Name)</Label>
+                        <Label className="text-xs font-semibold">Magaca Xirmada (Plan Name)</Label>
                         <Input
                             value={formData.name}
                             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -131,7 +131,7 @@ export function PlanDialog({ plan, isOpen, onClose }: PlanDialogProps) {
 
                     {/* Max Products */}
                     <div className="space-y-1.5">
-                        <Label className="text-xs font-semibold">Xadka Alaabta (Max Products)</Label>
+                        <Label className="text-xs font-semibold">Xadka Boosaska (Max Products)</Label>
                         <Input
                             type="number"
                             min="1"
@@ -143,7 +143,7 @@ export function PlanDialog({ plan, isOpen, onClose }: PlanDialogProps) {
                             required
                         />
                         <p className="text-[11px] text-muted-foreground">
-                            Tirada ugu badan ee alaab ah oo dukaan qorshahan haysta uu gelin karo.
+                            Tirada ugu badan ee Boos ah uu Ganacsigan xirmadan haysta uu gelin karo.
                         </p>
                     </div>
 
@@ -154,7 +154,7 @@ export function PlanDialog({ plan, isOpen, onClose }: PlanDialogProps) {
                                 VIP Featured Store
                             </Label>
                             <p className="text-[11px] text-muted-foreground">
-                                In dukaanku bogga hore ee Suuqify kaga soo baxo qaybta sare
+                                In Ganacsiga bogga hore ee Suuqify kaga soo baxo qaybta sare
                             </p>
                         </div>
                         <Switch

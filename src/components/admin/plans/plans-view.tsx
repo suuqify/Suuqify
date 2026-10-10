@@ -44,10 +44,10 @@ export function PlansView({ plans }: PlansViewProps) {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
                     <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-                        Qorshayaasha (Subscription Plans)
+                        Xirmooyinka (Subscription Plans)
                     </h2>
                     <p className="text-xs sm:text-sm text-muted-foreground">
-                        Maamul qiimaha, maalmaha, xadka alaabta, iyo mudnaanta VIP-da ee dukaamada.
+                        Maamul qiimaha, maalmaha, xadka Boosaska, iyo mudnaanta VIP-da ee Ganacsiyada.
                     </p>
                 </div>
                 <Button
@@ -55,7 +55,7 @@ export function PlansView({ plans }: PlansViewProps) {
                     className="rounded-xl text-xs font-semibold bg-primary text-primary-foreground gap-1.5 self-start sm:self-auto"
                 >
                     <Plus className="w-4 h-4" />
-                    <span>Ku Dar Qorshe Cusub</span>
+                    <span>Ku Dar Xirmo Cusub</span>
                 </Button>
             </div>
 
@@ -93,7 +93,7 @@ export function PlansView({ plans }: PlansViewProps) {
                             <div className="mt-6 space-y-3 text-xs text-foreground/80 border-t border-border/60 pt-4">
                                 <div className="flex items-center gap-2">
                                     <Package className="w-4 h-4 text-primary shrink-0" />
-                                    <span>Xadka Alaabta: <strong className="text-foreground">{plan.max_product}</strong> alaab</span>
+                                    <span>Xadka Boosaska: <strong className="text-foreground">{plan.max_product}</strong> alaab</span>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <Clock className="w-4 h-4 text-primary shrink-0" />

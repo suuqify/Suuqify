@@ -28,13 +28,13 @@ export function RecentProductsCard({ products }: RecentProductsCardProps) {
             {products.length === 0 ? (
                 <div className="p-8 text-center text-sm text-muted-foreground flex flex-col items-center justify-center">
                     <Package className="w-10 h-10 text-muted-foreground/40 mb-3" />
-                    <p className="font-medium text-foreground">Weli wax alaab ah kuma aadan darin Ganacsigaaga.</p>
+                    <p className="font-medium text-foreground">Weli wax alaab ama adeeg ah kuma aadan darin Ganacsigaaga.</p>
                     <p className="text-xs text-muted-foreground mt-1 mb-4">
                         Bilow hadda oo soo bandhig waxa aad u haysid macaamiishaada.
                     </p>
                     <Link href="/store/products">
                         <Button size="sm" className="rounded-xl text-xs bg-primary text-primary-foreground font-semibold gap-1.5">
-                            <Plus className="w-4 h-4" />Add New
+                            <Plus className="w-4 h-4" /> Add New
                         </Button>
                     </Link>
                 </div>

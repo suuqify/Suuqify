@@ -56,7 +56,7 @@ export function ProductsView({
                 <div>
                     <div className="flex items-center gap-3">
                         <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
-                            Bandhigga Ganacsiga
+                            Bandhigga Ganacsigaga
                         </h1>
                         <Badge
                             variant="outline"
@@ -121,7 +121,7 @@ export function ProductsView({
                             onClick={handleOpenCreate}
                             className="bg-primary hover:bg-primary/90 text-primary-foreground gap-1.5 shadow-sm self-start sm:self-auto"
                         >
-                            <Plus className="h-4 w-4" />+Add New
+                            <Plus className="h-4 w-4" /> Add New
                         </Button>
                     )}
                 </div>

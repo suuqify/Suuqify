@@ -54,13 +54,13 @@ export function OverviewStats({ stats }: OverviewStatsProps) {
             <div className="bg-card border border-border/80 rounded-2xl p-5 shadow-xs flex items-center justify-between">
                 <div className="space-y-1">
                     <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
-                        Dukaamada Firfircoon
+                        Ganacsiyada Firfircoon
                     </p>
                     <p className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
                         {stats.activeStoresCount}
                     </p>
                     <span className="inline-block text-[11px] font-medium text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">
-                        Dukaamo toos u furan
+                        Ganacsiyada toos u furan
                     </span>
                 </div>
                 <div className="h-12 w-12 rounded-2xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
@@ -72,7 +72,7 @@ export function OverviewStats({ stats }: OverviewStatsProps) {
             <div className="bg-card border border-border/80 rounded-2xl p-5 shadow-xs flex items-center justify-between">
                 <div className="space-y-1">
                     <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
-                        Dukaamada Cusub
+                        Ganacsiyada Cusub
                     </p>
                     <p className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
                         {stats.pendingStoresCount}
