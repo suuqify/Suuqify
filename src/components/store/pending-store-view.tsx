@@ -56,7 +56,7 @@ export function PendingStoreView({ storeName, status }: PendingStoreViewProps) {
                     <p className="text-sm sm:text-base text-muted-foreground max-w-md mx-auto leading-relaxed">
     {isSuspended
         ? "Ganacsigaaga si ku-meel-gaar ah ayaa loo hakiyay. Fadlan la xiriir kooxda taageerada si dib loogu hawlgeliyo."
-        : "Website-kaagu wuxuu ku jiraa hubinta iyo ansixinta maamulka. Wax yar ka dib ayaa si toos ah laguu hawlgelinayaa."}
+        : "Website-kaagu wuxuu ku jiraa hubinta iyo ansixinta System ka. Wax yar ka dib ayaa si toos ah laguu hawlgelinayaa."}
 </p>
                 </CardHeader>
 
@@ -98,7 +98,7 @@ export function PendingStoreView({ storeName, status }: PendingStoreViewProps) {
                         </div>
 
                         <a
-                            href={`https://wa.me/252610000000?text=${encodeURIComponent(
+                            href={`https://wa.me/252613940257?text=${encodeURIComponent(
                                 `Asc Suuqify, waxaan rabaa in degdeg loo xaqiijiyo Ganacsigayga: ${storeName}`
                             )}`}
                             target="_blank"

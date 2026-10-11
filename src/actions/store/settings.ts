@@ -58,12 +58,11 @@ export async function updateStoreGeneralAction(formData: {
 
     // Hubi dhererka Bio (160) iyo About (1000)
     if (formData.bio && formData.bio.length > 160) {
-        return { error: "Bio-ga dukaanku kama badnaan karo 160 xaraf." };
+        return { error: "Qoraalka kooban (Bio) ee ganacsigaagu kama badnaan karo 160 xaraf." };
     }
     if (formData.about && formData.about.length > 1000) {
-        return { error: "Faahfaahinta dukaanku (About) kama badnaan karto 1000 xaraf." };
+        return { error: "Faahfaahinta ganacsigaaga (About) kama badnaan karto 1,000 xaraf." };
     }
-
     const { error } = await supabase
         .from("stores")
         .update({
@@ -143,7 +142,7 @@ export async function updateStoreBrandingAction(branding: {
 
     revalidatePath("/store/settings");
     revalidatePath("/store");
-    return { success: true, message: "Sawirka dukaanka si guul leh ayaa loo beddelay!" };
+    return { success: true, message: "Sawirka Ganacsiga si guul leh ayaa loo beddelay!" };
 }
 
 // 3. Tirtir Dukaanka + Sawirradiisa
@@ -161,7 +160,7 @@ export async function deleteStoreAction() {
         .single();
 
     if (!store) {
-        return { error: "Dukaan lama helin." };
+        return { error: "Ganacsi lama helin." };
     }
 
     const storeFilesToDelete: string[] = [];
@@ -199,7 +198,7 @@ export async function deleteStoreAction() {
 
     if (error) {
         return {
-            error: "Ma suurtogelin in dukaanka la tirtiro. Fadlan isku day markale.",
+            error: "Ma suurtogelin in Ganacsiga la tirtiro. Fadlan isku day markale.",
         };
     }
 

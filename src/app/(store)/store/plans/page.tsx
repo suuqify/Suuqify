@@ -4,8 +4,8 @@ import { createClient } from "@/utils/supabase/server";
 import { PlansView } from "@/components/store/plans/plans-view";
 
 export const metadata: Metadata = {
-    title: "Qorshayaasha & Xirmooyinka | Suuqify",
-    description: "Dooro qorshaha ku habboon kobaca dukaankaaga.",
+    title: "Xirmooyinka | Suuqify",
+    description: "Dooro qorshaha ku habboon kobaca Ganacsigaaga.",
 };
 
 export default async function PlansPage() {

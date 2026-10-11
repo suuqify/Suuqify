@@ -5,8 +5,8 @@ import { getStoreProductsAction } from "@/actions/store/products/get-products";
 import { ProductsView } from "@/components/store/products/product-view";
 
 export const metadata: Metadata = {
-    title: "Maamulka Alaabta | Suuqify",
-    description: "Kudar, wax ka beddel ama tirtir alaabta dukaankaaga ee Suuqify.",
+    title: "Maamulka Ganacsiga | Suuqify",
+    description: "Kudar, wax ka beddel ama tirtir Adeega Ganacsigaaga ee Suuqify.",
 };
 
 interface ProductsPageProps {

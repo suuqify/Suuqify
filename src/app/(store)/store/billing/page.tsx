@@ -4,7 +4,7 @@ import { BillingView } from "@/components/store/billing/billing-view";
 
 export const metadata: Metadata = {
     title: "Taariikhda Lacag-bixinta (Billing) | Suuqify",
-    description: "Kala soco lacagaha aad bixisay iyo taariikhda heshiisyadaada dukaanka.",
+    description: "Kala soco lacagaha aad bixisay iyo taariikhda heshiisyadaada Ganacsiga.",
 };
 
 interface BillingPageProps {

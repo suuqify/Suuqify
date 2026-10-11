@@ -32,7 +32,7 @@ interface PaymentDialogProps {
     onOpenChange: (open: boolean) => void;
 }
 
-const HORMUUD_NUMBER = "613940257";
+const HORMUUD_NUMBER = "612892134";
 const SUPPORT_WHATSAPP = "252613940257";
 
 export function PaymentDialog({ plan, open, onOpenChange }: PaymentDialogProps) {
@@ -84,7 +84,7 @@ export function PaymentDialog({ plan, open, onOpenChange }: PaymentDialogProps) 
     };
 
     const whatsappHelpMessage = encodeURIComponent(
-        `Asc Suuqify, "${plan.name}" ($${plan.price}) waxaan rabaa inaan Xirmada Lacag bixinta aan ku bixiyo Zaad / Sahal / eDahab. Fadlan ii soo dira akoonka number.`
+        `Asc Suuqify, "${plan.name}" ($${plan.price}) waxaan rabaa inaan Lacag bixinta aan ku bixiyo Zaad / Sahal / eDahab. Fadlan ii soo dira akoonka number.`
     );
 
     return (

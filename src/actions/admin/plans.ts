@@ -66,7 +66,7 @@ export async function createPlanAction(data: {
 
         revalidatePath("/admin/plans");
         revalidatePath("/store/plans");
-        return { success: true, message: "Qorshe cusub ayaa si guul leh loo abuuray!" };
+        return { success: true, message: "Xirmo cusub ayaa si guul leh loo abuuray!" };
     } catch (err: any) {
         console.error("Create Plan Error:", err);
         return { success: false, error: err.message || "Failed to create plan." };

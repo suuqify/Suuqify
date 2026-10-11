@@ -11,7 +11,7 @@ export default function SignInPage() {
         <div className="space-y-6 text-center">
             <div className="space-y-1">
                 <h1 className="text-2xl font-bold tracking-tight">Ku soo dhowaw Suuqify</h1>
-                <p className="text-sm text-muted-foreground">Ku maamul dukaankaaga hab casri ah</p>
+                <p className="text-sm text-muted-foreground">Ku maamul Ganacsigaaga hab casri ah</p>
             </div>
             <GoogleButton />
         </div>

@@ -28,7 +28,7 @@ export default function AboutPage() {
                     <div className="bg-card border border-border/80 rounded-3xl p-6 sm:p-10 shadow-2xs space-y-5 leading-relaxed text-sm sm:text-base text-foreground/85">
                         <h2 className="text-xl sm:text-2xl font-bold text-foreground">Qisada Suuqify</h2>
                         <p>
-                            Boqolaal dhalinyaro Soomaali ah ayaa maalin kasta alaab ku soo bandhiga TikTok, Instagram, iyo Facebook. Laakiin habka ay wax u iibiyaan wuxuu ahaa mid dhib badan: macaamiisha oo DM-ka buuxiya, qiimaha oo mar kasta la isweydiiyo, iyo dalabyada oo luma.
+                            Boqolaal dhalinyaro Soomaali ah ayaa maalin kasta alaab ama adeeg ku soo bandhiga TikTok, Instagram, iyo Facebook. Laakiin habka ay wax u iibiyaan wuxuu ahaa mid dhib badan: macaamiisha oo DM-ka buuxiya, qiimaha oo mar kasta la isweydiiyo, iyo dalabyada oo luma.
                         </p>
                         <p>
                             Website-yada waaweyn sida Shopify aad bay ugu adkaayeen ganacsatada maxalliga ah sababo la xiriira qaab-dhismeedka lacag-bixinta caalamiga ah (Stripe / PayPal) oo aan Soomaaliya ka shaqayn.

@@ -112,8 +112,8 @@ export async function getAdminOverviewAction(): Promise<{
 
         const recentPayments: RecentPaymentItem[] = (rawRecentPayments || []).map((p: any) => ({
             id: p.id,
-            storeName: p.stores?.name || "Dukaan la tirtiray",
-            planName: p.plans?.name || "Qorshe la waayay",
+            storeName: p.stores?.name || "Ganacsi la tirtiray",
+            planName: p.plans?.name || "Xirmo la waayay",
             amount: Number(p.amount) || 0,
             paymentMethod: p.payment_method || "EVC Plus",
             senderPhone: p.sender_phone || "Lama yaqaan",

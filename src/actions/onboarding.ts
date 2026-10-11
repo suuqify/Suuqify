@@ -42,7 +42,7 @@ export async function createStoreAction(formData: FormData) {
 
     // Hubinta Magaca
     if (!storeName || storeName.length < 3) {
-        return { error: "Magaca dukaanku waa inuu ka koobnaadaa ugu yaraan 3 xaraf." };
+        return { error: "Magaca Ganacsigu waa inuu ka koobnaadaa ugu yaraan 3 xaraf." };
     }
 
     // Hubinta Magaalooyinka
@@ -90,7 +90,7 @@ export async function createStoreAction(formData: FormData) {
                 error: `Magaca "${storeName}" horey ayaa loo qaatay. Fadlan dooro magac kale.`,
             };
         }
-        return { error: "Qalad dukaanka: " + storeError.message };
+        return { error: "Qalad Ganacsiga: " + storeError.message };
     }
 
     return { success: true };

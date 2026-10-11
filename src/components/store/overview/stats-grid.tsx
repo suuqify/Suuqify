@@ -103,7 +103,7 @@ export function StatsGrid({ stats, subscription }: StatsGridProps) {
                 </div>
                 <div className="mt-3 pt-2 flex items-center justify-between text-[11px]">
                     <span className="text-muted-foreground">
-                        {subscription ? `Dhacaya: ${new Date(subscription.endDate).toLocaleDateString()}` : "Qorshe dooro"}
+                        {subscription ? `Dhacaya: ${new Date(subscription.endDate).toLocaleDateString()}` : "Xirmo dooro"}
                     </span>
                     <Link
                         href="/store/subscription"

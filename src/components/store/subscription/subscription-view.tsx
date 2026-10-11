@@ -275,7 +275,7 @@ export function SubscriptionView({ data }: SubscriptionViewProps) {
                                         >
                                             <div className="space-y-1">
                                                 <p className="font-bold text-foreground text-sm">
-                                                    {sub.plan?.name || "Qorshe"}
+                                                    {sub.plan?.name || "Xirmo"}
                                                 </p>
                                                 <p className="text-muted-foreground">
                                                     {formatDate(sub.start_date)} — {formatDate(sub.end_date)}

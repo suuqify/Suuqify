@@ -32,7 +32,7 @@ export function DangerTab({ store }: DangerTabProps) {
 
     const handleDeleteStore = async () => {
         startTransition(async () => {
-            const toastId = toast.loading("Dukaanka waa la tirtirayaa...");
+            const toastId = toast.loading("Ganacsiga waa la tirtirayaa...");
             const res = await deleteStoreAction();
             if (res.error) {
                 toast.error(res.error, { id: toastId });
@@ -86,7 +86,7 @@ export function DangerTab({ store }: DangerTabProps) {
                                     onClick={handleDeleteStore}
                                     className="bg-destructive text-white hover:bg-destructive/90 font-semibold"
                                 >
-                                    Haa, Tirtir Dukaanka
+                                    Haa, Tirtir Ganacsiga
                                 </AlertDialogAction>
                             </AlertDialogFooter>
                         </AlertDialogContent>

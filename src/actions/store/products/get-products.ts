@@ -39,7 +39,7 @@ export async function getStoreProductsAction(
 
     if (error) {
         console.error("Error fetching products:", error);
-        throw new Error("Khalad ayaa dhacay markii alaabta la soo qaadayay");
+        throw new Error("Khalad ayaa dhacay markii Xogta la soo qaadayay");
     }
 
     const totalCount = count || 0;

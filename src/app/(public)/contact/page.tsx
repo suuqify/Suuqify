@@ -40,12 +40,12 @@ export default function ContactPage() {
                                     <div>
                                         <span className="text-xs text-muted-foreground block">WhatsApp Direct</span>
                                         <a
-                                            href="https://wa.me/252610000000"
+                                            href="https://wa.me/252613940257"
                                             target="_blank"
                                             rel="noreferrer"
                                             className="font-bold text-foreground text-sm hover:underline"
                                         >
-                                            +252 61 000 0000
+                                            +252613930257 
                                         </a>
                                     </div>
                                 </div>
@@ -56,7 +56,7 @@ export default function ContactPage() {
                                     </div>
                                     <div>
                                         <span className="text-xs text-muted-foreground block">Email Taageerada</span>
-                                        <span className="font-semibold text-foreground text-sm">support@suuqify.com</span>
+                                        <span className="font-semibold text-foreground text-sm">suuqify.so@gmail.com</span>
                                     </div>
                                 </div>
 

@@ -24,7 +24,7 @@ export function StoreLinkBanner({ storeName, isVerified }: StoreLinkBannerProps)
         if (navigator.clipboard) {
             navigator.clipboard.writeText(storeUrl);
             setCopied(true);
-            toast.success("Link-ga dukaanka waa la koobiyeeyay!");
+            toast.success("Link-ga Ganacsiga waa la koobiyeeyay!");
             setTimeout(() => setCopied(false), 2500);
         }
     };

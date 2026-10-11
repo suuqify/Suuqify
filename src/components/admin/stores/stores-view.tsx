@@ -85,7 +85,7 @@ export function StoresView({
     };
 
     const handleDeleteStore = (storeId: string, storeName: string) => {
-        if (confirm(`Ma hubtaa inaad tirtirto dukaanka "${storeName}" iyo dhammaan alaabtiisa?`)) {
+        if (confirm(`Ma hubtaa inaad tirtirto Ganacsigan "${storeName}" iyo dhammaan Xogtiisa?`)) {
             startTransition(async () => {
                 const res = await deleteStoreAdminAction(storeId);
                 if (res.success) toast.success(res.message);

@@ -50,8 +50,8 @@ export function OrderModal({
         }
 
         // Farriinta WhatsApp-ka
-        let message = `Asc *${storeName}*, waxaan rabaa inaan dalbado alaabtan:\n\n`;
-        message += `🛍️ *Alaabta:* ${product.name}\n`;
+        let message = `Asc *${storeName}*, waxaan rabaa inaan dalbado Adeegan:\n\n`;
+        message += `🛍️ *Adeega:* ${product.name}\n`;
         message += `💵 *Qiimaha:* $${Number(product.price).toFixed(2)}\n`;
 
         // Ku dar kala-doorashooyinkii hadday jiraan

@@ -13,8 +13,8 @@ export async function generateMetadata({ params }: StorefrontPageProps): Promise
     const decodedName = decodeURIComponent(storeName);
 
     return {
-        title: `${decodedName} | Dukaanka Online-ka ah ee Suuqify`,
-        description: `Ka iibso alaab tayo leh dukaanka ${decodedName} adigoo toos uga dalbanaya WhatsApp.`,
+        title: `${decodedName} | Website-ka Rasmiga ah - Suuqify`,
+description: `Kala soco adeegyada iyo waxyaabaha uu kuu hayo ${decodedName}, adigoo toos ugala xiriiraya ama kaga dalbanaya WhatsApp.`,
     };
 }
 
@@ -46,14 +46,14 @@ export default async function StorefrontPage({ params }: StorefrontPageProps) {
         .maybeSingle();
 
     if (error || !store) {
-        return <StoreNotFound title="Dukaankan Lama Helin" message={`Ma jiro dukaan magaciisu yahay "${decodedName}".`} />;
+        return <StoreNotFound title="Ganacsigaan Lama Helin" message={`Ma jiro Ganacsi magaciisu yahay "${decodedName}".`} />;
     }
 
     if (store.status !== "active") {
         return (
             <StoreNotFound
-                title="Dukaanku Hadda Ma Shaqaynayo"
-                message={`Dukaanka "${store.name}" dib-u-eegis ayaa ku socota ama si ku-meel-gaar ah ayaa loo hakiyay.`}
+                title="Website-kan Hadda Waa Hakad"
+message={`Bogga ganacsi ee "${store.name}" si ku-meel-gaar ah ayaa loo hakiyay. Fadlan dib ugu soo laabo mar dhow.`}
             />
         );
     }
@@ -73,8 +73,8 @@ export default async function StorefrontPage({ params }: StorefrontPageProps) {
     if (!hasActiveSub) {
         return (
             <StoreNotFound
-                title="Dukaanku Waa Xiran Yahay"
-                message={`Dukaanka "${store.name}" heshiiskii uu ku shaqaynayay wuu dhacay. Fadlan dib ugu soo laabo goor dhow.`}
+                title="Adeeggan Hadda Waa Hakad"
+                message={`Website-ka ganacsi ee "${store.name}" hadda adeeggiisu waa hakad ku meel gaar ah. Fadlan dib ugu soo laabo goor dhow.`}
             />
         );
     }

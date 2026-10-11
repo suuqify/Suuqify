@@ -79,7 +79,7 @@ export function PlanDialog({ plan, isOpen, onClose }: PlanDialogProps) {
             <DialogContent className="max-w-md rounded-2xl p-6">
                 <DialogHeader>
                     <DialogTitle className="text-lg font-bold">
-                        {plan ? "Wax Ka Beddel Qorshaha" : "Ku Dar Qorshe Cusub"}
+                        {plan ? "Wax Ka Beddel Xirmaha" : "Ku Dar Xirmo Cusub"}
                     </DialogTitle>
                 </DialogHeader>
 

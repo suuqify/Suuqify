@@ -65,7 +65,7 @@ export async function createProductAction(data: ProductInput) {
     if (!currentSub || new Date(currentSub.end_date) <= now) {
         return {
             success: false,
-            error: "Ma haysatid qorshe firfircoon ama wuu dhacay. Fadlan dooro qorshe si aad alaab u darto.",
+            error: "Ma haysatid Xirmo firfircoon ama wuu dhacay. Fadlan dooro Xirmo si aad Awood ugu Yeelato wax soo bandhigista ganacsigaaga.",
         };
     }
 
@@ -81,7 +81,7 @@ export async function createProductAction(data: ProductInput) {
     if ((currentCount || 0) >= maxLimit) {
         return {
             success: false,
-            error: `Waxaad gaartay xadkii ugu badnaa ee qorshahaaga (${maxLimit} alaab). Fadlan qorshahaaga kordhi (Upgrade).`,
+            error: `Waxaad gaartay xadkii ugu badnaa ee Xirmadada (${maxLimit} Boos). Fadlan Xirmadada kordhi (Upgrade).`,
         };
     }
 

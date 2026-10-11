@@ -4,8 +4,8 @@ import { createClient } from "@/utils/supabase/server";
 import { SettingsView } from "@/components/store/settings/settings-view";
 
 export const metadata: Metadata = {
-    title: "Qaabeynta Dukaanka | Suuqify",
-    description: "Wax ka beddel macluumaadka, sawirrada, iyo amniga dukaankaaga.",
+    title: "Qaabeynta Ganacsiga | Suuqify",
+    description: "Wax ka beddel macluumaadka, sawirrada, iyo amniga Ganacsigaaga.",
 };
 
 export default async function SettingsPage() {

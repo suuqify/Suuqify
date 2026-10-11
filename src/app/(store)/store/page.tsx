@@ -5,8 +5,8 @@ import { getStoreDashboardOverviewAction } from "@/actions/store/overview";
 import { StoreOverviewView } from "@/components/store/overview/store-overview-view";
 
 export const metadata: Metadata = {
-    title: "Maamulka Dukaanka - Suuqify",
-    description: "Xarunta maamulka alaabta iyo xogta dukaankaaga.",
+    title: "Maamulka Ganacsigaaga - Suuqify",
+    description: "Xarunta maamulka Aeega iyo xogta Ganacsigaaga.",
 };
 
 export default async function StorePage() {
@@ -38,7 +38,7 @@ export default async function StorePage() {
     if (!res.success || !res.data) {
         return (
             <div className="bg-destructive/10 border border-destructive/20 text-destructive p-4 rounded-2xl text-sm">
-                {res.error || "Khalad ayaa dhacay marka xogta dukaanka la soo qaadayay."}
+                {res.error || "Khalad ayaa dhacay marka xogta Ganacsiga la soo qaadayay."}
             </div>
         );
     }
