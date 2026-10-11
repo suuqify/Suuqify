@@ -45,7 +45,7 @@ export default function ContactPage() {
                                             rel="noreferrer"
                                             className="font-bold text-foreground text-sm hover:underline"
                                         >
-                                            +252613930257 
+                                            +252613940257 
                                         </a>
                                     </div>
                                 </div>
