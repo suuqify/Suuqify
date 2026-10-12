@@ -10,9 +10,9 @@ import { FAQSection } from "@/components/landing/faq-section";
 import { CTASection } from "@/components/landing/cta-section";
 
 export const metadata: Metadata = {
-  title: "Suuqify - Link-in-Bio Micro-Storefront Ganacsatada Soomaaliyeed",
+  title: "Suuqify - Link-in-Bio Website Ganacsatada Soomaaliyeed",
   description:
-    "U beddel barahaaga bulshada (TikTok/Instagram) dukaan casri ah oo toos WhatsApp looga dalbado.",
+    "U beddel barahaaga bulshada Ganacsi casri ah oo toos WhatsApp looga dalbado.",
 };
 
 export default async function HomePage() {
