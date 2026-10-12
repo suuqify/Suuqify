@@ -32,7 +32,7 @@ export function Navbar() {
     const [userRole, setUserRole] = React.useState<string | null>(null);
     const [isLoading, setIsLoading] = React.useState(true);
 
-    const logoImageSrc: string | null = null;
+    const logoImageSrc: string = "/logo.png";
     const supabase = React.useMemo(() => createClient(), []);
 
     React.useEffect(() => {
