@@ -42,9 +42,7 @@ export function HeroSection() {
 
                         {/* Subtitle */}
                        <p className="mt-6 max-w-2xl text-base text-muted-foreground sm:text-lg">
-    Ku dhis <strong>Website-kaaga ganacsi</strong> wax ka yar <strong>5 daqiiqo</strong>. 
-    Macaamiishaadu waxay si toos ah u arkayaan dhammaan waxaad u hayso, qiimahooda, iyo faahfaahin kasta—iyagoo 
-    toos <strong>WhatsApp</strong> kuugala soo xiriiraya iyagoo garanaya waxay rabaan, bilaa wareer.
+    Ku dhis <strong>website-ka ganacsigaaga</strong> wax ka yar <strong>5 daqiiqo</strong>.
 </p>
 
                         {/* CTA Links styled with shadcn buttonVariants */}
