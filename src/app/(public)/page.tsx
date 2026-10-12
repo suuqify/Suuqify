@@ -1,4 +1,6 @@
 // src/app/page.tsx
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 import { Metadata } from "next";
 import { getHomePageDataAction } from "@/actions/public/home";
 import { HeroSection } from "@/components/landing/hero-section";
