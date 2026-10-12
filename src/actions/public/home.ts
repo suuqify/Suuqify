@@ -2,7 +2,6 @@
 
 import { createClient } from "@/utils/supabase/server";
 
-// 1. Nooca Dukaamada VIP-da
 export interface FeaturedStoreItem {
     id: string;
     name: string;
@@ -14,7 +13,6 @@ export interface FeaturedStoreItem {
     isVerified: boolean;
 }
 
-// 2. Nooca Qorshayaasha Qiimaha
 export interface PublicPlanItem {
     id: string;
     name: string;
@@ -24,63 +22,65 @@ export interface PublicPlanItem {
     isFeature: boolean;
 }
 
-// -------------------------------------------------------------
-// A. Shaqada soo qaadaysa Dukaamada VIP-da
-// -------------------------------------------------------------
 export async function getFeaturedStoresAction(): Promise<FeaturedStoreItem[]> {
     try {
         const supabase = await createClient();
 
+        // Query toos ah oo soo saaraya dukaamada leh Active Subscription oo VIP ah
         const { data, error } = await supabase
-            .from("stores")
+            .from("subscriptions")
             .select(`
-                id,
-                name,
-                logo_url,
-                back_logo_url,
-                bio,
-                is_verified,
                 status,
-                cities ( name ),
-                categories ( name ),
-                subscriptions (
+                end_date,
+                plans!inner (
+                    id,
+                    name,
+                    is_feature
+                ),
+                stores!inner (
+                    id,
+                    name,
+                    logo_url,
+                    back_logo_url,
+                    bio,
+                    is_verified,
                     status,
-                    end_date,
-                    plans (
-                        id,
-                        name,
-                        is_feature
-                    )
+                    cities ( name ),
+                    categories ( name )
                 )
             `)
-            .eq("status", "active");
+            .eq("status", "active")
+            .eq("stores.status", "active")
+            .gt("end_date", new Date().toISOString());
 
         if (error || !data) {
-            console.error("Featured Stores Fetch Error:", error);
+            console.error("Featured Stores Error:", error);
             return [];
         }
 
         const vipStores: FeaturedStoreItem[] = [];
 
-        for (const store of data) {
-            const activeSub = (store.subscriptions || []).find((sub: any) => {
-                const isSubActive = sub.status === "active" && new Date(sub.end_date) > new Date();
-                const plan = sub.plans;
-                const isVipPlan = plan && (plan.is_feature === true || plan.name?.toLowerCase().includes("vip"));
-                return isSubActive && isVipPlan;
-            });
+        for (const item of data) {
+            const plan: any = item.plans;
+            const store: any = item.stores;
 
-            if (activeSub) {
-                vipStores.push({
-                    id: store.id,
-                    name: store.name,
-                    logoUrl: store.logo_url,
-                    backLogoUrl: store.back_logo_url,
-                    bio: store.bio,
-                    cityName: (store.cities as any)?.name || "Soomaaliya",
-                    categoryName: (store.categories as any)?.name || "Ganacsi",
-                    isVerified: Boolean(store.is_verified),
-                });
+            // Hubi in qorshuhu yahay VIP (is_feature == true ama magaciisu VIP yahay)
+            const isVip = plan && (plan.is_feature === true || plan.name?.toLowerCase().includes("vip"));
+
+            if (isVip && store) {
+                // Ka hortag in dukaan labo jeer soo noqdo
+                if (!vipStores.some((s) => s.id === store.id)) {
+                    vipStores.push({
+                        id: store.id,
+                        name: store.name,
+                        logoUrl: store.logo_url,
+                        backLogoUrl: store.back_logo_url,
+                        bio: store.bio,
+                        cityName: store.cities?.name || "Soomaaliya",
+                        categoryName: store.categories?.name || "Ganacsi",
+                        isVerified: Boolean(store.is_verified),
+                    });
+                }
             }
         }
 
@@ -91,9 +91,6 @@ export async function getFeaturedStoresAction(): Promise<FeaturedStoreItem[]> {
     }
 }
 
-// -------------------------------------------------------------
-// B. Shaqada soo qaadaysa Qorshayaasha Qiimaha
-// -------------------------------------------------------------
 export async function getPublicPlansAction(): Promise<PublicPlanItem[]> {
     try {
         const supabase = await createClient();
@@ -104,7 +101,6 @@ export async function getPublicPlansAction(): Promise<PublicPlanItem[]> {
             .order("price", { ascending: true });
 
         if (error || !data) {
-            console.error("Get Plans Error:", error);
             return [];
         }
 
@@ -117,14 +113,10 @@ export async function getPublicPlansAction(): Promise<PublicPlanItem[]> {
             isFeature: Boolean(p.is_feature),
         }));
     } catch (err) {
-        console.error("getPublicPlansAction Exception:", err);
         return [];
     }
 }
 
-// -------------------------------------------------------------
-// C. Shaqada Guud ee Bogga Hore (page.tsx) u yeerto
-// -------------------------------------------------------------
 export async function getHomePageDataAction() {
     try {
         const [featuredStores, plans] = await Promise.all([
@@ -137,7 +129,6 @@ export async function getHomePageDataAction() {
             plans,
         };
     } catch (err) {
-        console.error("getHomePageDataAction Exception:", err);
         return {
             featuredStores: [],
             plans: [],
