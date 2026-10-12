@@ -212,7 +212,7 @@ export function Navbar() {
                                     )
                                 )}
                                 <p className="text-[11px] text-center text-muted-foreground">
-                                   Hoyga Ganacsiga Dijitaalka ah & Suuqa Jiilka Cusub
+                                   Hoyga Ganacsiga Dijitaalka ah & Suuqa Jiilka Cusub 
                                 </p>
                             </div>
                         </SheetContent>
