@@ -144,7 +144,7 @@ export function HeroSection() {
                                                 In Stock
                                             </Badge>
                                             <h4 className="mt-1 text-xs font-bold text-foreground truncate">
-                                                Dirac Shaash & Jalbaab Modern 
+                                                Dirac Shaash & Jalbaab Modern
                                             </h4>
                                             <p className="text-sm font-black text-emerald-600 mt-0.5">$25.00</p>
                                             <div className="mt-1 flex gap-1">
