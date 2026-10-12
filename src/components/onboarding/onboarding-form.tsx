@@ -14,6 +14,7 @@ interface Props {
 export function OnboardingForm({ cities, categories }: Props) {
     const router = useRouter();
     const [loading, setLoading] = useState(false);
+    const [storeName, setStoreName] = useState("");
     const [selectedCities, setSelectedCities] = useState<string[]>([]);
 
     const toggleCity = (cityId: string) => {
@@ -22,6 +23,17 @@ export function OnboardingForm({ cities, categories }: Props) {
                 ? prev.filter((id) => id !== cityId)
                 : [...prev, cityId]
         );
+    };
+
+    const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        // 1. Ka saar calaamadda '%' iyo xuruufaha carqalada ku ah URL-ka
+        // 2. Boosaska bannaan (spaces) u beddel '-'
+        // 3. Ka dhig xuruuf yaryar (lowercase)
+        const cleanVal = e.target.value
+            .toLowerCase()
+            .replace(/%/g, "")
+            .replace(/\s+/g, "-");
+        setStoreName(cleanVal);
     };
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -68,9 +80,18 @@ export function OnboardingForm({ cities, categories }: Props) {
                 <input
                     name="name"
                     required
-                    placeholder="tusaale: SomStyle"
+                    value={storeName}
+                    onChange={handleNameChange}
+                    placeholder="tusaale: somstyle"
                     className="mt-1 w-full rounded-xl border border-border bg-card px-3.5 py-2.5 text-sm text-foreground outline-ring focus:ring-2 focus:ring-primary/20"
                 />
+                {/* Link-ga Nadiifka ah ee Preview-ga ah */}
+                <p className="text-[11px] text-muted-foreground mt-1.5 flex items-center gap-1 font-mono">
+                    <span>Link-gaaga:</span>
+                    <span className="text-primary font-bold">
+                        suuqify.online/s/{storeName || "magacaaga"}
+                    </span>
+                </p>
             </div>
 
             <div>

@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: StorefrontPageProps): Promise
 
     return {
         title: `${decodedName} | Website-ka Rasmiga ah - Suuqify`,
-description: `Kala soco adeegyada iyo waxyaabaha uu kuu hayo ${decodedName}, adigoo toos ugala xiriiraya ama kaga dalbanaya WhatsApp.`,
+        description: `Kala soco adeegyada iyo waxyaabaha uu kuu hayo ${decodedName}, adigoo toos ugala xiriiraya ama kaga dalbanaya WhatsApp.`,
     };
 }
 
@@ -24,8 +24,8 @@ export default async function StorefrontPage({ params }: StorefrontPageProps) {
 
     const supabase = await createClient();
 
-    // 1. Soo qaado dukaanka
-    const { data: store, error } = await supabase
+    // 1. Soo qaado dukaanka (Wuxuu marka hore ku raadinayaa magaca tooska ah)
+    let { data: store, error } = await supabase
         .from("stores")
         .select(`
             id,
@@ -45,6 +45,37 @@ export default async function StorefrontPage({ params }: StorefrontPageProps) {
         .ilike("name", decodedName)
         .maybeSingle();
 
+    // Haddii lagu waayo, ku baadi nooca kale (haddii uu ku jiro '-' ka dhig space, hadduu space leeyahayna ka dhig '-')
+    if (!store) {
+        const alternateName = decodedName.includes("-")
+            ? decodedName.replace(/-/g, " ")
+            : decodedName.replace(/\s+/g, "-");
+
+        const { data: altStore } = await supabase
+            .from("stores")
+            .select(`
+                id,
+                name,
+                whatsapp_number,
+                logo_url,
+                back_logo_url,
+                bio,
+                about,
+                location,
+                city_ids,
+                is_verified,
+                status,
+                city:cities(name),
+                category:categories(name)
+            `)
+            .ilike("name", alternateName)
+            .maybeSingle();
+
+        if (altStore) {
+            store = altStore;
+        }
+    }
+
     if (error || !store) {
         return <StoreNotFound title="Ganacsigaan Lama Helin" message={`Ma jiro Ganacsi magaciisu yahay "${decodedName}".`} />;
     }
@@ -53,7 +84,7 @@ export default async function StorefrontPage({ params }: StorefrontPageProps) {
         return (
             <StoreNotFound
                 title="Website-kan Hadda Waa Hakad"
-message={`Bogga ganacsi ee "${store.name}" si ku-meel-gaar ah ayaa loo hakiyay. Fadlan dib ugu soo laabo mar dhow.`}
+                message={`Bogga ganacsi ee "${store.name}" si ku-meel-gaar ah ayaa loo hakiyay. Fadlan dib ugu soo laabo mar dhow.`}
             />
         );
     }

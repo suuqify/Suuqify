@@ -81,7 +81,7 @@ export function StoreLinkBanner({ storeName, isVerified }: StoreLinkBannerProps)
                         </Button>
 
                         <Link
-                            href={`/${encodeURIComponent(storeName)}`}
+                            href={`/s/${encodeURIComponent(storeName)}`}
                             target="_blank"
                             className="inline-flex items-center justify-center h-9 px-3.5 rounded-xl text-xs font-semibold bg-white/15 hover:bg-white/25 text-white gap-1.5 border border-white/20 transition-all"
                         >
