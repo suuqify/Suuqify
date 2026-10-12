@@ -3,7 +3,19 @@
 import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ShoppingBag, Menu, ArrowRight, LayoutDashboard } from "lucide-react";
+import { 
+    ShoppingBag, 
+    Menu, 
+    ArrowRight, 
+    LayoutDashboard,
+    Sparkles,
+    HelpCircle,
+    CreditCard,
+    Crown,
+    Info,
+    PhoneCall,
+    ChevronRight
+} from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import {
     Sheet,
@@ -50,19 +62,18 @@ export function Navbar() {
     }, [supabase]);
 
     const navLinks = [
-        { label: "Features", href: "/#features" },
-        { label: "How it Works", href: "/#how-it-works" },
-        { label: "Pricing", href: "/#pricing" },
-        { label: "VIP Stores", href: "/#featured-stores" },
-        { label: "About Us", href: "/about" },
-        { label: "Contact", href: "/contact" },
+        { label: "Features", href: "/#features", icon: Sparkles },
+        { label: "How it Works", href: "/#how-it-works", icon: HelpCircle },
+        { label: "Pricing", href: "/#pricing", icon: CreditCard },
+        { label: "VIP Stores", href: "/#featured-stores", icon: Crown },
+        { label: "About Us", href: "/about", icon: Info },
+        { label: "Contact", href: "/contact", icon: PhoneCall },
     ];
 
-    // Hadii qofku login yahay goobta uu aadayo
     const destinationHref = userRole === "admin" ? "/admin" : "/store";
 
     return (
-        <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/80 backdrop-blur-md">
+        <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/85 backdrop-blur-md">
             <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
                 {/* Brand Logo */}
                 <Link href="/" className="flex items-center gap-2.5 transition-opacity hover:opacity-90">
@@ -76,7 +87,7 @@ export function Navbar() {
                             priority
                         />
                     ) : (
-                        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-sm">
+                        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-xs">
                             <ShoppingBag className="h-5 w-5" />
                         </div>
                     )}
@@ -104,7 +115,7 @@ export function Navbar() {
                         user ? (
                             <Link
                                 href={destinationHref}
-                                className={buttonVariants({ className: "gap-1.5 shadow-sm px-5 rounded-xl font-semibold" })}
+                                className={buttonVariants({ className: "gap-1.5 shadow-xs px-5 rounded-xl font-semibold" })}
                             >
                                 <LayoutDashboard className="h-4 w-4" />
                                 <span>Dashboard</span>
@@ -112,7 +123,7 @@ export function Navbar() {
                         ) : (
                             <Link
                                 href="/signin"
-                                className={buttonVariants({ className: "gap-1.5 shadow-sm px-5 rounded-xl font-semibold" })}
+                                className={buttonVariants({ className: "gap-1.5 shadow-xs px-5 rounded-xl font-semibold" })}
                             >
                                 <span>Bilow Hadda</span>
                                 <ArrowRight className="h-4 w-4" />
@@ -121,63 +132,91 @@ export function Navbar() {
                     )}
                 </div>
 
-                {/* Mobile Responsive Menu */}
-                <div className="flex items-center sm:hidden">
+                {/* Mobile Responsive Menu (App-Style Redesign) */}
+                <div className="flex items-center md:hidden">
                     <Sheet open={open} onOpenChange={setOpen}>
                         <SheetTrigger
                             aria-label="Toggle Menu"
-                            className={buttonVariants({ variant: "outline", size: "icon" })}
+                            className={buttonVariants({ 
+                                variant: "outline", 
+                                size: "icon",
+                                className: "h-10 w-10 rounded-xl border-border/80" 
+                            })}
                         >
                             <Menu className="h-5 w-5" />
                         </SheetTrigger>
 
-                        <SheetContent side="right" className="w-72">
-                            <SheetHeader className="text-left">
-                                <SheetTitle className="flex items-center gap-2">
-                                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                                        <ShoppingBag className="h-4 w-4" />
-                                    </div>
-                                    <span className="font-bold">
-                                        Suuq<span className="text-primary">ify</span>
-                                    </span>
-                                </SheetTitle>
-                            </SheetHeader>
+                        <SheetContent 
+                            side="right" 
+                            className="w-[88vw] max-w-sm p-0 flex flex-col justify-between border-l border-border/80 bg-background/95 backdrop-blur-xl"
+                        >
+                            {/* Drawer Header */}
+                            <div>
+                                <SheetHeader className="p-5 border-b border-border/60 text-left">
+                                    <SheetTitle className="flex items-center gap-2.5">
+                                        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-xs">
+                                            <ShoppingBag className="h-5 w-5" />
+                                        </div>
+                                        <span className="text-xl font-bold tracking-tight text-foreground">
+                                            Suuq<span className="text-primary">ify</span>
+                                        </span>
+                                    </SheetTitle>
+                                </SheetHeader>
 
-                            <nav className="mt-8 flex flex-col space-y-4">
-                                {navLinks.map((link) => (
-                                    <Link
-                                        key={link.label}
-                                        href={link.href}
-                                        onClick={() => setOpen(false)}
-                                        className="text-base font-medium text-muted-foreground transition-colors hover:text-foreground"
-                                    >
-                                        {link.label}
-                                    </Link>
-                                ))}
-                            </nav>
+                                {/* Navigation Links List */}
+                                <nav className="p-4 space-y-1.5">
+                                    {navLinks.map((link) => {
+                                        const Icon = link.icon;
+                                        return (
+                                            <Link
+                                                key={link.label}
+                                                href={link.href}
+                                                onClick={() => setOpen(false)}
+                                                className="group flex items-center justify-between px-3.5 py-3 rounded-2xl text-sm font-semibold text-foreground/80 hover:text-foreground hover:bg-muted/70 active:bg-muted transition-all select-none"
+                                            >
+                                                <div className="flex items-center gap-3">
+                                                    <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-muted/60 text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary transition-colors">
+                                                        <Icon className="h-4 w-4" />
+                                                    </div>
+                                                    <span>{link.label}</span>
+                                                </div>
+                                                <ChevronRight className="h-4 w-4 text-muted-foreground/50 group-hover:text-foreground group-hover:translate-x-0.5 transition-all" />
+                                            </Link>
+                                        );
+                                    })}
+                                </nav>
+                            </div>
 
-                            <div className="mt-8 border-t border-border pt-6">
+                            {/* Drawer Footer CTA */}
+                            <div className="p-5 border-t border-border/60 bg-muted/20 space-y-3">
                                 {!isLoading && (
                                     user ? (
                                         <Link
                                             href={destinationHref}
                                             onClick={() => setOpen(false)}
-                                            className={buttonVariants({ className: "w-full justify-center gap-1.5 rounded-xl" })}
+                                            className={buttonVariants({ 
+                                                className: "w-full justify-center gap-2 h-11 rounded-2xl font-semibold shadow-xs" 
+                                            })}
                                         >
                                             <LayoutDashboard className="h-4 w-4" />
-                                            <span>Dashboard</span>
+                                            <span>Fur Dashboard-kaaga</span>
                                         </Link>
                                     ) : (
                                         <Link
                                             href="/signin"
                                             onClick={() => setOpen(false)}
-                                            className={buttonVariants({ className: "w-full justify-center gap-1.5 rounded-xl" })}
+                                            className={buttonVariants({ 
+                                                className: "w-full justify-center gap-2 h-11 rounded-2xl font-semibold bg-primary hover:bg-primary/95 text-primary-foreground shadow-xs" 
+                                            })}
                                         >
-                                            <span>Bilow Hadda</span>
+                                            <span>Bilow Ganacsigaaga</span>
                                             <ArrowRight className="h-4 w-4" />
                                         </Link>
                                     )
                                 )}
+                                <p className="text-[11px] text-center text-muted-foreground">
+                                   Hoyga Ganacsiga Dijitaalka ah & Suuqa Jiilka Cusub
+                                </p>
                             </div>
                         </SheetContent>
                     </Sheet>

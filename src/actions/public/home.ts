@@ -55,7 +55,7 @@ export async function getHomePageDataAction() {
             backLogoUrl: s.back_logo_url,
             bio: s.bio,
             cityName: s.cities?.name || "Soomaaliya",
-            categoryName: s.categories?.name || "Dukaan",
+            categoryName: s.categories?.name || "Ganacsi",
             isVerified: Boolean(s.is_verified),
         }));
 
