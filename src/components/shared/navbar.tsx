@@ -154,8 +154,8 @@ export function Navbar() {
                                             className="h-8 w-8 object-contain shrink-0"
                                             priority
                                         />
-                                        <span className="text-xl font-bold tracking-tight text-foreground">
-                                            Suuq<span className="text-primary">ify</span>
+                                       <span className="text-xl font-bold tracking-tight text-foreground leading-none translate-y-[2px]">
+    Suuq<span className="text-primary">ify</span>
                                         </span>
                                     </SheetTitle>
                                 </SheetHeader>

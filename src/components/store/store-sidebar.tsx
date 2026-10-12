@@ -87,8 +87,8 @@ export function StoreSidebar({ storeName }: StoreSidebarProps) {
                         className="h-8 w-8 object-contain shrink-0"
                     />
                     <div className="flex flex-col group-data-[collapsible=icon]:hidden">
-                        <span className="font-bold text-base leading-none text-sidebar-foreground">
-                            Suuq<span className="text-primary">ify</span>
+                        <span className="text-xl font-bold tracking-tight text-foreground leading-none translate-y-[2px]">
+    Suuq<span className="text-primary">ify</span>
                         </span>
                         <span className="text-[11px] text-muted-foreground mt-0.5 truncate max-w-35">
                             {storeName}

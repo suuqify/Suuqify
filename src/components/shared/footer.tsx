@@ -18,8 +18,8 @@ export function Footer() {
                                 height={32}
                                 className="h-8 w-8 object-contain shrink-0"
                             />
-                            <span className="text-xl font-bold tracking-tight text-foreground">
-                                Suuq<span className="text-primary">ify</span>
+                           <span className="text-xl font-bold tracking-tight text-foreground leading-none translate-y-[2px]">
+    Suuq<span className="text-primary">ify</span>
                             </span>
                         </Link>
                         <p className="text-sm text-muted-foreground max-w-sm leading-relaxed">

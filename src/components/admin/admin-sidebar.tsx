@@ -54,9 +54,9 @@ export function AdminSidebar({ mobileOpen, onCloseMobile }: AdminSidebarProps) {
                         className="h-8 w-8 object-contain shrink-0"
                     />
                     <div>
-                        <span className="font-extrabold text-base tracking-tight text-sidebar-foreground leading-none">
-                            Suuq<span className="text-primary">ify</span>
-                        </span>
+                        <span className="text-xl font-bold tracking-tight text-foreground leading-none translate-y-[2px]">
+    Suuq<span className="text-primary">ify</span>
+</span>
                         <span className="text-[10px] block font-semibold text-primary uppercase tracking-widest mt-0.5">
                             Admin Portal
                         </span>
