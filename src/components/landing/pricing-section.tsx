@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { PublicPlanItem } from "@/actions/public/home";
-import { Check, Crown, ArrowRight } from "lucide-react";
+import { Check, Crown, ArrowRight, Gift } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface PricingSectionProps {
@@ -27,78 +27,89 @@ export function PricingSection({ plans }: PricingSectionProps) {
 
                 {/* Cards Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto items-stretch">
-                    {plans.map((p) => (
-                        <div
-                            key={p.id}
-                            className={`relative bg-card border rounded-3xl p-8 shadow-2xs flex flex-col justify-between transition-all ${p.isFeature
-                                    ? "border-primary ring-2 ring-primary/20 shadow-md"
-                                    : "border-border/80"
+                    {plans.map((p) => {
+                        const isFree = Number(p.price) === 0;
+
+                        return (
+                            <div
+                                key={p.id}
+                                className={`relative bg-card border rounded-3xl p-8 shadow-2xs flex flex-col justify-between transition-all ${
+                                    p.isFeature
+                                        ? "border-primary ring-2 ring-primary/20 shadow-md"
+                                        : isFree
+                                        ? "border-emerald-500/50 bg-emerald-500/5"
+                                        : "border-border/80"
                                 }`}
-                        >
-                            {/* VIP Ribbon */}
-                            {p.isFeature && (
-                                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
-                                    <span className="inline-flex items-center gap-1 bg-primary text-primary-foreground text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
-                                        <Crown className="w-3.5 h-3.5" /> Ugu Caansan (VIP)
-                                    </span>
-                                </div>
-                            )}
+                            >
+                                {/* Ribbons */}
+                                {p.isFeature ? (
+                                    <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
+                                        <span className="inline-flex items-center gap-1 bg-primary text-primary-foreground text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
+                                            <Crown className="w-3.5 h-3.5" /> Ugu Caansan (VIP)
+                                        </span>
+                                    </div>
+                                ) : isFree ? (
+                                    <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
+                                        <span className="inline-flex items-center gap-1 bg-emerald-600 text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
+                                            <Gift className="w-3.5 h-3.5" /> Tijaabi Bilaash
+                                        </span>
+                                    </div>
+                                ) : null}
 
-                            <div>
-                                <h3 className="text-xl font-bold text-foreground">{p.name}</h3>
-                                <div className="mt-4 flex items-baseline gap-1">
-                                    <span className="text-4xl font-extrabold text-foreground">${p.price}</span>
-                                    <span className="text-xs text-muted-foreground">
-                                        / {p.duration === 30 ? "bishii" : `${p.duration} maalmood`}
-                                    </span>
-                                </div>
+                                <div>
+                                    <h3 className="text-xl font-bold text-foreground">{p.name}</h3>
+                                    <div className="mt-4 flex items-baseline gap-1">
+                                        <span className="text-4xl font-extrabold text-foreground">
+                                            {isFree ? "$0" : `$${p.price}`}
+                                        </span>
+                                        <span className="text-xs text-muted-foreground">
+                                            / {p.duration === 30 ? "bishii" : `${p.duration} maalmood`}
+                                        </span>
+                                    </div>
 
-                                <ul className="mt-6 space-y-3 text-xs sm:text-sm text-foreground/80 border-t border-border/60 pt-6">
-                                    {/* 1. Limit Item (Fits all 7 categories) */}
-                                    <li className="flex items-center gap-2">
-                                        <Check className="w-4 h-4 text-primary shrink-0" />
-                                        <span>Soo bandhig ilaa: <strong>{p.maxProduct} boos</strong></span>
-                                    </li>
-
-                                    {/* 2. Direct WhatsApp Connection */}
-                                    <li className="flex items-center gap-2">
-                                        <Check className="w-4 h-4 text-primary shrink-0" />
-                                        <span>Xiriirka tooska ah ee WhatsApp</span>
-                                    </li>
-
-                                    {/* 3. Modern Dedicated Website */}
-                                    <li className="flex items-center gap-2">
-                                        <Check className="w-4 h-4 text-primary shrink-0" />
-                                        <span>Website ganacsi oo casri ah & QR Code</span>
-                                    </li>
-
-                                    {/* 4. Featured on Homepage */}
-                                    {p.isFeature && (
-                                        <li className="flex items-center gap-2 text-primary font-semibold">
-                                            <Crown className="w-4 h-4 shrink-0" />
-                                            <span>Ka muuqashada Bogga Hore (VIP)</span>
+                                    <ul className="mt-6 space-y-3 text-xs sm:text-sm text-foreground/80 border-t border-border/60 pt-6">
+                                        <li className="flex items-center gap-2">
+                                            <Check className="w-4 h-4 text-primary shrink-0" />
+                                            <span>Soo bandhig ilaa: <strong>{p.maxProduct} alaab</strong></span>
                                         </li>
-                                    )}
-                                </ul>
-                            </div>
+                                        <li className="flex items-center gap-2">
+                                            <Check className="w-4 h-4 text-primary shrink-0" />
+                                            <span>Xiriirka tooska ah ee WhatsApp</span>
+                                        </li>
+                                        <li className="flex items-center gap-2">
+                                            <Check className="w-4 h-4 text-primary shrink-0" />
+                                            <span>Website ganacsi oo casri ah & QR Code</span>
+                                        </li>
+                                        {p.isFeature && (
+                                            <li className="flex items-center gap-2 text-primary font-semibold">
+                                                <Crown className="w-4 h-4 shrink-0" />
+                                                <span>Ka muuqashada Bogga Hore (VIP)</span>
+                                            </li>
+                                        )}
+                                    </ul>
+                                </div>
 
-                            {/* Action Button */}
-                            <div className="mt-8 pt-6 border-t border-border/60">
-                                <Link href="/signin">
-                                    <Button
-                                        className={`w-full rounded-2xl h-11 text-xs font-bold gap-1.5 ${p.isFeature
-                                                ? "bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm"
-                                                : ""
+                                {/* Action Button */}
+                                <div className="mt-8 pt-6 border-t border-border/60">
+                                    <Link href="/signin">
+                                        <Button
+                                            className={`w-full rounded-2xl h-11 text-xs font-bold gap-1.5 ${
+                                                p.isFeature
+                                                    ? "bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm"
+                                                    : isFree
+                                                    ? "bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm"
+                                                    : ""
                                             }`}
-                                        variant={p.isFeature ? "default" : "outline"}
-                                    >
-                                        <span>Dooro Xirmadan</span>
-                                        <ArrowRight className="w-4 h-4" />
-                                    </Button>
-                                </Link>
+                                            variant={p.isFeature || isFree ? "default" : "outline"}
+                                        >
+                                            <span>{isFree ? "Bilow Bilaash Hadda" : "Dooro Xirmadan"}</span>
+                                            <ArrowRight className="w-4 h-4" />
+                                        </Button>
+                                    </Link>
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        );
+                    })}
                 </div>
             </div>
         </section>
