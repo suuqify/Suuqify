@@ -74,7 +74,7 @@ export function Navbar() {
         <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/85 backdrop-blur-md">
             <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
                 {/* Brand Logo - Spacing tightened */}
-                <Link href="/" className="flex items-center gap-1.5 transition-opacity hover:opacity-90">
+                <Link href="/" className="flex items-center gap-1 transition-opacity hover:opacity-90">
                     <Image
                         src="/logo.png"
                         alt="Suuqify"
@@ -145,7 +145,7 @@ export function Navbar() {
                             {/* Drawer Header with Real Logo & tight spacing */}
                             <div>
                                 <SheetHeader className="p-5 border-b border-border/60 text-left">
-                                    <SheetTitle className="flex items-center gap-1.5">
+                                    <SheetTitle className="flex items-center gap-1">
                                         <Image
                                             src="/logo.png"
                                             alt="Suuqify"

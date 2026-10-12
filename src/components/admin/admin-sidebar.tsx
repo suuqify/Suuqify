@@ -45,7 +45,7 @@ export function AdminSidebar({ mobileOpen, onCloseMobile }: AdminSidebarProps) {
         <div className="flex flex-col h-full bg-sidebar border-r border-sidebar-border select-none">
             {/* Brand Header - Spacing tight */}
             <div className="h-16 px-5 flex items-center justify-between border-b border-sidebar-border">
-                <Link href="/admin" className="flex items-center gap-1.5">
+                <Link href="/admin" className="flex items-center gap-1">
                     <Image
                         src="/logo.png"
                         alt="Suuqify"
