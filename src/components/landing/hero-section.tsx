@@ -124,7 +124,7 @@ export function HeroSection() {
                                                     VIP
                                                 </Badge>
                                             </div>
-                                            <p className="text-[11px] text-muted-foreground">suuqify.Online/hodan</p>
+                                            <p className="text-[11px] text-muted-foreground">suuqify.online/hodan</p>
                                             <p className="text-[11px] text-foreground/80 font-medium mt-0.5 truncate">
                                                 Dharka casriga ah ee gabdhaha ✨
                                             </p>
