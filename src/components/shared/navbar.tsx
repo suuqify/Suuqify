@@ -4,7 +4,6 @@ import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { 
-    ShoppingBag, 
     Menu, 
     ArrowRight, 
     LayoutDashboard,
@@ -32,7 +31,6 @@ export function Navbar() {
     const [userRole, setUserRole] = React.useState<string | null>(null);
     const [isLoading, setIsLoading] = React.useState(true);
 
-    const logoImageSrc: string = "/logo.png";
     const supabase = React.useMemo(() => createClient(), []);
 
     React.useEffect(() => {
@@ -75,22 +73,16 @@ export function Navbar() {
     return (
         <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/85 backdrop-blur-md">
             <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-                {/* Brand Logo */}
-                <Link href="/" className="flex items-center gap-2.5 transition-opacity hover:opacity-90">
-                    {logoImageSrc ? (
-                        <Image
-                            src={logoImageSrc}
-                            alt="Suuqify"
-                            width={36}
-                            height={36}
-                            className="h-9 w-9 object-contain"
-                            priority
-                        />
-                    ) : (
-                        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-xs">
-                            <ShoppingBag className="h-5 w-5" />
-                        </div>
-                    )}
+                {/* Brand Logo - Spacing tightened */}
+                <Link href="/" className="flex items-center gap-1.5 transition-opacity hover:opacity-90">
+                    <Image
+                        src="/logo.png"
+                        alt="Suuqify"
+                        width={34}
+                        height={34}
+                        className="h-8.5 w-8.5 object-contain shrink-0"
+                        priority
+                    />
                     <span className="text-xl font-bold tracking-tight text-foreground">
                         Suuq<span className="text-primary">ify</span>
                     </span>
@@ -132,7 +124,7 @@ export function Navbar() {
                     )}
                 </div>
 
-                {/* Mobile Responsive Menu (App-Style Redesign) */}
+                {/* Mobile Responsive Menu */}
                 <div className="flex items-center md:hidden">
                     <Sheet open={open} onOpenChange={setOpen}>
                         <SheetTrigger
@@ -150,13 +142,18 @@ export function Navbar() {
                             side="right" 
                             className="w-[88vw] max-w-sm p-0 flex flex-col justify-between border-l border-border/80 bg-background/95 backdrop-blur-xl"
                         >
-                            {/* Drawer Header */}
+                            {/* Drawer Header with Real Logo & tight spacing */}
                             <div>
                                 <SheetHeader className="p-5 border-b border-border/60 text-left">
-                                    <SheetTitle className="flex items-center gap-2.5">
-                                        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-xs">
-                                            <ShoppingBag className="h-5 w-5" />
-                                        </div>
+                                    <SheetTitle className="flex items-center gap-1.5">
+                                        <Image
+                                            src="/logo.png"
+                                            alt="Suuqify"
+                                            width={32}
+                                            height={32}
+                                            className="h-8 w-8 object-contain shrink-0"
+                                            priority
+                                        />
                                         <span className="text-xl font-bold tracking-tight text-foreground">
                                             Suuq<span className="text-primary">ify</span>
                                         </span>

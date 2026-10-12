@@ -76,9 +76,9 @@ export function StoreSidebar({ storeName }: StoreSidebarProps) {
 
     return (
         <Sidebar collapsible="icon">
-            {/* Header: Logo & Brand */}
+            {/* Header: Logo & Brand - Spacing tight */}
             <SidebarHeader className="border-b border-sidebar-border h-16 justify-center">
-                <Link href="/store" className="flex items-center gap-2.5 px-2">
+                <Link href="/store" className="flex items-center gap-1.5 px-2">
                     <Image
                         src="/logo.png"
                         alt="Suuqify"

@@ -43,21 +43,21 @@ export function AdminSidebar({ mobileOpen, onCloseMobile }: AdminSidebarProps) {
 
     const navContent = (
         <div className="flex flex-col h-full bg-sidebar border-r border-sidebar-border select-none">
-            {/* Brand Header */}
-            <div className="h-16 px-6 flex items-center justify-between border-b border-sidebar-border">
-                <Link href="/admin" className="flex items-center gap-2.5">
+            {/* Brand Header - Spacing tight */}
+            <div className="h-16 px-5 flex items-center justify-between border-b border-sidebar-border">
+                <Link href="/admin" className="flex items-center gap-1.5">
                     <Image
                         src="/logo.png"
                         alt="Suuqify"
-                        width={36}
-                        height={36}
-                        className="h-9 w-9 object-contain shrink-0"
+                        width={32}
+                        height={32}
+                        className="h-8 w-8 object-contain shrink-0"
                     />
                     <div>
-                        <span className="font-extrabold text-base tracking-tight text-sidebar-foreground">
-                            Suuqify
+                        <span className="font-extrabold text-base tracking-tight text-sidebar-foreground leading-none">
+                            Suuq<span className="text-primary">ify</span>
                         </span>
-                        <span className="text-[10px] block font-semibold text-primary uppercase tracking-widest -mt-1">
+                        <span className="text-[10px] block font-semibold text-primary uppercase tracking-widest mt-0.5">
                             Admin Portal
                         </span>
                     </div>
