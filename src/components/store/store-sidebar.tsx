@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import {
     LayoutDashboard,
@@ -78,9 +79,13 @@ export function StoreSidebar({ storeName }: StoreSidebarProps) {
             {/* Header: Logo & Brand */}
             <SidebarHeader className="border-b border-sidebar-border h-16 justify-center">
                 <Link href="/store" className="flex items-center gap-2.5 px-2">
-                    <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-primary-foreground font-black text-base shadow-sm">
-                        S
-                    </div>
+                    <Image
+                        src="/logo.png"
+                        alt="Suuqify"
+                        width={32}
+                        height={32}
+                        className="h-8 w-8 object-contain shrink-0"
+                    />
                     <div className="flex flex-col group-data-[collapsible=icon]:hidden">
                         <span className="font-bold text-base leading-none text-sidebar-foreground">
                             Suuq<span className="text-primary">ify</span>

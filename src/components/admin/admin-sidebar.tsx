@@ -1,8 +1,8 @@
-// src/components/admin/admin-sidebar.tsx
 "use client";
 
 import React, { useTransition } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import {
     LayoutDashboard,
@@ -46,9 +46,13 @@ export function AdminSidebar({ mobileOpen, onCloseMobile }: AdminSidebarProps) {
             {/* Brand Header */}
             <div className="h-16 px-6 flex items-center justify-between border-b border-sidebar-border">
                 <Link href="/admin" className="flex items-center gap-2.5">
-                    <div className="h-9 w-9 rounded-xl bg-primary text-primary-foreground flex items-center justify-center font-bold text-lg shadow-sm">
-                        S
-                    </div>
+                    <Image
+                        src="/logo.png"
+                        alt="Suuqify"
+                        width={36}
+                        height={36}
+                        className="h-9 w-9 object-contain shrink-0"
+                    />
                     <div>
                         <span className="font-extrabold text-base tracking-tight text-sidebar-foreground">
                             Suuqify

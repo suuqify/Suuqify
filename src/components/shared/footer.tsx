@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
-import { ShoppingBag, Heart, MessageCircle } from "lucide-react";
+import Image from "next/image";
+import { Heart } from "lucide-react";
 
 export function Footer() {
     return (
@@ -10,9 +11,13 @@ export function Footer() {
                     {/* Brand Info */}
                     <div className="space-y-4 md:col-span-2">
                         <Link href="/" className="flex items-center gap-2.5">
-                            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-sm">
-                                <ShoppingBag className="h-5 w-5" />
-                            </div>
+                            <Image
+                                src="/logo.png"
+                                alt="Suuqify"
+                                width={36}
+                                height={36}
+                                className="h-9 w-9 object-contain"
+                            />
                             <span className="text-xl font-bold tracking-tight text-foreground">
                                 Suuq<span className="text-primary">ify</span>
                             </span>
@@ -56,13 +61,13 @@ export function Footer() {
                     </div>
                 </div>
 
-               {/* Bottom Bar */}
-<div className="mt-12 pt-8 border-t border-border/60 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
-    <p>© {new Date().getFullYear()} Suuqify Inc. Xuquuqda oo dhan way dhowran tahay.</p>
-    <p className="flex items-center gap-1">
-        Waxaa loo dhisay <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500 inline-block" /> ganacsatada Soomaaliyeed.
-    </p>
-</div>
+                {/* Bottom Bar */}
+                <div className="mt-12 pt-8 border-t border-border/60 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
+                    <p>© {new Date().getFullYear()} Suuqify Inc. Xuquuqda oo dhan way dhowran tahay.</p>
+                    <p className="flex items-center gap-1">
+                        Waxaa loo dhisay <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500 inline-block" /> ganacsatada Soomaaliyeed.
+                    </p>
+                </div>
             </div>
         </footer>
     );

@@ -164,9 +164,7 @@ export function HeroSection() {
                                         <span>Ku Dalbo WhatsApp (Hal Gujis)</span>
                                     </div>
 
-                                    <p className="text-[10px] text-center text-muted-foreground italic">
-                                        * Macmiilku hal-gujis ayuu fariin diyaarsan WhatsApp-kaaga ugu soo dirayaa.
-                                    </p>
+                            
                                 </div>
 
                             </CardContent>
