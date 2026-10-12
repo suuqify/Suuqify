@@ -83,7 +83,7 @@ export function Navbar() {
                         className="h-8.5 w-8.5 object-contain shrink-0"
                         priority
                     />
-                  <span className="text-xl font-bold tracking-tight text-foreground leading-none translate-y-[2px]">
+                  <span className="text-xl font-bold tracking-tight text-foreground leading-none translate-y-[4px]">
     Suuq<span className="text-primary">ify</span>
                     </span>
                 </Link>
