@@ -158,7 +158,7 @@ export function PlansView({ plans, activeSubscription, hasUsedTrial = false }: P
                                 <ul className="space-y-2.5 text-xs sm:text-sm">
                                     <li className="flex items-center gap-2 text-foreground">
                                         <Check className="h-3.5 w-3.5 text-primary shrink-0" />
-                                        <span>Soo bandhig ilaa <strong>{plan.max_product} Boos</strong></span>
+                                        <span>Soo bandhig ilaa <strong>{plan.max_product} Adeeg/Alaab</strong></span>
                                     </li>
                                     <li className="flex items-center gap-2 text-foreground">
                                         <Check className="h-3.5 w-3.5 text-primary shrink-0" />

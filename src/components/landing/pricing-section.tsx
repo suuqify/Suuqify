@@ -70,7 +70,7 @@ export function PricingSection({ plans }: PricingSectionProps) {
                                     <ul className="mt-6 space-y-3 text-xs sm:text-sm text-foreground/80 border-t border-border/60 pt-6">
                                         <li className="flex items-center gap-2">
                                             <Check className="w-4 h-4 text-primary shrink-0" />
-                                            <span>Soo bandhig ilaa: <strong>{p.maxProduct} alaab</strong></span>
+                                            <span>Soo bandhig ilaa: <strong>{p.maxProduct} Adeeg/Alaab</strong></span>
                                         </li>
                                         <li className="flex items-center gap-2">
                                             <Check className="w-4 h-4 text-primary shrink-0" />
