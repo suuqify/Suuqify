@@ -3,7 +3,7 @@
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { Check, Sparkles, Zap, ShieldCheck, Gift, Loader2, AlertCircle } from "lucide-react";
+import { Check, Sparkles, Zap, ShieldCheck, Gift, Loader2, AlertCircle, Lock } from "lucide-react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -22,9 +22,10 @@ import { claimFreeTrialAction } from "@/actions/store/plans";
 interface PlansViewProps {
     plans: Plan[];
     activeSubscription: ActiveSubscription | null;
+    hasUsedTrial?: boolean; // Inuu horay u isticmaalay iyo in kale
 }
 
-export function PlansView({ plans, activeSubscription }: PlansViewProps) {
+export function PlansView({ plans, activeSubscription, hasUsedTrial = false }: PlansViewProps) {
     const router = useRouter();
     const [selectedPlan, setSelectedPlan] = useState<Plan | null>(null);
     const [paymentModalOpen, setPaymentModalOpen] = useState(false);
@@ -36,8 +37,11 @@ export function PlansView({ plans, activeSubscription }: PlansViewProps) {
     const [isPending, startTransition] = useTransition();
 
     const handleSelectPlan = (plan: Plan) => {
-        // HADDII AY TAHAY FREE TRIAL ($0): Fur modal-ka hubinta
+        // HADDII AY TAHAY FREE TRIAL ($0):
         if (Number(plan.price) === 0) {
+            // Haddii horay loo isticmaalay waxba ha qaban
+            if (hasUsedTrial) return;
+
             setTrialPlanToClaim(plan);
             setConfirmTrialOpen(true);
             return;
@@ -48,7 +52,6 @@ export function PlansView({ plans, activeSubscription }: PlansViewProps) {
         setPaymentModalOpen(true);
     };
 
-    // Marka qofku hubiyo ee uu taabto "Haa, Hawlgeli Hadda"
     const handleConfirmClaimTrial = () => {
         if (!trialPlanToClaim) return;
 
@@ -76,7 +79,7 @@ export function PlansView({ plans, activeSubscription }: PlansViewProps) {
                     Dooro Xirmada ku Habboon Ganacsigaaga
                 </h1>
                 <p className="text-muted-foreground text-xs sm:text-sm">
-                    Ballaari suuqaaga adigoo helaya website heer sare ah oo toos looga Arko Adeegyadaada Dhan.
+                    Ballaari suuqaaga adigoo helaya website heer sare ah.
                 </p>
             </div>
 
@@ -86,6 +89,8 @@ export function PlansView({ plans, activeSubscription }: PlansViewProps) {
                     const isCurrentPlan = activeSubscription?.plan_id === plan.id;
                     const isFeatured = plan.is_feature;
                     const isFree = Number(plan.price) === 0;
+                    // Haddii xirmadani tahay Free Trial oo uu horay u qaatay
+                    const isTrialExpiredOrUsed = isFree && hasUsedTrial;
 
                     return (
                         <Card
@@ -93,17 +98,25 @@ export function PlansView({ plans, activeSubscription }: PlansViewProps) {
                             className={`relative flex flex-col justify-between transition-all duration-200 hover:shadow-xl ${
                                 isFeatured
                                     ? "border-primary shadow-md ring-2 ring-primary/20 bg-card"
+                                    : isTrialExpiredOrUsed
+                                    ? "border-border/60 bg-muted/20 opacity-80"
                                     : isFree
                                     ? "border-emerald-500/50 bg-emerald-500/5 shadow-xs"
                                     : "border-border/80 bg-card"
                             }`}
                         >
-                            {/* Ribbons */}
+                            {/* Badges / Ribbons */}
                             {isFeatured ? (
                                 <div className="absolute top-2 left-1/2 -translate-x-1/2">
                                     <Badge className="bg-primary text-primary-foreground shadow-sm flex items-center gap-1 px-3 py-0.5 text-[11px] font-semibold">
                                         <Sparkles className="h-3 w-3" />
                                         Heer Sare & VIP
+                                    </Badge>
+                                </div>
+                            ) : isTrialExpiredOrUsed ? (
+                                <div className="absolute top-2 left-1/2 -translate-x-1/2">
+                                    <Badge variant="outline" className="bg-muted text-muted-foreground border-border text-[10px] font-medium">
+                                        Tijaabadii Way Dhammaatay
                                     </Badge>
                                 </div>
                             ) : isFree ? (
@@ -125,7 +138,9 @@ export function PlansView({ plans, activeSubscription }: PlansViewProps) {
                                     )}
                                 </div>
                                 <CardDescription className="text-xs text-muted-foreground mt-1">
-                                    {isFree ? `Tijaabi bilaash muddo ${plan.duration} maalmood ah` : `Xirmo soconaysa ${plan.duration} maalmood`}
+                                    {isFree
+                                        ? `Tijaabi bilaash muddo ${plan.duration} maalmood ah`
+                                        : `Xirmo soconaysa ${plan.duration} maalmood`}
                                 </CardDescription>
 
                                 <div className="mt-4 flex items-baseline gap-1">
@@ -151,7 +166,7 @@ export function PlansView({ plans, activeSubscription }: PlansViewProps) {
                                     </li>
                                     <li className="flex items-center gap-2 text-foreground">
                                         <Check className="h-3.5 w-3.5 text-primary shrink-0" />
-                                        <span>Website-kaaga gaarka ah</span>
+                                        <span>Link Website-kaaga gaarka ah</span>
                                     </li>
                                     {isFeatured && (
                                         <li className="flex items-center gap-2 text-primary font-semibold">
@@ -162,40 +177,58 @@ export function PlansView({ plans, activeSubscription }: PlansViewProps) {
                                 </ul>
                             </CardContent>
 
-                            <CardFooter className="pt-2 pb-6">
-                                <Button
-                                    className={`w-full gap-2 rounded-xl transition-all font-semibold ${
-                                        isFree
-                                            ? "bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm"
-                                            : isFeatured
-                                            ? "bg-primary hover:bg-primary/90 text-primary-foreground shadow-sm"
-                                            : "bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-border"
-                                    }`}
-                                    size="lg"
-                                    onClick={() => handleSelectPlan(plan)}
-                                    disabled={isCurrentPlan}
-                                >
-                                    {isCurrentPlan ? (
-                                        "Waad Haysataa Xirmadan"
-                                    ) : isFree ? (
-                                        <>
-                                            <Gift className="h-4 w-4" />
-                                            Qaado Tijaabada Bilaashka ah
-                                        </>
-                                    ) : (
-                                        <>
-                                            <Zap className="h-4 w-4 fill-current" />
-                                            Dooro Xirmadan
-                                        </>
-                                    )}
-                                </Button>
+                            <CardFooter className="pt-2 pb-6 flex flex-col gap-2">
+                                {isTrialExpiredOrUsed ? (
+                                    /* Haddii uu horay u isticmaalay Free Trial-ka: Badhanku waa xiran yahay */
+                                    <div className="w-full space-y-1.5">
+                                        <Button
+                                            disabled
+                                            variant="outline"
+                                            className="w-full gap-2 rounded-xl text-xs font-semibold border-dashed cursor-not-allowed bg-muted/50 text-muted-foreground"
+                                        >
+                                            <Lock className="h-3.5 w-3.5" />
+                                            <span>Horay Ayaad u Isticmaashay</span>
+                                        </Button>
+                                        <p className="text-[10px] text-muted-foreground text-center">
+                                            Ha hakinin Ganacsigaaga! Dooro xirmo si aad ganacsigaaga u sii kobciso.
+                                        </p>
+                                    </div>
+                                ) : (
+                                    /* Badhanka Caadiga ah */
+                                    <Button
+                                        className={`w-full gap-2 rounded-xl transition-all font-semibold ${
+                                            isFree
+                                                ? "bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm"
+                                                : isFeatured
+                                                ? "bg-primary hover:bg-primary/90 text-primary-foreground shadow-sm"
+                                                : "bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-border"
+                                        }`}
+                                        size="lg"
+                                        onClick={() => handleSelectPlan(plan)}
+                                        disabled={isCurrentPlan}
+                                    >
+                                        {isCurrentPlan ? (
+                                            "Waad Haysataa Xirmadan"
+                                        ) : isFree ? (
+                                            <>
+                                                <Gift className="h-4 w-4" />
+                                                Qaado Tijaabada Bilaashka ah
+                                            </>
+                                        ) : (
+                                            <>
+                                                <Zap className="h-4 w-4 fill-current" />
+                                                Dooro Xirmadan
+                                            </>
+                                        )}
+                                    </Button>
+                                )}
                             </CardFooter>
                         </Card>
                     );
                 })}
             </div>
 
-            {/* 1. Modal-ka Hubinta ee Free Trial-ka (Confirmation Dialog) */}
+            {/* Modal-ka Hubinta ee Free Trial-ka (Kaliya kuwa aan weli isticmaalin) */}
             <Dialog open={confirmTrialOpen} onOpenChange={setConfirmTrialOpen}>
                 <DialogContent className="max-w-md p-5 sm:p-6 rounded-3xl border shadow-2xl">
                     <DialogHeader className="space-y-2 text-left">
@@ -250,7 +283,7 @@ export function PlansView({ plans, activeSubscription }: PlansViewProps) {
                 </DialogContent>
             </Dialog>
 
-            {/* 2. Modal-ka Lacag-Bixinta (Xirmooyinka Lacagta leh) */}
+            {/* Modal-ka Lacag-Bixinta */}
             <PaymentDialog
                 plan={selectedPlan}
                 open={paymentModalOpen}

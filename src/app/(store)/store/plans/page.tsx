@@ -1,12 +1,6 @@
-import { Metadata } from "next";
-import { redirect } from "next/navigation";
 import { createClient } from "@/utils/supabase/server";
+import { redirect } from "next/navigation";
 import { PlansView } from "@/components/store/plans/plans-view";
-
-export const metadata: Metadata = {
-    title: "Xirmooyinka | Suuqify",
-    description: "Dooro qorshaha ku habboon kobaca Ganacsigaaga.",
-};
 
 export default async function PlansPage() {
     const supabase = await createClient();
@@ -19,7 +13,7 @@ export default async function PlansPage() {
         redirect("/signin");
     }
 
-    // Hel dukaanka
+    // 1. Hel Dukaanka
     const { data: store } = await supabase
         .from("stores")
         .select("id")
@@ -30,26 +24,41 @@ export default async function PlansPage() {
         redirect("/onboarding");
     }
 
-    // Soo qaado dhammaan qorshayaasha la heli karo (oo u kala habaysan qiimaha yar ilaa weyn)
+    // 2. Soo qaado dhammaan qorshayaasha
     const { data: plans } = await supabase
         .from("plans")
-        .select("id, name, price, duration, max_product, is_feature")
+        .select("*")
         .order("price", { ascending: true });
 
-    // Soo qaado qorshaha dukaanku hadda ku jiro hadduu jiro
-    const { data: currentSub } = await supabase
+    // 3. Soo qaado Active Subscription-ka hadda u socda (haddii uu jiro)
+    const { data: activeSub } = await supabase
         .from("subscriptions")
-        .select("plan_id, status, end_date")
+        .select("*, plans(*)")
         .eq("store_id", store.id)
         .eq("status", "active")
+        .gt("end_date", new Date().toISOString())
         .order("end_date", { ascending: false })
         .limit(1)
         .maybeSingle();
 
+    // 4. Hubi haddii dukaankani HORAY u soo isticmaalay Free Trial ($0)
+    const { data: allSubs } = await supabase
+        .from("subscriptions")
+        .select(`
+            id,
+            plans (
+                price
+            )
+        `)
+        .eq("store_id", store.id);
+
+    const hasUsedTrial = (allSubs || []).some((s: any) => Number(s.plans?.price) === 0);
+
     return (
         <PlansView
             plans={plans || []}
-            activeSubscription={currentSub || null}
+            activeSubscription={activeSub}
+            hasUsedTrial={hasUsedTrial}
         />
     );
 }
