@@ -2,7 +2,7 @@
 
 import { useState, useTransition } from "react";
 import { toast } from "sonner";
-import { Pencil, X, Check, Lock, MapPin, Phone, Tag, Loader2 } from "lucide-react";
+import { Pencil, X, Check, Lock, MapPin, Phone, Tag, Loader2, Eraser } from "lucide-react";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -94,7 +94,7 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
 
         startTransition(async () => {
             const res = await updateStoreGeneralAction({
-                name: formData.name.trim(),
+                name: (formData.name || "").trim(),
                 whatsapp_number: (formData.whatsapp_number || "").trim(),
                 city_ids: formData.city_ids,
                 category_id: formData.category_id || "",
@@ -115,7 +115,8 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
     const selectedCategoryName = getCategoryName(formData.category_id);
 
     return (
-        <Card className="border-border shadow-xs">
+        /* select-none waxay ka hortagaysaa in mouse-ka wax kale jiido */
+        <Card className="border-border shadow-xs select-none">
             <CardHeader className="flex flex-row items-center justify-between pb-4 border-b">
                 <div>
                     <CardTitle className="text-lg font-bold">Macluumaadka Ganacsiga</CardTitle>
@@ -160,7 +161,7 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                         <Input
                             value={userEmail}
                             disabled
-                            className="bg-muted/40 text-muted-foreground cursor-not-allowed"
+                            className="bg-muted/40 text-muted-foreground cursor-not-allowed select-none"
                         />
                     </div>
 
@@ -173,6 +174,7 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                 required
                                 placeholder="Tusaale: Hilaac Store"
+                                className="select-text"
                             />
                         ) : (
                             <div className="p-2.5 rounded-lg border bg-muted/20 text-sm font-semibold text-foreground">
@@ -181,7 +183,7 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                         )}
                     </div>
 
-                    {/* Qaybta (Category) - Saxidda TypeScript (val: string | null) */}
+                    {/* Qaybta (Category) */}
                     <div className="space-y-1.5">
                         <Label className="text-xs font-medium">Qaybta Ganacsiga</Label>
                         {isEditing ? (
@@ -274,6 +276,7 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                                     onChange={(e) => setFormData({ ...formData, whatsapp_number: e.target.value })}
                                     required
                                     placeholder="25261XXXXXXX"
+                                    className="select-text"
                                 />
                             ) : (
                                 <div className="p-2.5 rounded-lg border bg-muted/20 text-sm flex items-center gap-2">
@@ -290,6 +293,7 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                                     value={formData.location || ""}
                                     onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                                     placeholder="Tusaale: Suuqa Bakaaraha, Laamiga 1-aad"
+                                    className="select-text"
                                 />
                             ) : (
                                 <div className="p-2.5 rounded-lg border bg-muted/20 text-sm">
@@ -299,10 +303,21 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                         </div>
                     </div>
 
-                    {/* Bio (Max 160) */}
+                    {/* Bio (Max 160) - Safe with 1-Click Clear */}
                     <div className="space-y-1.5">
                         <div className="flex justify-between items-center">
-                            <Label className="text-xs font-medium">Bio-ga Ganacsiga (Qoraal Kooban)</Label>
+                            <div className="flex items-center gap-2">
+                                <Label className="text-xs font-medium">Bio-ga Ganacsiga (Qoraal Kooban)</Label>
+                                {isEditing && formData.bio && (
+                                    <button
+                                        type="button"
+                                        onClick={() => setFormData({ ...formData, bio: "" })}
+                                        className="text-[10px] text-rose-500 hover:underline flex items-center gap-0.5 cursor-pointer"
+                                    >
+                                        <Eraser className="h-3 w-3" /> Nadiifi
+                                    </button>
+                                )}
+                            </div>
                             <span className="text-[11px] text-muted-foreground font-mono">
                                 {(formData.bio || "").length}/160
                             </span>
@@ -312,8 +327,11 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                                 maxLength={160}
                                 rows={2}
                                 value={formData.bio || ""}
-                                onChange={(e) => setFormData({ ...formData, bio: e.target.value })}
+                                onChange={(e) =>
+                                    setFormData({ ...formData, bio: e.target.value.slice(0, 160) })
+                                }
                                 placeholder="Hal-ku-dhig kooban (tusaale: Ganaciga dharka iyo kabaha casriga ah)..."
+                                className="select-text resize-none"
                             />
                         ) : (
                             <div className="p-3 rounded-lg border bg-muted/20 text-sm italic text-foreground min-h-12.5">
@@ -322,10 +340,21 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                         )}
                     </div>
 
-                    {/* About Us (Max 1000) */}
+                    {/* About Us (Max 1000) - Safe with 1-Click Clear */}
                     <div className="space-y-1.5">
                         <div className="flex justify-between items-center">
-                            <Label className="text-xs font-medium">Bogga Nagu Saabsan (About Us)</Label>
+                            <div className="flex items-center gap-2">
+                                <Label className="text-xs font-medium">Bogga Nagu Saabsan (About Us)</Label>
+                                {isEditing && formData.about && (
+                                    <button
+                                        type="button"
+                                        onClick={() => setFormData({ ...formData, about: "" })}
+                                        className="text-[10px] text-rose-500 hover:underline flex items-center gap-0.5 cursor-pointer"
+                                    >
+                                        <Eraser className="h-3 w-3" /> Clear
+                                    </button>
+                                )}
+                            </div>
                             <span className="text-[11px] text-muted-foreground font-mono">
                                 {(formData.about || "").length}/1000
                             </span>
@@ -335,8 +364,11 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                                 maxLength={1000}
                                 rows={4}
                                 value={formData.about || ""}
-                                onChange={(e) => setFormData({ ...formData, about: e.target.value })}
+                                onChange={(e) =>
+                                    setFormData({ ...formData, about: e.target.value.slice(0, 1000) })
+                                }
                                 placeholder="Halkan ku qor sheekada ganacsigaaga, waxaad qabataan, iyo sababta macaamiishu idiin dooranayaan..."
+                                className="select-text resize-none"
                             />
                         ) : (
                             <div className="p-3 rounded-lg border bg-muted/20 text-sm whitespace-pre-line text-foreground min-h-20">
