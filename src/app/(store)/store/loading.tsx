@@ -12,11 +12,8 @@ export default function StoreLoading() {
 
             {/* Loading text */}
            <div className="text-center space-y-1">
-    <p className="text-xs font-semibold text-foreground tracking-wide">
-        Bogga ayaa soo furmaya...
-    </p>
-    <p className="text-[11px] text-muted-foreground">
-        Fadlan sug ilbiriqsiyo
+     <p className="text-xs font-medium text-muted-foreground animate-pulse">
+        Loading....
     </p>
 </div>
         </div>
