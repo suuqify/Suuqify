@@ -5,6 +5,14 @@ import { StoreSidebar } from "@/components/store/store-sidebar";
 import { StoreHeader } from "@/components/store/store-header";
 import { PendingStoreView } from "@/components/store/pending-store-view";
 import { SubscriptionGuard } from "@/components/store/subscription-guard";
+import type { Viewport } from "next";
+
+export const viewport: Viewport = {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
+};
 
 export default async function StoreLayout({
     children,

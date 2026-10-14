@@ -159,11 +159,11 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                         <Input
                             value={userEmail}
                             disabled
-                            className="bg-muted/40 text-muted-foreground cursor-not-allowed"
+                            className="bg-muted/40 text-muted-foreground cursor-not-allowed text-[16px] sm:text-xs"
                         />
                     </div>
 
-                    {/* Magaca Ganacsiga */}
+                    {/* Magaca Ganacsiga - No Zoom (text-[16px] sm:text-xs) */}
                     <div className="space-y-1.5">
                         <Label className="text-xs font-medium">Magaca Ganacsiga *</Label>
                         {isEditing ? (
@@ -172,6 +172,7 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                 required
                                 placeholder="Tusaale: Hilaac Store"
+                                className="text-[16px] sm:text-xs h-10"
                             />
                         ) : (
                             <div className="p-2.5 rounded-lg border bg-muted/20 text-sm font-semibold text-foreground">
@@ -190,14 +191,14 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                                     setFormData({ ...formData, category_id: val || "" })
                                 }
                             >
-                                <SelectTrigger className="w-full">
+                                <SelectTrigger className="w-full text-[16px] sm:text-xs h-10">
                                     <SelectValue placeholder="Dooro Qaybta">
                                         {selectedCategoryName !== "Lama dooran" ? selectedCategoryName : "Dooro Qaybta"}
                                     </SelectValue>
                                 </SelectTrigger>
                                 <SelectContent>
                                     {categories.map((cat) => (
-                                        <SelectItem key={cat.id} value={cat.id}>
+                                        <SelectItem key={cat.id} value={cat.id} className="text-sm sm:text-xs">
                                             {cat.name}
                                         </SelectItem>
                                     ))}
@@ -263,7 +264,7 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                         )}
                     </div>
 
-                    {/* WhatsApp & Goobta Grid */}
+                    {/* WhatsApp & Goobta Grid - No Zoom */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="space-y-1.5">
                             <Label className="text-xs font-medium">WhatsApp Dalabka</Label>
@@ -273,6 +274,7 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                                     onChange={(e) => setFormData({ ...formData, whatsapp_number: e.target.value })}
                                     required
                                     placeholder="25261XXXXXXX"
+                                    className="text-[16px] sm:text-xs h-10"
                                 />
                             ) : (
                                 <div className="p-2.5 rounded-lg border bg-muted/20 text-sm flex items-center gap-2">
@@ -289,6 +291,7 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                                     value={formData.location || ""}
                                     onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                                     placeholder="Tusaale: Suuqa Bakaaraha, Laamiga 1-aad"
+                                    className="text-[16px] sm:text-xs h-10"
                                 />
                             ) : (
                                 <div className="p-2.5 rounded-lg border bg-muted/20 text-sm">
@@ -298,7 +301,7 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                         </div>
                     </div>
 
-                    {/* 1. Bio (Max 160) - Standard Native Textarea */}
+                    {/* 1. Bio (Max 160) - No Zoom */}
                     <div className="space-y-1.5">
                         <div className="flex justify-between items-center">
                             <div className="flex items-center gap-2">
@@ -309,7 +312,7 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                                         onClick={() => setFormData({ ...formData, bio: "" })}
                                         className="text-[10px] text-rose-500 hover:underline flex items-center gap-0.5 cursor-pointer"
                                     >
-                                        <Eraser className="h-3 w-3" /> Tirtir dhammaan
+                                        <Eraser className="h-3 w-3" /> Nadiifi
                                     </button>
                                 )}
                             </div>
@@ -323,7 +326,7 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                                 value={formData.bio || ""}
                                 onChange={(e) => setFormData({ ...formData, bio: e.target.value })}
                                 placeholder="Hal-ku-dhig kooban (tusaale: Ganaciga dharka iyo kabaha casriga ah)..."
-                                className="w-full rounded-xl border border-input bg-background p-3 text-xs text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 resize-none"
+                                className="w-full rounded-xl border border-input bg-background p-3 text-[16px] sm:text-xs text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 resize-none leading-relaxed"
                             />
                         ) : (
                             <div className="p-3 rounded-lg border bg-muted/20 text-sm italic text-foreground min-h-12.5">
@@ -332,7 +335,7 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                         )}
                     </div>
 
-                    {/* 2. About Us (Max 1000) - Standard Native Textarea */}
+                    {/* 2. About Us (Max 1000) - No Zoom */}
                     <div className="space-y-1.5">
                         <div className="flex justify-between items-center">
                             <div className="flex items-center gap-2">
@@ -343,7 +346,7 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                                         onClick={() => setFormData({ ...formData, about: "" })}
                                         className="text-[10px] text-rose-500 hover:underline flex items-center gap-0.5 cursor-pointer"
                                     >
-                                        <Eraser className="h-3 w-3" /> Tirtir dhammaan
+                                        <Eraser className="h-3 w-3" /> Nadiifi
                                     </button>
                                 )}
                             </div>
@@ -357,7 +360,7 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                                 value={formData.about || ""}
                                 onChange={(e) => setFormData({ ...formData, about: e.target.value })}
                                 placeholder="Halkan ku qor sheekada ganacsigaaga, waxaad qabataan, iyo sababta macaamiishu idiin dooranayaan..."
-                                className="w-full rounded-xl border border-input bg-background p-3 text-xs leading-relaxed text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 resize-none"
+                                className="w-full rounded-xl border border-input bg-background p-3 text-[16px] sm:text-xs leading-relaxed text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 resize-none"
                             />
                         ) : (
                             <div className="p-3 rounded-lg border bg-muted/20 text-sm whitespace-pre-line text-foreground min-h-20">
