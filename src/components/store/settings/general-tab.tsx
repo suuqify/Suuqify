@@ -312,7 +312,7 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                                         onClick={() => setFormData({ ...formData, bio: "" })}
                                         className="text-[10px] text-rose-500 hover:underline flex items-center gap-0.5 cursor-pointer"
                                     >
-                                        <Eraser className="h-3 w-3" /> Nadiifi
+                                        <Eraser className="h-3 w-3" /> Tirtir dhamaan
                                     </button>
                                 )}
                             </div>
@@ -346,7 +346,7 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                                         onClick={() => setFormData({ ...formData, about: "" })}
                                         className="text-[10px] text-rose-500 hover:underline flex items-center gap-0.5 cursor-pointer"
                                     >
-                                        <Eraser className="h-3 w-3" /> Nadiifi
+                                        <Eraser className="h-3 w-3" /> Tirtir dhamaan
                                     </button>
                                 )}
                             </div>
