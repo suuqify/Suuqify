@@ -87,9 +87,10 @@ export async function updateStoreGeneralAction(formData: {
 }
 
 // 2. Cusboonaysii Sawirrada Dukaanka (Logo & Banner)
+// 2. Cusboonaysii ama Tirtir Sawirrada Dukaanka (Logo & Banner)
 export async function updateStoreBrandingAction(branding: {
-    logo_url?: string;
-    back_logo_url?: string;
+    logo_url?: string | null;
+    back_logo_url?: string | null;
 }) {
     const supabase = await createClient();
     const {
@@ -97,6 +98,7 @@ export async function updateStoreBrandingAction(branding: {
     } = await supabase.auth.getUser();
     if (!user) return { error: "Fadlan soo gal nidaamka." };
 
+    // Soo qaad sawirradii hore si loo tirtiro faylka Storage-ka haddii la beddelo ama null laga dhigo
     const { data: currentStore } = await supabase
         .from("stores")
         .select("logo_url, back_logo_url")
@@ -105,44 +107,48 @@ export async function updateStoreBrandingAction(branding: {
 
     if (currentStore) {
         const filesToDelete: string[] = [];
+        
+        // Haddii logo la beddelay ama null laga dhigay (la tirtiray)
         if (
-            branding.logo_url &&
+            branding.logo_url !== undefined &&
             currentStore.logo_url &&
             branding.logo_url !== currentStore.logo_url
         ) {
             const p = extractStoragePath(currentStore.logo_url, "stores");
             if (p) filesToDelete.push(p);
         }
+
+        // Haddii banner la beddelay ama null laga dhigay (la tirtiray)
         if (
-            branding.back_logo_url &&
+            branding.back_logo_url !== undefined &&
             currentStore.back_logo_url &&
             branding.back_logo_url !== currentStore.back_logo_url
         ) {
             const p = extractStoragePath(currentStore.back_logo_url, "stores");
             if (p) filesToDelete.push(p);
         }
+
         if (filesToDelete.length > 0) {
             await supabase.storage.from("stores").remove(filesToDelete);
         }
     }
 
+    const updateData: { logo_url?: string | null; back_logo_url?: string | null } = {};
+    if (branding.logo_url !== undefined) updateData.logo_url = branding.logo_url;
+    if (branding.back_logo_url !== undefined) updateData.back_logo_url = branding.back_logo_url;
+
     const { error } = await supabase
         .from("stores")
-        .update({
-            ...(branding.logo_url !== undefined && { logo_url: branding.logo_url }),
-            ...(branding.back_logo_url !== undefined && {
-                back_logo_url: branding.back_logo_url,
-            }),
-        })
+        .update(updateData)
         .eq("owner_id", user.id);
 
     if (error) {
-        return { error: "Khalad ayaa dhacay markii la kaydinayay sawirka." };
+        return { error: "Khalad ayaa dhacay markii la cusboonaysiinayay sawirka." };
     }
 
     revalidatePath("/store/settings");
     revalidatePath("/store");
-    return { success: true, message: "Sawirka Ganacsiga si guul leh ayaa loo beddelay!" };
+    return { success: true, message: "Muuqaalka Ganacsiga si guul leh ayaa loo cusboonaysiiyay!" };
 }
 
 // 3. Tirtir Dukaanka + Sawirradiisa

@@ -289,50 +289,51 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                     </div>
 
                     {/* Bio (Max 160) */}
-                    <div className="space-y-1.5">
-                        <div className="flex justify-between items-center">
-                            <Label className="text-xs font-medium">Faahfaahin Kooban oo Website-ka ah</Label>
-                            <span className="text-[11px] text-muted-foreground font-mono">
-                                {formData.bio.length}/160
-                            </span>
-                        </div>
-                        {isEditing ? (
-                            <Textarea
-                                maxLength={160}
-                                rows={2}
-                                value={formData.bio}
-                                onChange={(e) => setFormData({ ...formData, bio: e.target.value })}
-                                placeholder="Qoraal gaaban oo Ganacsigaaga ku saabsan (max 160 xaraf)..."
-                            />
-                        ) : (
-                            <div className="p-3 rounded-lg border bg-muted/20 text-sm italic text-foreground min-h-50px">
-                                {formData.bio || "Wali wax bio ah ma aadan qorin."}
-                            </div>
-                        )}
-                    </div>
+                    {/* 1. Bio (Max 160) - Sida TikTok/Instagram Bio */}
+<div className="space-y-1.5">
+    <div className="flex justify-between items-center">
+        <Label className="text-xs font-medium">Bio-ga Ganacsiga (Qoraal Kooban)</Label>
+        <span className="text-[11px] text-muted-foreground font-mono">
+            {formData.bio.length}/160
+        </span>
+    </div>
+    {isEditing ? (
+        <Textarea
+            maxLength={160}
+            rows={2}
+            value={formData.bio}
+            onChange={(e) => setFormData({ ...formData, bio: e.target.value })}
+            placeholder="Hal-ku-dhig kooban (tusaale: Dukaanka dharka iyo kabaha casriga ah)..."
+        />
+    ) : (
+        <div className="p-3 rounded-lg border bg-muted/20 text-sm italic text-foreground min-h-[50px]">
+            {formData.bio || "Weli wax bio ah lama qorin."}
+        </div>
+    )}
+</div>
 
-                    {/* About (Max 1000) */}
-                    <div className="space-y-1.5">
-                        <div className="flex justify-between items-center">
-                            <Label className="text-xs font-medium">Faahfaahinta Ganacsiga (About Us)</Label>
-                            <span className="text-[11px] text-muted-foreground font-mono">
-                                {formData.about.length}/1000
-                            </span>
-                        </div>
-                        {isEditing ? (
-                            <Textarea
-                                maxLength={1000}
-                                rows={4}
-                                value={formData.about}
-                                onChange={(e) => setFormData({ ...formData, about: e.target.value })}
-                                placeholder="Faahfaahin dheer oo ku saabsan Ganacsigaaga..."
-                            />
-                        ) : (
-                            <div className="p-3 rounded-lg border bg-muted/20 text-sm whitespace-pre-line text-foreground min-h-80px">
-                                {formData.about || "Wali wax faahfaahin ah ma aadan qorin."}
-                            </div>
-                        )}
-                    </div>
+{/* 2. About Us (Max 1000) - Bogga Sheekada & Taariikhda */}
+<div className="space-y-1.5">
+    <div className="flex justify-between items-center">
+        <Label className="text-xs font-medium">Bogga Nagu Saabsan (About Us)</Label>
+        <span className="text-[11px] text-muted-foreground font-mono">
+            {formData.about.length}/1000
+        </span>
+    </div>
+    {isEditing ? (
+        <Textarea
+            maxLength={1000}
+            rows={4}
+            value={formData.about}
+            onChange={(e) => setFormData({ ...formData, about: e.target.value })}
+            placeholder="Halkan ku qor sheekada ganacsigaaga, waxaad qabataan, iyo sababta macaamiishu idiin dooranayaan..."
+        />
+    ) : (
+        <div className="p-3 rounded-lg border bg-muted/20 text-sm whitespace-pre-line text-foreground min-h-[80px]">
+            {formData.about || "Weli wax macluumaad ah lagama qorin bogga 'Nagu Saabsan'."}
+        </div>
+    )}
+</div>
 
                     {/* Save Button */}
                     {isEditing && (
