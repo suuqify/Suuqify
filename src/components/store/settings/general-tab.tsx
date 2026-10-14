@@ -7,7 +7,6 @@ import { Pencil, X, Check, Lock, MapPin, Phone, Tag, Loader2, Eraser } from "luc
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -77,47 +76,6 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                 ? prev.city_ids.filter((id) => id !== cityId)
                 : [...prev.city_ids, cityId],
         }));
-    };
-
-    // -------------------------------------------------------------
-    // FARSAMADA KA HORTAGTA INUU BROWSER-KU FREEZE / CRASH DHAHO:
-    // -------------------------------------------------------------
-    const handleLargeDelete = (
-        e: React.KeyboardEvent<HTMLTextAreaElement>,
-        field: "bio" | "about"
-    ) => {
-        if (e.key === "Delete" || e.key === "Backspace") {
-            const target = e.currentTarget;
-            const selectionLength = Math.abs(target.selectionEnd - target.selectionStart);
-            
-            // Haddii la doortay in ka badan 20 xaraf (sida Select All ama 4000 xaraf)
-            if (selectionLength > 20) {
-                e.preventDefault(); // Ka jooji culayska browser-ka
-                const start = Math.min(target.selectionStart, target.selectionEnd);
-                const end = Math.max(target.selectionStart, target.selectionEnd);
-                const val = target.value;
-                const nextVal = val.slice(0, start) + val.slice(end);
-                
-                // Hal millisecond ku tirtir
-                setFormData((prev) => ({ ...prev, [field]: nextVal }));
-            }
-        }
-    };
-
-    const handleSafePaste = (
-        e: React.ClipboardEvent<HTMLTextAreaElement>,
-        field: "bio" | "about",
-        limit: number
-    ) => {
-        e.preventDefault();
-        const pasteText = e.clipboardData.getData("text") || "";
-        const target = e.currentTarget;
-        const start = target.selectionStart;
-        const end = target.selectionEnd;
-        const currentVal = target.value;
-        const combined = currentVal.slice(0, start) + pasteText + currentVal.slice(end);
-        const finalVal = combined.slice(0, limit);
-        setFormData((prev) => ({ ...prev, [field]: finalVal }));
     };
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -201,11 +159,11 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                         <Input
                             value={userEmail}
                             disabled
-                            className="bg-muted/40 text-muted-foreground cursor-not-allowed"
+                            className="bg-muted/40 text-muted-foreground cursor-not-allowed text-[16px] sm:text-xs"
                         />
                     </div>
 
-                    {/* Magaca Ganacsiga */}
+                    {/* Magaca Ganacsiga - No Zoom (text-[16px] sm:text-xs) */}
                     <div className="space-y-1.5">
                         <Label className="text-xs font-medium">Magaca Ganacsiga *</Label>
                         {isEditing ? (
@@ -214,6 +172,7 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                 required
                                 placeholder="Tusaale: Hilaac Store"
+                                className="text-[16px] sm:text-xs h-10"
                             />
                         ) : (
                             <div className="p-2.5 rounded-lg border bg-muted/20 text-sm font-semibold text-foreground">
@@ -232,14 +191,14 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                                     setFormData({ ...formData, category_id: val || "" })
                                 }
                             >
-                                <SelectTrigger className="w-full">
+                                <SelectTrigger className="w-full text-[16px] sm:text-xs h-10">
                                     <SelectValue placeholder="Dooro Qaybta">
                                         {selectedCategoryName !== "Lama dooran" ? selectedCategoryName : "Dooro Qaybta"}
                                     </SelectValue>
                                 </SelectTrigger>
                                 <SelectContent>
                                     {categories.map((cat) => (
-                                        <SelectItem key={cat.id} value={cat.id}>
+                                        <SelectItem key={cat.id} value={cat.id} className="text-sm sm:text-xs">
                                             {cat.name}
                                         </SelectItem>
                                     ))}
@@ -305,7 +264,7 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                         )}
                     </div>
 
-                    {/* WhatsApp & Goobta Grid */}
+                    {/* WhatsApp & Goobta Grid - No Zoom */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="space-y-1.5">
                             <Label className="text-xs font-medium">WhatsApp Dalabka</Label>
@@ -315,6 +274,7 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                                     onChange={(e) => setFormData({ ...formData, whatsapp_number: e.target.value })}
                                     required
                                     placeholder="25261XXXXXXX"
+                                    className="text-[16px] sm:text-xs h-10"
                                 />
                             ) : (
                                 <div className="p-2.5 rounded-lg border bg-muted/20 text-sm flex items-center gap-2">
@@ -331,6 +291,7 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                                     value={formData.location || ""}
                                     onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                                     placeholder="Tusaale: Suuqa Bakaaraha, Laamiga 1-aad"
+                                    className="text-[16px] sm:text-xs h-10"
                                 />
                             ) : (
                                 <div className="p-2.5 rounded-lg border bg-muted/20 text-sm">
@@ -340,7 +301,7 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                         </div>
                     </div>
 
-                    {/* 1. Bio (Max 160) - SAFE DRAG & DELETE */}
+                    {/* 1. Bio (Max 160) - No Zoom */}
                     <div className="space-y-1.5">
                         <div className="flex justify-between items-center">
                             <div className="flex items-center gap-2">
@@ -351,7 +312,7 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                                         onClick={() => setFormData({ ...formData, bio: "" })}
                                         className="text-[10px] text-rose-500 hover:underline flex items-center gap-0.5 cursor-pointer"
                                     >
-                                        <Eraser className="h-3 w-3" /> Tirtir qoraalka
+                                        <Eraser className="h-3 w-3" /> Nadiifi
                                     </button>
                                 )}
                             </div>
@@ -360,17 +321,12 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                             </span>
                         </div>
                         {isEditing ? (
-                            <Textarea
-                                maxLength={160}
+                            <textarea
                                 rows={2}
                                 value={formData.bio || ""}
-                                onKeyDown={(e) => handleLargeDelete(e, "bio")}
-                                onPaste={(e) => handleSafePaste(e, "bio", 160)}
-                                onChange={(e) =>
-                                    setFormData({ ...formData, bio: e.target.value.slice(0, 160) })
-                                }
+                                onChange={(e) => setFormData({ ...formData, bio: e.target.value })}
                                 placeholder="Hal-ku-dhig kooban (tusaale: Ganaciga dharka iyo kabaha casriga ah)..."
-                                className="resize-none"
+                                className="w-full rounded-xl border border-input bg-background p-3 text-[16px] sm:text-xs text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 resize-none leading-relaxed"
                             />
                         ) : (
                             <div className="p-3 rounded-lg border bg-muted/20 text-sm italic text-foreground min-h-12.5">
@@ -379,7 +335,7 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                         )}
                     </div>
 
-                    {/* 2. About Us (Max 1000) - SAFE DRAG & DELETE */}
+                    {/* 2. About Us (Max 1000) - No Zoom */}
                     <div className="space-y-1.5">
                         <div className="flex justify-between items-center">
                             <div className="flex items-center gap-2">
@@ -390,7 +346,7 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                                         onClick={() => setFormData({ ...formData, about: "" })}
                                         className="text-[10px] text-rose-500 hover:underline flex items-center gap-0.5 cursor-pointer"
                                     >
-                                        <Eraser className="h-3 w-3" /> Tirtir qoraalka
+                                        <Eraser className="h-3 w-3" /> Nadiifi
                                     </button>
                                 )}
                             </div>
@@ -399,21 +355,16 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                             </span>
                         </div>
                         {isEditing ? (
-                            <Textarea
-                                maxLength={1000}
-                                rows={4}
+                            <textarea
+                                rows={5}
                                 value={formData.about || ""}
-                                onKeyDown={(e) => handleLargeDelete(e, "about")}
-                                onPaste={(e) => handleSafePaste(e, "about", 1000)}
-                                onChange={(e) =>
-                                    setFormData({ ...formData, about: e.target.value.slice(0, 1000) })
-                                }
+                                onChange={(e) => setFormData({ ...formData, about: e.target.value })}
                                 placeholder="Halkan ku qor sheekada ganacsigaaga, waxaad qabataan, iyo sababta macaamiishu idiin dooranayaan..."
-                                className="resize-none"
+                                className="w-full rounded-xl border border-input bg-background p-3 text-[16px] sm:text-xs leading-relaxed text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 resize-none"
                             />
                         ) : (
                             <div className="p-3 rounded-lg border bg-muted/20 text-sm whitespace-pre-line text-foreground min-h-20">
-                                {formData.about || "Weli wax macluumaad ah laguma qorin bogga 'Nagu Saabsan'."}
+                                {formData.about || "Weli wax macluumaad ah lagama qorin bogga 'Nagu Saabsan'."}
                             </div>
                         )}
                     </div>
