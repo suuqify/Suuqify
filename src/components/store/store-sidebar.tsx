@@ -118,7 +118,12 @@ export function StoreSidebar({ storeName }: StoreSidebarProps) {
 
                                 return (
                                     <SidebarMenuItem key={item.href}>
-                                        <Link href={item.href} onClick={handleLinkClick} className="w-full block">
+                                        <Link
+                                         href={item.href}
+                                         prefetch={true}
+                                         onClick={handleLinkClick}
+                                         className="w-full block"
+                                         >
                                             <SidebarMenuButton
                                                 isActive={active}
                                                 tooltip={item.title}
