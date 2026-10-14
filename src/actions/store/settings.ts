@@ -19,6 +19,7 @@ function extractStoragePath(url: string, bucketName: string): string | null {
 }
 
 // 1. Cusboonaysii Xogta Guud ee Dukaanka (Multi-City Taageero leh)
+// 1. Cusboonaysii Xogta Guud ee Dukaanka (Zero-Crash Protection)
 export async function updateStoreGeneralAction(formData: {
     name: string;
     whatsapp_number: string;
@@ -28,62 +29,75 @@ export async function updateStoreGeneralAction(formData: {
     bio: string;
     about: string;
 }) {
-    const supabase = await createClient();
+    try {
+        const supabase = await createClient();
 
-    const {
-        data: { user },
-    } = await supabase.auth.getUser();
-    if (!user) return { error: "Fadlan soo gal nidaamka." };
+        const {
+            data: { user },
+        } = await supabase.auth.getUser();
+        if (!user) return { error: "Fadlan soo gal nidaamka." };
 
-    const storeName = formData.name.trim();
+        const storeName = (formData.name || "").trim();
 
-    // Hubi magaca dukaanka haddii uu jiro mid kale oo isku magac ah
-    const { data: existingStore } = await supabase
-        .from("stores")
-        .select("id")
-        .ilike("name", storeName)
-        .neq("owner_id", user.id)
-        .maybeSingle();
+        if (!storeName || storeName.length < 3) {
+            return { error: "Magaca Ganacsigu waa inuu ka koobnaadaa ugu yaraan 3 xaraf." };
+        }
 
-    if (existingStore) {
-        return {
-            error: `Magaca "${storeName}" horey ayaa loo qaatay. Fadlan dooro magac kale.`,
-        };
+        // Hubi haddii magaca dukaanka mid kale leeyahay
+        const { data: existingStore } = await supabase
+            .from("stores")
+            .select("id")
+            .ilike("name", storeName)
+            .neq("owner_id", user.id)
+            .maybeSingle();
+
+        if (existingStore) {
+            return {
+                error: `Magaca "${storeName}" horey ayaa loo qaatay. Fadlan dooro magac kale.`,
+            };
+        }
+
+        // Hubi Magaalooyinka
+        if (!formData.city_ids || formData.city_ids.length === 0) {
+            return { error: "Fadlan dooro ugu yaraan hal magaalo oo aad ka hawlgasho." };
+        }
+
+        const bioText = (formData.bio || "").trim();
+        const aboutText = (formData.about || "").trim();
+        const locationText = (formData.location || "").trim();
+        const waNumber = (formData.whatsapp_number || "").trim();
+
+        if (bioText.length > 160) {
+            return { error: "Bio-ga Ganacigu kama badnaan karo 160 xaraf." };
+        }
+        if (aboutText.length > 1000) {
+            return { error: "Faahfaahinta Ganacsigu (About) kama badnaan karto 1000 xaraf." };
+        }
+
+        const { error } = await supabase
+            .from("stores")
+            .update({
+                name: storeName,
+                whatsapp_number: waNumber,
+                city_ids: formData.city_ids,
+                city_id: formData.city_ids[0] || null,
+                category_id: formData.category_id || null,
+                location: locationText || null,
+                bio: bioText || null,
+                about: aboutText || null,
+            })
+            .eq("owner_id", user.id);
+
+        if (error) {
+            return { error: "Khalad: " + error.message };
+        }
+
+        revalidatePath("/store/settings");
+        revalidatePath("/store");
+        return { success: true, message: "Xogta Ganaciga si guul leh ayaa loo cusboonaysiiyay!" };
+    } catch (err: any) {
+        return { error: err?.message || "Khalad lama filaan ah ayaa dhacay." };
     }
-
-    // Hubi Magaalooyinka
-    if (!formData.city_ids || formData.city_ids.length === 0) {
-        return { error: "Fadlan dooro ugu yaraan hal magaalo oo aad ka hawlgasho." };
-    }
-
-    // Hubi dhererka Bio (160) iyo About (1000)
-    if (formData.bio && formData.bio.length > 160) {
-        return { error: "Qoraalka kooban (Bio) ee ganacsigaagu kama badnaan karo 160 xaraf." };
-    }
-    if (formData.about && formData.about.length > 1000) {
-        return { error: "Faahfaahinta ganacsigaaga (About) kama badnaan karto 1,000 xaraf." };
-    }
-    const { error } = await supabase
-        .from("stores")
-        .update({
-            name: storeName,
-            whatsapp_number: formData.whatsapp_number.trim(),
-            city_ids: formData.city_ids,
-            city_id: formData.city_ids[0] || null, // Magaalada 1-aad u dhig backup
-            category_id: formData.category_id || null,
-            location: formData.location.trim(),
-            bio: formData.bio.trim(),
-            about: formData.about.trim(),
-        })
-        .eq("owner_id", user.id);
-
-    if (error) {
-        return { error: "Khalad ayaa dhacay markii la cusboonaysiinayay xogta Ganacsiga." };
-    }
-
-    revalidatePath("/store/settings");
-    revalidatePath("/store");
-    return { success: true, message: "Xogta ganacsiga si guul leh ayaa loo cusboonaysiiyay!" };
 }
 
 // 2. Cusboonaysii Sawirrada Dukaanka (Logo & Banner)

@@ -42,7 +42,6 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
     const [isPending, startTransition] = useTransition();
     const [isEditing, setIsEditing] = useState(false);
 
-    // Initial setup: Qaado city_ids haddii ay jiraan, haddii kalena city_id
     const initialCityIds: string[] =
         store.city_ids && store.city_ids.length > 0
             ? store.city_ids
@@ -83,17 +82,31 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
+        if (!formData.name || !formData.name.trim()) {
+            toast.error("Fadlan geli magaca ganacsigaaga.");
+            return;
+        }
+
         if (formData.city_ids.length === 0) {
             toast.error("Fadlan dooro ugu yaraan hal magaalo.");
             return;
         }
 
         startTransition(async () => {
-            const res = await updateStoreGeneralAction(formData);
+            const res = await updateStoreGeneralAction({
+                name: formData.name.trim(),
+                whatsapp_number: (formData.whatsapp_number || "").trim(),
+                city_ids: formData.city_ids,
+                category_id: formData.category_id || "",
+                location: (formData.location || "").trim(),
+                bio: (formData.bio || "").trim(),
+                about: (formData.about || "").trim(),
+            });
+
             if (res.error) {
                 toast.error(res.error);
             } else {
-                toast.success(res.message);
+                toast.success(res.message || "Xogta si guul leh ayaa loo kaydiyay!");
                 setIsEditing(false);
             }
         });
@@ -105,9 +118,9 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
         <Card className="border-border shadow-xs">
             <CardHeader className="flex flex-row items-center justify-between pb-4 border-b">
                 <div>
-                    <CardTitle className="text-lg font-bold">Macluumaadka Ganacsigaaga</CardTitle>
+                    <CardTitle className="text-lg font-bold">Macluumaadka Ganacsiga</CardTitle>
                     <CardDescription>
-                        Faahfaahinta iyo sharraxaadda Ganacsigaaga.
+                        Faahfaahinta xiriirka iyo sharraxaadda guud ee ganacsigaaga.
                     </CardDescription>
                 </div>
                 {!isEditing ? (
@@ -149,39 +162,36 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                             disabled
                             className="bg-muted/40 text-muted-foreground cursor-not-allowed"
                         />
-                        <p className="text-[11px] text-muted-foreground">
-                            Email-kan wuxuu ku xiran yahay Google-kaaga, Wax ba lagama beddeli karo halkan.
-                        </p>
                     </div>
 
-                    {/* Magaca Dukaanka */}
+                    {/* Magaca Ganacsiga */}
                     <div className="space-y-1.5">
-                        <Label className="text-xs font-medium">Magaca Ganacsiga</Label>
+                        <Label className="text-xs font-medium">Magaca Ganacsiga *</Label>
                         {isEditing ? (
                             <Input
-                                value={formData.name}
+                                value={formData.name || ""}
                                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                 required
                                 placeholder="Tusaale: Hilaac Store"
                             />
                         ) : (
                             <div className="p-2.5 rounded-lg border bg-muted/20 text-sm font-semibold text-foreground">
-                                {formData.name}
+                                {formData.name || "Lama gelin"}
                             </div>
                         )}
                     </div>
 
-                    {/* Qaybta (Category) */}
+                    {/* Qaybta (Category) - Saxidda TypeScript (val: string | null) */}
                     <div className="space-y-1.5">
-                        <Label className="text-xs font-medium">Qaybta (Category)</Label>
+                        <Label className="text-xs font-medium">Qaybta Ganacsiga</Label>
                         {isEditing ? (
                             <Select
-                                value={formData.category_id}
+                                value={formData.category_id ? formData.category_id : undefined}
                                 onValueChange={(val: string | null) =>
                                     setFormData({ ...formData, category_id: val || "" })
                                 }
                             >
-                                <SelectTrigger>
+                                <SelectTrigger className="w-full">
                                     <SelectValue placeholder="Dooro Qaybta">
                                         {selectedCategoryName !== "Lama dooran" ? selectedCategoryName : "Dooro Qaybta"}
                                     </SelectValue>
@@ -202,16 +212,16 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                         )}
                     </div>
 
-                    {/* Magaalooyinka (Multi-City Selection) */}
+                    {/* Magaalooyinka */}
                     <div className="space-y-2">
-                       <div className="flex items-center justify-between">
-    <Label className="text-xs font-medium">Magaalooyinka aad ka Hawlgasho</Label>
-    {isEditing && (
-        <span className="text-[11px] text-primary font-medium">
-            (Dooro magaalooyinka aad xarumaha ku leedahay ama adeeggaagu gaaro)
-        </span>
-    )}
-</div>
+                        <div className="flex items-center justify-between">
+                            <Label className="text-xs font-medium">Magaalooyinka aad ka hawlgasho *</Label>
+                            {isEditing && (
+                                <span className="text-[11px] text-primary font-medium">
+                                    (Dooro dhammaan magaalooyinka aad gaarsiin karto)
+                                </span>
+                            )}
+                        </div>
 
                         {isEditing ? (
                             <div className="flex flex-wrap gap-2 pt-1">
@@ -222,10 +232,11 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                                             key={city.id}
                                             type="button"
                                             onClick={() => toggleCity(city.id)}
-                                            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium border transition-all cursor-pointer select-none ${isSelected
-                                                ? "bg-primary text-primary-foreground border-primary shadow-xs"
-                                                : "bg-muted/40 text-foreground border-border/70 hover:bg-muted"
-                                                }`}
+                                            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium border transition-all cursor-pointer select-none ${
+                                                isSelected
+                                                    ? "bg-primary text-primary-foreground border-primary shadow-xs"
+                                                    : "bg-muted/40 text-foreground border-border/70 hover:bg-muted"
+                                            }`}
                                         >
                                             <MapPin className={`h-3 w-3 ${isSelected ? "text-primary-foreground" : "text-muted-foreground"}`} />
                                             <span>{city.name}</span>
@@ -259,7 +270,7 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                             <Label className="text-xs font-medium">WhatsApp Dalabka</Label>
                             {isEditing ? (
                                 <Input
-                                    value={formData.whatsapp_number}
+                                    value={formData.whatsapp_number || ""}
                                     onChange={(e) => setFormData({ ...formData, whatsapp_number: e.target.value })}
                                     required
                                     placeholder="25261XXXXXXX"
@@ -276,7 +287,7 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                             <Label className="text-xs font-medium">Goobta Ganacsiga (Degmada / Laamiga)</Label>
                             {isEditing ? (
                                 <Input
-                                    value={formData.location}
+                                    value={formData.location || ""}
                                     onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                                     placeholder="Tusaale: Suuqa Bakaaraha, Laamiga 1-aad"
                                 />
@@ -289,53 +300,52 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                     </div>
 
                     {/* Bio (Max 160) */}
-                    {/* 1. Bio (Max 160) - Sida TikTok/Instagram Bio */}
-<div className="space-y-1.5">
-    <div className="flex justify-between items-center">
-        <Label className="text-xs font-medium">Bio-ga Ganacsiga (Qoraal Kooban)</Label>
-        <span className="text-[11px] text-muted-foreground font-mono">
-            {formData.bio.length}/160
-        </span>
-    </div>
-    {isEditing ? (
-        <Textarea
-            maxLength={160}
-            rows={2}
-            value={formData.bio}
-            onChange={(e) => setFormData({ ...formData, bio: e.target.value })}
-            placeholder="Hal-ku-dhig kooban (tusaale: Dukaanka dharka iyo kabaha casriga ah)..."
-        />
-    ) : (
-        <div className="p-3 rounded-lg border bg-muted/20 text-sm italic text-foreground min-h-[50px]">
-            {formData.bio || "Weli wax bio ah lama qorin."}
-        </div>
-    )}
-</div>
+                    <div className="space-y-1.5">
+                        <div className="flex justify-between items-center">
+                            <Label className="text-xs font-medium">Bio-ga Ganacsiga (Qoraal Kooban)</Label>
+                            <span className="text-[11px] text-muted-foreground font-mono">
+                                {(formData.bio || "").length}/160
+                            </span>
+                        </div>
+                        {isEditing ? (
+                            <Textarea
+                                maxLength={160}
+                                rows={2}
+                                value={formData.bio || ""}
+                                onChange={(e) => setFormData({ ...formData, bio: e.target.value })}
+                                placeholder="Hal-ku-dhig kooban (tusaale: Ganaciga dharka iyo kabaha casriga ah)..."
+                            />
+                        ) : (
+                            <div className="p-3 rounded-lg border bg-muted/20 text-sm italic text-foreground min-h-12.5">
+                                {formData.bio || "Weli wax bio ah lama qorin."}
+                            </div>
+                        )}
+                    </div>
 
-{/* 2. About Us (Max 1000) - Bogga Sheekada & Taariikhda */}
-<div className="space-y-1.5">
-    <div className="flex justify-between items-center">
-        <Label className="text-xs font-medium">Bogga Nagu Saabsan (About Us)</Label>
-        <span className="text-[11px] text-muted-foreground font-mono">
-            {formData.about.length}/1000
-        </span>
-    </div>
-    {isEditing ? (
-        <Textarea
-            maxLength={1000}
-            rows={4}
-            value={formData.about}
-            onChange={(e) => setFormData({ ...formData, about: e.target.value })}
-            placeholder="Halkan ku qor sheekada ganacsigaaga, waxaad qabataan, iyo sababta macaamiishu idiin dooranayaan..."
-        />
-    ) : (
-        <div className="p-3 rounded-lg border bg-muted/20 text-sm whitespace-pre-line text-foreground min-h-[80px]">
-            {formData.about || "Weli wax macluumaad ah lagama qorin bogga 'Nagu Saabsan'."}
-        </div>
-    )}
-</div>
+                    {/* About Us (Max 1000) */}
+                    <div className="space-y-1.5">
+                        <div className="flex justify-between items-center">
+                            <Label className="text-xs font-medium">Bogga Nagu Saabsan (About Us)</Label>
+                            <span className="text-[11px] text-muted-foreground font-mono">
+                                {(formData.about || "").length}/1000
+                            </span>
+                        </div>
+                        {isEditing ? (
+                            <Textarea
+                                maxLength={1000}
+                                rows={4}
+                                value={formData.about || ""}
+                                onChange={(e) => setFormData({ ...formData, about: e.target.value })}
+                                placeholder="Halkan ku qor sheekada ganacsigaaga, waxaad qabataan, iyo sababta macaamiishu idiin dooranayaan..."
+                            />
+                        ) : (
+                            <div className="p-3 rounded-lg border bg-muted/20 text-sm whitespace-pre-line text-foreground min-h-20">
+                                {formData.about || "Weli wax macluumaad ah lagama qorin bogga 'Nagu Saabsan'."}
+                            </div>
+                        )}
+                    </div>
 
-                    {/* Save Button */}
+                    {/* Save Buttons */}
                     {isEditing && (
                         <div className="flex justify-end gap-2 pt-3 border-t">
                             <Button
