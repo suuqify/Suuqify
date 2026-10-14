@@ -47,7 +47,7 @@ export function StorefrontView({ store }: StorefrontViewProps) {
                         className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-background/90 backdrop-blur-md border border-border/80 shadow-md text-xs font-semibold text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all group select-none"
                     >
                         <ArrowLeft className="h-3.5 w-3.5 group-hover:-translate-x-0.5 transition-transform" />
-                        <span>Dashboard-ka</span>
+                
                     </Link>
                 </div>
             )}
