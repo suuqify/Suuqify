@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import {
     LayoutDashboard,
     Package,
@@ -23,6 +23,7 @@ import {
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
+    useSidebar,
 } from "@/components/ui/sidebar";
 
 const STORE_NAV_LINKS = [
@@ -65,7 +66,7 @@ interface StoreSidebarProps {
 
 export function StoreSidebar({ storeName }: StoreSidebarProps) {
     const pathname = usePathname();
-    const router = useRouter();
+    const { setOpenMobile, isMobile } = useSidebar();
 
     const isLinkActive = (href: string, exact?: boolean) => {
         if (exact) return pathname === href;
@@ -74,11 +75,17 @@ export function StoreSidebar({ storeName }: StoreSidebarProps) {
 
     const storeUrl = `/s/${encodeURIComponent(storeName.toLowerCase().replace(/\s+/g, "-"))}`;
 
+    const handleLinkClick = () => {
+        if (isMobile) {
+            setOpenMobile(false);
+        }
+    };
+
     return (
         <Sidebar collapsible="icon">
-            {/* Header: Logo & Brand - Spacing tight */}
+            {/* Header: Logo & Brand */}
             <SidebarHeader className="border-b border-sidebar-border h-16 justify-center">
-                <Link href="/store" className="flex items-center gap-1 px-2">
+                <Link href="/store" onClick={handleLinkClick} className="flex items-center gap-1.5 px-2">
                     <Image
                         src="/logo.png"
                         alt="Suuqify"
@@ -87,8 +94,8 @@ export function StoreSidebar({ storeName }: StoreSidebarProps) {
                         className="h-8 w-8 object-contain shrink-0"
                     />
                     <div className="flex flex-col group-data-[collapsible=icon]:hidden">
-                        <span className="text-xl font-bold tracking-tight text-foreground leading-none translate-y-[2px]">
-    Suuq<span className="text-primary">ify</span>
+                        <span className="font-bold text-base leading-none text-sidebar-foreground">
+                            Suuq<span className="text-primary">ify</span>
                         </span>
                         <span className="text-[11px] text-muted-foreground mt-0.5 truncate max-w-35">
                             {storeName}
@@ -111,18 +118,20 @@ export function StoreSidebar({ storeName }: StoreSidebarProps) {
 
                                 return (
                                     <SidebarMenuItem key={item.href}>
-                                        <SidebarMenuButton
-                                            isActive={active}
-                                            tooltip={item.title}
-                                            onClick={() => router.push(item.href)}
-                                            className={`cursor-pointer ${active
-                                                ? "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground font-semibold"
-                                                : ""
+                                        <Link href={item.href} onClick={handleLinkClick} className="w-full block">
+                                            <SidebarMenuButton
+                                                isActive={active}
+                                                tooltip={item.title}
+                                                className={`cursor-pointer transition-colors w-full ${
+                                                    active
+                                                        ? "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground font-semibold"
+                                                        : ""
                                                 }`}
-                                        >
-                                            <Icon className="w-4 h-4 shrink-0" />
-                                            <span>{item.title}</span>
-                                        </SidebarMenuButton>
+                                            >
+                                                <Icon className="w-4 h-4 shrink-0" />
+                                                <span>{item.title}</span>
+                                            </SidebarMenuButton>
+                                        </Link>
                                     </SidebarMenuItem>
                                 );
                             })}
@@ -137,7 +146,10 @@ export function StoreSidebar({ storeName }: StoreSidebarProps) {
                     <SidebarMenuItem>
                         <SidebarMenuButton
                             tooltip="View Store"
-                            onClick={() => window.open(storeUrl, "_blank", "noopener,noreferrer")}
+                            onClick={() => {
+                                handleLinkClick();
+                                window.open(storeUrl, "_blank", "noopener,noreferrer");
+                            }}
                             className="bg-secondary text-secondary-foreground hover:bg-secondary/80 text-xs font-semibold cursor-pointer"
                         >
                             <ExternalLink className="w-4 h-4 shrink-0 text-primary" />
