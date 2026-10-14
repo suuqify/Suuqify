@@ -79,6 +79,47 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
         }));
     };
 
+    // -------------------------------------------------------------
+    // FARSAMADA KA HORTAGTA INUU BROWSER-KU FREEZE / CRASH DHAHO:
+    // -------------------------------------------------------------
+    const handleLargeDelete = (
+        e: React.KeyboardEvent<HTMLTextAreaElement>,
+        field: "bio" | "about"
+    ) => {
+        if (e.key === "Delete" || e.key === "Backspace") {
+            const target = e.currentTarget;
+            const selectionLength = Math.abs(target.selectionEnd - target.selectionStart);
+            
+            // Haddii la doortay in ka badan 20 xaraf (sida Select All ama 4000 xaraf)
+            if (selectionLength > 20) {
+                e.preventDefault(); // Ka jooji culayska browser-ka
+                const start = Math.min(target.selectionStart, target.selectionEnd);
+                const end = Math.max(target.selectionStart, target.selectionEnd);
+                const val = target.value;
+                const nextVal = val.slice(0, start) + val.slice(end);
+                
+                // Hal millisecond ku tirtir
+                setFormData((prev) => ({ ...prev, [field]: nextVal }));
+            }
+        }
+    };
+
+    const handleSafePaste = (
+        e: React.ClipboardEvent<HTMLTextAreaElement>,
+        field: "bio" | "about",
+        limit: number
+    ) => {
+        e.preventDefault();
+        const pasteText = e.clipboardData.getData("text") || "";
+        const target = e.currentTarget;
+        const start = target.selectionStart;
+        const end = target.selectionEnd;
+        const currentVal = target.value;
+        const combined = currentVal.slice(0, start) + pasteText + currentVal.slice(end);
+        const finalVal = combined.slice(0, limit);
+        setFormData((prev) => ({ ...prev, [field]: finalVal }));
+    };
+
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
@@ -115,8 +156,7 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
     const selectedCategoryName = getCategoryName(formData.category_id);
 
     return (
-        /* select-none waxay ka hortagaysaa in mouse-ka wax kale jiido */
-        <Card className="border-border shadow-xs select-none">
+        <Card className="border-border shadow-xs">
             <CardHeader className="flex flex-row items-center justify-between pb-4 border-b">
                 <div>
                     <CardTitle className="text-lg font-bold">Macluumaadka Ganacsiga</CardTitle>
@@ -161,7 +201,7 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                         <Input
                             value={userEmail}
                             disabled
-                            className="bg-muted/40 text-muted-foreground cursor-not-allowed select-none"
+                            className="bg-muted/40 text-muted-foreground cursor-not-allowed"
                         />
                     </div>
 
@@ -174,7 +214,6 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                 required
                                 placeholder="Tusaale: Hilaac Store"
-                                className="select-text"
                             />
                         ) : (
                             <div className="p-2.5 rounded-lg border bg-muted/20 text-sm font-semibold text-foreground">
@@ -276,7 +315,6 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                                     onChange={(e) => setFormData({ ...formData, whatsapp_number: e.target.value })}
                                     required
                                     placeholder="25261XXXXXXX"
-                                    className="select-text"
                                 />
                             ) : (
                                 <div className="p-2.5 rounded-lg border bg-muted/20 text-sm flex items-center gap-2">
@@ -293,7 +331,6 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                                     value={formData.location || ""}
                                     onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                                     placeholder="Tusaale: Suuqa Bakaaraha, Laamiga 1-aad"
-                                    className="select-text"
                                 />
                             ) : (
                                 <div className="p-2.5 rounded-lg border bg-muted/20 text-sm">
@@ -303,7 +340,7 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                         </div>
                     </div>
 
-                    {/* Bio (Max 160) - Safe with 1-Click Clear */}
+                    {/* 1. Bio (Max 160) - SAFE DRAG & DELETE */}
                     <div className="space-y-1.5">
                         <div className="flex justify-between items-center">
                             <div className="flex items-center gap-2">
@@ -314,7 +351,7 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                                         onClick={() => setFormData({ ...formData, bio: "" })}
                                         className="text-[10px] text-rose-500 hover:underline flex items-center gap-0.5 cursor-pointer"
                                     >
-                                        <Eraser className="h-3 w-3" /> Nadiifi
+                                        <Eraser className="h-3 w-3" /> Tirtir qoraalka
                                     </button>
                                 )}
                             </div>
@@ -327,11 +364,13 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                                 maxLength={160}
                                 rows={2}
                                 value={formData.bio || ""}
+                                onKeyDown={(e) => handleLargeDelete(e, "bio")}
+                                onPaste={(e) => handleSafePaste(e, "bio", 160)}
                                 onChange={(e) =>
                                     setFormData({ ...formData, bio: e.target.value.slice(0, 160) })
                                 }
                                 placeholder="Hal-ku-dhig kooban (tusaale: Ganaciga dharka iyo kabaha casriga ah)..."
-                                className="select-text resize-none"
+                                className="resize-none"
                             />
                         ) : (
                             <div className="p-3 rounded-lg border bg-muted/20 text-sm italic text-foreground min-h-12.5">
@@ -340,7 +379,7 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                         )}
                     </div>
 
-                    {/* About Us (Max 1000) - Safe with 1-Click Clear */}
+                    {/* 2. About Us (Max 1000) - SAFE DRAG & DELETE */}
                     <div className="space-y-1.5">
                         <div className="flex justify-between items-center">
                             <div className="flex items-center gap-2">
@@ -351,7 +390,7 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                                         onClick={() => setFormData({ ...formData, about: "" })}
                                         className="text-[10px] text-rose-500 hover:underline flex items-center gap-0.5 cursor-pointer"
                                     >
-                                        <Eraser className="h-3 w-3" /> Clear
+                                        <Eraser className="h-3 w-3" /> Tirtir qoraalka
                                     </button>
                                 )}
                             </div>
@@ -364,15 +403,17 @@ export function GeneralTab({ store, userEmail, cities, categories }: GeneralTabP
                                 maxLength={1000}
                                 rows={4}
                                 value={formData.about || ""}
+                                onKeyDown={(e) => handleLargeDelete(e, "about")}
+                                onPaste={(e) => handleSafePaste(e, "about", 1000)}
                                 onChange={(e) =>
                                     setFormData({ ...formData, about: e.target.value.slice(0, 1000) })
                                 }
                                 placeholder="Halkan ku qor sheekada ganacsigaaga, waxaad qabataan, iyo sababta macaamiishu idiin dooranayaan..."
-                                className="select-text resize-none"
+                                className="resize-none"
                             />
                         ) : (
                             <div className="p-3 rounded-lg border bg-muted/20 text-sm whitespace-pre-line text-foreground min-h-20">
-                                {formData.about || "Weli wax macluumaad ah lagama qorin bogga 'Nagu Saabsan'."}
+                                {formData.about || "Weli wax macluumaad ah laguma qorin bogga 'Nagu Saabsan'."}
                             </div>
                         )}
                     </div>
