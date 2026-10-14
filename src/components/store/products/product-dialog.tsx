@@ -35,9 +35,9 @@ interface PresetGroup {
     presetValues: string[];
 }
 
-// 1. Dhammaan 7-da Qaybood (Waa wada xarfo yaryar si uusan marnaba u crash-gareyn)
+// 1. Dhammaan Qeybaha Ganacsiga (Categories Schemas)
 const CATEGORY_SCHEMAS: Record<string, PresetGroup[]> = {
-    // 1. Dharka, Fashion & Kabaha
+    // 1. Dharka & Fashion
     fashion: [
         {
             name: "Cabbir (Size)",
@@ -46,12 +46,6 @@ const CATEGORY_SCHEMAS: Record<string, PresetGroup[]> = {
         {
             name: "Midab (Color)",
             presetValues: ["Madow", "Caddaan", "Buluug", "Casaan", "Cagaar", "Bunni", "Jaalle"],
-        },
-        {
-            name: "Cabbirka Kabaha (Shoe Size)",
-            presetValues: [
-                "36", "37", "38", "39", "40", "41", "42", "43", "44", "45"
-            ],
         },
     ],
 
@@ -62,16 +56,12 @@ const CATEGORY_SCHEMAS: Record<string, PresetGroup[]> = {
             presetValues: ["Cusub (New)", "Gacan Labaad (Used)"],
         },
         {
-            name: "Kaydka (Storage)",
-            presetValues: ["64GB", "128GB", "256GB", "512GB", "1TB"],
-        },
-        {
             name: "Midabka",
-            presetValues: ["Black", "Silver", "Gold", "Blue", "Gray", "Titanium"],
+            presetValues: ["White", "Black", "Silver", "Gold", "Blue", "Red"],
         },
     ],
 
-    // 3. Beauty, Skincare & Cadar
+    // 3. Beauty & Skincare
     beauty: [
         {
             name: "Ku Habboon (Target)",
@@ -89,7 +79,19 @@ const CATEGORY_SCHEMAS: Record<string, PresetGroup[]> = {
         },
     ],
 
-    // 4. Borotiinka & Jimicsiga (Supplements)
+    // 4. Alaabta Guriga (Home & Living)
+    homeliving: [
+        {
+            name: "Xaaladda (Condition)",
+            presetValues: ["Cusub (New)", "Gacan Labaad (Used)"],
+        },
+        {
+            name: "Midabka (Color)",
+            presetValues: ["Madow", "Caddaan", "Bunni", "Cawl", "Beige"],
+        },
+    ],
+
+    // 5. Borotiinka & Jimicsiga (Supplements / Nutrition)
     supplements: [
         {
             name: "Ujeeddada (Goal)",
@@ -100,13 +102,9 @@ const CATEGORY_SCHEMAS: Record<string, PresetGroup[]> = {
                 "Awood & Tamar (Pre-Workout)"
             ],
         },
-        {
-            name: "Dhadhanka (Flavor)",
-            presetValues: ["Chocolate", "Vanilla", "Strawberry", "Banana", "Unflavored"],
-        },
     ],
 
-    // 5. Fiisooyinka & Safarrada (Travel & Visas)
+    // 6. Fiisooyinka & Safarrada (Travel & Visas)
     travel: [
         {
             name: "Nooca Fiisaha (Visa Type)",
@@ -125,7 +123,7 @@ const CATEGORY_SCHEMAS: Record<string, PresetGroup[]> = {
         },
     ],
 
-    // 6. Baabuurta & Gaadiidka (Vehicles)
+    // 7. Baabuurta & Gaadiidka (Vehicles)
     vehicles: [
         {
             name: "Xaaladda (Condition)",
@@ -141,7 +139,7 @@ const CATEGORY_SCHEMAS: Record<string, PresetGroup[]> = {
         },
     ],
 
-    // 7. Guryaha & Dhulka (Real Estate)
+    // 8. Guryaha & Dhulka (Real Estate)
     realestate: [
         {
             name: "Nooca (Status)",
@@ -159,44 +157,54 @@ const CATEGORY_SCHEMAS: Record<string, PresetGroup[]> = {
         },
     ],
 
-    // Fallback Guud (General)
-    general: [
-        {
-            name: "Xaaladda (Condition)",
-            presetValues: ["Cusub (New)", "Gacan Labaad (Used)"],
-        },
-        {
-            name: "Nooca (Status)",
-            presetValues: ["Iib (For Sale)", "Kiro (For Rent)"],
-        },
-    ],
+    // 9. Fallback Guud (General Store) - MA LAHA WAX OPTIONS AH
+    general: [],
 };
 
-// 2. Shaqada garanaysa Category walba oo aan marnaba qalad samaynayn
+// 2. Shaqada saxda ah ee garanaysa Category walba
 function matchCategoryKey(catName?: string): string {
     if (!catName) return "general";
     const name = catName.toLowerCase().trim();
 
-    // Vehicles
+    // 1. Beauty & Skincare (Wuxuu qabtaa beauty, skincare, cadar, cosmetic, make)
+    if (
+        name.includes("beauty") ||
+        name.includes("skin") ||
+        name.includes("care") ||
+        name.includes("cadar") ||
+        name.includes("cosmetic") ||
+        name.includes("perfume")
+    ) return "beauty";
+
+    // 2. Home & Living (Alaabta Guriga)
+    if (
+        name.includes("home") ||
+        name.includes("living") ||
+        name.includes("furniture") ||
+        name.includes("guri") && !name.includes("real") && !name.includes("estate")
+    ) return "homeliving";
+
+    // 3. Vehicles
     if (
         name.includes("vehic") ||
         name.includes("gaari") ||
         name.includes("baabuur") ||
         name.includes("car") ||
-        name.includes("moto")
+        name.includes("moto") ||
+        name.includes("auto")
     ) return "vehicles";
 
-    // Real Estate
+    // 4. Real Estate (Guryaha & Dhulka)
     if (
         name.includes("real") ||
         name.includes("estate") ||
-        name.includes("guri") ||
         name.includes("dhul") ||
-        name.includes("property") ||
-        name.includes("dabaq")
+        name.includes("dabaq") ||
+        name.includes("villa") ||
+        name.includes("property")
     ) return "realestate";
 
-    // Travel & Visas
+    // 5. Travel & Visas
     if (
         name.includes("travel") ||
         name.includes("visa") ||
@@ -207,43 +215,38 @@ function matchCategoryKey(catName?: string): string {
         name.includes("hajj")
     ) return "travel";
 
-    // Supplements & Gym
+    // 6. Supplements & Gym / Nutrition
     if (
         name.includes("supp") ||
+        name.includes("nutri") ||
         name.includes("protein") ||
         name.includes("borotiin") ||
         name.includes("gym") ||
         name.includes("fit")
     ) return "supplements";
 
-    // Electronics & Tech
+    // 7. Electronics & Tech
     if (
         name.includes("elect") ||
         name.includes("moobil") ||
         name.includes("phone") ||
         name.includes("laptop") ||
-        name.includes("tech")
+        name.includes("tech") ||
+        name.includes("gadget")
     ) return "electronics";
 
-    // Beauty & Skincare
-    if (
-        name.includes("beauty") ||
-        name.includes("cadar") ||
-        name.includes("perfume") ||
-        name.includes("skincare") ||
-        name.includes("cosmetic")
-    ) return "beauty";
-
-    // Fashion & Shoes
+    // 8. Fashion & Apparel
     if (
         name.includes("dhar") ||
         name.includes("fashion") ||
+        name.includes("apparel") ||
         name.includes("kabo") ||
         name.includes("shoe") ||
         name.includes("maro") ||
         name.includes("style")
     ) return "fashion";
 
+    // General Store
     return "general";
 }
 
@@ -270,9 +273,8 @@ export function ProductDialog({
     const [image, setImage] = useState<string | null>(null);
     const [uploading, setUploading] = useState(false);
 
-    // Xulashada Category-ga dukaanka (Haddii la waayo waxay had iyo jeer si nabad ah u aadaysaa general)
     const categoryKey = matchCategoryKey(storeCategoryName);
-    const categoryPresets = CATEGORY_SCHEMAS[categoryKey] || CATEGORY_SCHEMAS["general"] || [];
+    const categoryPresets = CATEGORY_SCHEMAS[categoryKey] || [];
 
     const [selectedValues, setSelectedValues] = useState<Record<string, string[]>>({});
     const [customInputs, setCustomInputs] = useState<Record<string, string>>({});
@@ -352,9 +354,8 @@ export function ProductDialog({
             const { data } = supabase.storage.from("products").getPublicUrl(filePath);
             setImage(data.publicUrl);
             toast.success("Sawirka waa la soo geliyay");
-        } catch (err: unknown) {
-            const message = err instanceof Error ? err.message : "Khalad ayaa dhacay sawirka";
-            toast.error(message);
+        } catch {
+            toast.error("Khalad ayaa dhacay sawirka");
         } finally {
             setUploading(false);
         }
@@ -403,205 +404,213 @@ export function ProductDialog({
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent className="w-[96vw] max-w-lg max-h-[90vh] overflow-y-auto p-4 sm:p-6 rounded-2xl sm:rounded-3xl border shadow-xl">
-                <DialogHeader className="pb-2 border-b">
-                    <DialogTitle className="text-base sm:text-lg font-bold text-foreground">
-                        {isEditing ? "Wax ka beddel" : "Ku dar mid Cusub"}
-                    </DialogTitle>
-                </DialogHeader>
+            {/* Modal-ka oo leh Height go'an (88dvh), Header & Footer Go'an, Dhexda oo kaliya oo Scroll leh */}
+            <DialogContent className="w-[96vw] max-w-lg h-[88dvh] max-h-[88dvh] p-0 flex flex-col rounded-2xl sm:rounded-3xl border shadow-2xl overflow-hidden bg-background">
+                <form onSubmit={handleSubmit} className="flex flex-col h-full overflow-hidden">
+                    
+                    {/* 1. Header-ka Sare (Go'an - Xidhitaanka & Magaca mar kasta waa muuqdaan) */}
+                    <DialogHeader className="p-4 sm:p-5 border-b shrink-0 bg-background text-left">
+                        <DialogTitle className="text-base sm:text-lg font-bold text-foreground">
+                            {isEditing ? "Wax ka beddel" : "Ku dar mid Cusub"}
+                        </DialogTitle>
+                    </DialogHeader>
 
-                <form onSubmit={handleSubmit} className="space-y-4 pt-2">
-                    {/* 1. Sawirka */}
-                    <div className="space-y-1.5">
-                        <Label className="text-xs font-semibold text-muted-foreground uppercase">
-                            Sawirka Adeega ama Alaabta
-                        </Label>
-                        <div className="flex items-center gap-3">
-                            {image ? (
-                                <div className="relative h-16 w-16 sm:h-20 sm:w-20 rounded-xl overflow-hidden border border-border shrink-0">
-                                    <Image src={image} alt="Sawirka" fill className="object-cover" />
-                                    <button
-                                        type="button"
-                                        onClick={() => setImage(null)}
-                                        className="absolute top-1 right-1 bg-black/60 text-white rounded-full p-1 hover:bg-black transition-colors"
-                                    >
-                                        <X className="h-3 w-3" />
-                                    </button>
-                                </div>
-                            ) : (
-                                <label className="flex items-center justify-center gap-2 h-16 w-full sm:w-44 border-2 border-dashed rounded-xl border-border/80 hover:bg-muted/40 cursor-pointer transition-colors px-3">
-                                    {uploading ? (
-                                        <Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />
-                                    ) : (
-                                        <>
-                                            <UploadCloud className="h-5 w-5 text-primary" />
-                                            <span className="text-xs font-semibold text-foreground">Soo Geli Sawir</span>
-                                        </>
-                                    )}
-                                    <input
-                                        type="file"
-                                        accept="image/*"
-                                        className="hidden"
-                                        disabled={uploading}
-                                        onChange={handleImageUpload}
-                                    />
-                                </label>
-                            )}
-                        </div>
-                    </div>
-
-                    {/* 2. Magaca & Qiimaha */}
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-                        <div className="sm:col-span-2 space-y-1">
-                            <Label htmlFor="prod-name" className="text-xs font-semibold text-foreground">
-                                Magaca Adeega ama Alaabta *
+                    {/* 2. Qaybta Xogta (Dhexda oo si raaxo leh u scroll-garoobaysa) */}
+                    <div className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-4">
+                        {/* Sawirka */}
+                        <div className="space-y-1.5">
+                            <Label className="text-xs font-semibold text-muted-foreground uppercase">
+                                Sawirka Adeega ama Alaabta
                             </Label>
-                            <Input
-                                id="prod-name"
-                                placeholder="Geli magaca..."
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
-                                required
-                                className="h-10 text-xs sm:text-sm rounded-xl"
-                            />
-                        </div>
-
-                        <div className="space-y-1">
-                            <Label htmlFor="prod-price" className="text-xs font-semibold text-foreground">
-                                Qiimaha ($) *
-                            </Label>
-                            <Input
-                                id="prod-price"
-                                type="number"
-                                step="0.01"
-                                min="0"
-                                placeholder="20.00"
-                                value={price}
-                                onChange={(e) => setPrice(e.target.value)}
-                                required
-                                className="h-10 text-xs sm:text-sm font-semibold rounded-xl"
-                            />
-                        </div>
-                    </div>
-
-                    {/* 3. Faahfaahinta */}
-                    <div className="space-y-1">
-                        <Label htmlFor="prod-desc" className="text-xs font-semibold text-foreground">
-                            Faahfaahinta Dheeraadka ah (Ikhtiyaari)
-                        </Label>
-                        <Textarea
-                            id="prod-desc"
-                            rows={2}
-                            placeholder="Faahfaahin kooban oo ku saabsan..."
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
-                            className="text-xs rounded-xl resize-none"
-                        />
-                    </div>
-
-                    {/* 4. Diyaar ma yahay? */}
-                    <div className="flex items-center justify-between border border-border/80 rounded-xl p-2.5 bg-muted/20">
-                        <div>
-                            <p className="text-xs font-semibold text-foreground">Diyaar ma yahay hadda?</p>
-                            <p className="text-[10px] text-muted-foreground">Macaamiishu hadda ma arki karaan oo ma heli karaan?</p>
-                        </div>
-                        <Switch checked={inStock} onCheckedChange={setInStock} />
-                    </div>
-
-                    {/* 5. Kala-doorashooyinka (Options) */}
-                    <div className="pt-2 border-t space-y-3">
-                        <div>
-                            <Label className="text-xs font-bold uppercase tracking-wider text-foreground flex items-center gap-1.5">
-                                <Sparkles className="h-3.5 w-3.5 text-primary" />
-                                Kala-doorashooyinka (Options)
-                            </Label>
-                            <p className="text-[11px] text-muted-foreground">
-                                Taabo xulashooyinka diyaar kuu ah
-                            </p>
-                        </div>
-
-                        {/* Interactive Pill Groups */}
-                        <div className="space-y-3">
-                            {categoryPresets.map((group) => {
-                                const selectedInThisGroup = selectedValues[group.name] || [];
-                                const allDisplayValues = Array.from(
-                                    new Set([...group.presetValues, ...selectedInThisGroup])
-                                );
-
-                                return (
-                                    <div
-                                        key={group.name}
-                                        className="rounded-xl border border-border/80 bg-muted/15 p-2.5 sm:p-3 space-y-2"
-                                    >
-                                        <div className="flex items-center justify-between">
-                                            <span className="text-xs font-bold text-foreground">
-                                                {group.name}
-                                            </span>
-                                            {selectedInThisGroup.length > 0 && (
-                                                <span className="text-[10px] font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md">
-                                                    {selectedInThisGroup.length} la doortay
-                                                </span>
-                                            )}
-                                        </div>
-
-                                        {/* Clickable Pills */}
-                                        <div className="flex flex-wrap gap-1.5">
-                                            {allDisplayValues.map((val) => {
-                                                const isSelected = selectedInThisGroup.includes(val);
-                                                return (
-                                                    <button
-                                                        key={val}
-                                                        type="button"
-                                                        onClick={() => toggleValue(group.name, val)}
-                                                        className={`inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-medium border transition-all cursor-pointer select-none active:scale-95 ${isSelected
-                                                            ? "bg-primary text-primary-foreground border-primary shadow-xs"
-                                                            : "bg-background text-foreground border-border/80 hover:bg-muted"
-                                                            }`}
-                                                    >
-                                                        {isSelected && <Check className="h-3 w-3 stroke-3" />}
-                                                        <span>{val}</span>
-                                                    </button>
-                                                );
-                                            })}
-                                        </div>
-
-                                        {/* Ku dar mid kale */}
-                                        <div className="flex items-center gap-1.5 pt-1">
-                                            <Input
-                                                placeholder={`Mid kale (${group.name})...`}
-                                                value={customInputs[group.name] || ""}
-                                                onChange={(e) =>
-                                                    setCustomInputs({
-                                                        ...customInputs,
-                                                        [group.name]: e.target.value,
-                                                    })
-                                                }
-                                                onKeyDown={(e) => {
-                                                    if (e.key === "Enter") {
-                                                        e.preventDefault();
-                                                        handleAddCustomValue(group.name);
-                                                    }
-                                                }}
-                                                className="h-8 text-xs rounded-lg bg-background flex-1"
-                                            />
-                                            <Button
-                                                type="button"
-                                                variant="outline"
-                                                size="sm"
-                                                onClick={() => handleAddCustomValue(group.name)}
-                                                className="h-8 px-2.5 text-xs rounded-lg shrink-0 gap-1"
-                                            >
-                                                <Plus className="h-3.5 w-3.5" /> Ku dar
-                                            </Button>
-                                        </div>
+                            <div className="flex items-center gap-3">
+                                {image ? (
+                                    <div className="relative h-16 w-16 sm:h-20 sm:w-20 rounded-xl overflow-hidden border border-border shrink-0">
+                                        <Image src={image} alt="Sawirka" fill className="object-cover" />
+                                        <button
+                                            type="button"
+                                            onClick={() => setImage(null)}
+                                            className="absolute top-1 right-1 bg-black/60 text-white rounded-full p-1 hover:bg-black transition-colors"
+                                        >
+                                            <X className="h-3 w-3" />
+                                        </button>
                                     </div>
-                                );
-                            })}
+                                ) : (
+                                    <label className="flex items-center justify-center gap-2 h-16 w-full sm:w-44 border-2 border-dashed rounded-xl border-border/80 hover:bg-muted/40 cursor-pointer transition-colors px-3">
+                                        {uploading ? (
+                                            <Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />
+                                        ) : (
+                                            <>
+                                                <UploadCloud className="h-5 w-5 text-primary" />
+                                                <span className="text-xs font-semibold text-foreground">Soo Geli Sawir</span>
+                                            </>
+                                        )}
+                                        <input
+                                            type="file"
+                                            accept="image/*"
+                                            className="hidden"
+                                            disabled={uploading}
+                                            onChange={handleImageUpload}
+                                        />
+                                    </label>
+                                )}
+                            </div>
                         </div>
+
+                        {/* Magaca & Qiimaha */}
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                            <div className="sm:col-span-2 space-y-1">
+                                <Label htmlFor="prod-name" className="text-xs font-semibold text-foreground">
+                                    Magaca Adeega ama Alaabta *
+                                </Label>
+                                <Input
+                                    id="prod-name"
+                                    placeholder="Geli magaca..."
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                    required
+                                    className="h-10 text-[16px] sm:text-xs rounded-xl"
+                                />
+                            </div>
+
+                            <div className="space-y-1">
+                                <Label htmlFor="prod-price" className="text-xs font-semibold text-foreground">
+                                    Qiimaha ($) *
+                                </Label>
+                                <Input
+                                    id="prod-price"
+                                    type="number"
+                                    step="0.01"
+                                    min="0"
+                                    placeholder="20.00"
+                                    value={price}
+                                    onChange={(e) => setPrice(e.target.value)}
+                                    required
+                                    className="h-10 text-[16px] sm:text-xs font-semibold rounded-xl"
+                                />
+                            </div>
+                        </div>
+
+                        {/* Faahfaahinta */}
+                        <div className="space-y-1">
+                            <Label htmlFor="prod-desc" className="text-xs font-semibold text-foreground">
+                                Faahfaahinta Dheeraadka ah (Ikhtiyaari)
+                            </Label>
+                            <Textarea
+                                id="prod-desc"
+                                rows={2}
+                                placeholder="Faahfaahin kooban oo ku saabsan..."
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
+                                className="text-[16px] sm:text-xs rounded-xl resize-none"
+                            />
+                        </div>
+
+                        {/* Diyaar ma yahay? */}
+                        <div className="flex items-center justify-between border border-border/80 rounded-xl p-2.5 bg-muted/20">
+                            <div>
+                                <p className="text-xs font-semibold text-foreground">Diyaar ma yahay hadda?</p>
+                                <p className="text-[10px] text-muted-foreground">Macaamiishu hadda ma arki karaan oo ma heli karaan?</p>
+                            </div>
+                            <Switch checked={inStock} onCheckedChange={setInStock} />
+                        </div>
+
+                        {/* Kala-doorashooyinka (Options) - KALIYA MARKA CATEGORY-GU LEEYAHAY OPTIONS */}
+                        {categoryPresets.length > 0 && (
+                            <div className="pt-2 border-t space-y-3">
+                                <div>
+                                    <Label className="text-xs font-bold uppercase tracking-wider text-foreground flex items-center gap-1.5">
+                                        <Sparkles className="h-3.5 w-3.5 text-primary" />
+                                        Kala-doorashooyinka (Options)
+                                    </Label>
+                                    <p className="text-[11px] text-muted-foreground">
+                                        Taabo xulashooyinka diyaar kuu ah
+                                    </p>
+                                </div>
+
+                                <div className="space-y-3">
+                                    {categoryPresets.map((group) => {
+                                        const selectedInThisGroup = selectedValues[group.name] || [];
+                                        const allDisplayValues = Array.from(
+                                            new Set([...group.presetValues, ...selectedInThisGroup])
+                                        );
+
+                                        return (
+                                            <div
+                                                key={group.name}
+                                                className="rounded-xl border border-border/80 bg-muted/15 p-2.5 sm:p-3 space-y-2"
+                                            >
+                                                <div className="flex items-center justify-between">
+                                                    <span className="text-xs font-bold text-foreground">
+                                                        {group.name}
+                                                    </span>
+                                                    {selectedInThisGroup.length > 0 && (
+                                                        <span className="text-[10px] font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md">
+                                                            {selectedInThisGroup.length} la doortay
+                                                        </span>
+                                                    )}
+                                                </div>
+
+                                                {/* Clickable Pills */}
+                                                <div className="flex flex-wrap gap-1.5">
+                                                    {allDisplayValues.map((val) => {
+                                                        const isSelected = selectedInThisGroup.includes(val);
+                                                        return (
+                                                            <button
+                                                                key={val}
+                                                                type="button"
+                                                                onClick={() => toggleValue(group.name, val)}
+                                                                className={`inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-medium border transition-all cursor-pointer select-none active:scale-95 ${
+                                                                    isSelected
+                                                                        ? "bg-primary text-primary-foreground border-primary shadow-xs"
+                                                                        : "bg-background text-foreground border-border/80 hover:bg-muted"
+                                                                }`}
+                                                            >
+                                                                {isSelected && <Check className="h-3 w-3 stroke-3" />}
+                                                                <span>{val}</span>
+                                                            </button>
+                                                        );
+                                                    })}
+                                                </div>
+
+                                                {/* Ku dar mid kale */}
+                                                <div className="flex items-center gap-1.5 pt-1">
+                                                    <Input
+                                                        placeholder={`Mid kale (${group.name})...`}
+                                                        value={customInputs[group.name] || ""}
+                                                        onChange={(e) =>
+                                                            setCustomInputs({
+                                                                ...customInputs,
+                                                                [group.name]: e.target.value,
+                                                            })
+                                                        }
+                                                        onKeyDown={(e) => {
+                                                            if (e.key === "Enter") {
+                                                                e.preventDefault();
+                                                                handleAddCustomValue(group.name);
+                                                            }
+                                                        }}
+                                                        className="h-8 text-[16px] sm:text-xs rounded-lg bg-background flex-1"
+                                                    />
+                                                    <Button
+                                                        type="button"
+                                                        variant="outline"
+                                                        size="sm"
+                                                        onClick={() => handleAddCustomValue(group.name)}
+                                                        className="h-8 px-2.5 text-xs rounded-lg shrink-0 gap-1"
+                                                    >
+                                                        <Plus className="h-3.5 w-3.5" /> Ku dar
+                                                    </Button>
+                                                </div>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+                        )}
                     </div>
 
-                    {/* Dialog Footer */}
-                    <DialogFooter className="pt-2 border-t grid grid-cols-2 gap-2 sm:flex sm:justify-end">
+                    {/* 3. Footer-ka Hoose (Go'an - Badhamada "Ka noqo" iyo "Ku dar Hadda" mar kasta waa muuqdaan) */}
+                    <DialogFooter className="p-3 sm:p-4 border-t bg-background shrink-0 grid grid-cols-2 gap-2 sm:flex sm:justify-end">
                         <Button
                             type="button"
                             variant="outline"
