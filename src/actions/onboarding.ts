@@ -1,6 +1,7 @@
 "use server";
 
 import { createClient } from "@/utils/supabase/server";
+import { sendAdminPushNotification } from "@/actions/admin/notifications";
 
 export async function getActiveCities() {
     const supabase = await createClient();
@@ -91,6 +92,17 @@ export async function createStoreAction(formData: FormData) {
             };
         }
         return { error: "Qalad Ganacsiga: " + storeError.message };
+    }
+
+    // 4. U dir Ogeysiiska Taleefanka Admin-ka (Push Notification)
+    try {
+        await sendAdminPushNotification(
+            "🔔 Ganacsi Cusub!",
+            `Ganacsi cusub: "${storeName}" ayaa sugaya ansixintaada.`,
+            "/admin/stores"
+        );
+    } catch (e) {
+        console.error("Push Notification error:", e);
     }
 
     return { success: true };

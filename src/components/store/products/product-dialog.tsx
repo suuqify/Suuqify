@@ -77,6 +77,16 @@ const CATEGORY_SCHEMAS: Record<string, PresetGroup[]> = {
                 "Dhammaan Maqaarka"
             ],
         },
+          {
+        // Waqtiga la isticmaalayo badeecada
+        name: "Waqtiga Isticmaalka (Usage Time)",
+        presetValues: [
+            "Maalin (Day)",
+            "Habeen (Night)",
+            "Maalin & Habeen (Day & Night)",
+            "Xilli Kasta (Anytime)"
+        ],
+    },
     ],
 
     // 4. Alaabta Guriga (Home & Living)

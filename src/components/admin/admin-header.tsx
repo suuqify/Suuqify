@@ -1,8 +1,74 @@
 "use client";
 
-import React from "react";
-import { ShieldAlert, Menu } from "lucide-react";
+import React, { useState } from "react";
+import { ShieldAlert, Menu, Bell, BellRing, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
+import { saveAdminSubscriptionAction } from "@/actions/admin/notifications";
+
+// Badhanka Shidista Ogeysiisyada ee Admin-ka
+export function AdminNotificationToggle() {
+    const [loading, setLoading] = useState(false);
+    const [enabled, setEnabled] = useState(false);
+
+    const enableNotifications = async () => {
+        if (typeof window === "undefined" || !("serviceWorker" in navigator) || !("PushManager" in window)) {
+            toast.error("Taleefankaagu ma taageerayo Push Notifications.");
+            return;
+        }
+
+        setLoading(true);
+        try {
+            const permission = await Notification.requestPermission();
+            if (permission !== "granted") {
+                toast.error("Waa inaad ogolaataa ogeysiisyada (Allow Notifications).");
+                setLoading(false);
+                return;
+            }
+
+            const registration = await navigator.serviceWorker.register("/sw.js");
+            await navigator.serviceWorker.ready;
+
+            const subscription = await registration.pushManager.subscribe({
+                userVisibleOnly: true,
+                applicationServerKey: process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY,
+            });
+
+            const res = await saveAdminSubscriptionAction(subscription.toJSON());
+            if (res.success) {
+                setEnabled(true);
+                toast.success("Ogeysiisyada tooska ah waa la shiday!");
+            } else {
+                toast.error(res.error || "Khalad ayaa dhacay");
+            }
+        } catch (err: any) {
+            toast.error("Khalad: " + (err?.message || "Lama oggolaan"));
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return (
+        <Button
+            variant="outline"
+            size="sm"
+            onClick={enableNotifications}
+            disabled={loading || enabled}
+            className="rounded-xl text-xs gap-1.5 border-primary/30 text-primary h-9"
+        >
+            {loading ? (
+                <Loader2 className="h-3.5 w-3.5 animate-spin" />
+            ) : enabled ? (
+                <BellRing className="h-3.5 w-3.5 text-emerald-600" />
+            ) : (
+                <Bell className="h-3.5 w-3.5" />
+            )}
+            <span className="hidden sm:inline">
+                {enabled ? "Ogeysiisyadu waa Shidanyihiin" : "Shid Ogeysiisyada"}
+            </span>
+        </Button>
+    );
+}
 
 interface AdminHeaderProps {
     adminName: string;
@@ -31,7 +97,10 @@ export function AdminHeader({ adminName, onOpenMobileNav }: AdminHeaderProps) {
                 </div>
             </div>
 
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2.5">
+                {/* Badhanka Ogeysiisyada */}
+                <AdminNotificationToggle />
+
                 <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-primary border border-primary/20">
                     <ShieldAlert className="w-3.5 h-3.5" />
                     <span>Admin Portal</span>

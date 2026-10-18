@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { createClient } from "@/utils/supabase/server";
+import { sendAdminPushNotification } from "@/actions/admin/notifications";
 
 export interface SubmitPaymentInput {
     planId: string;
@@ -23,7 +24,7 @@ export async function submitPaymentAction(data: SubmitPaymentInput) {
 
         const { data: store, error: storeError } = await supabase
             .from("stores")
-            .select("id")
+            .select("id, name")
             .eq("owner_id", user.id)
             .single();
 
@@ -33,7 +34,7 @@ export async function submitPaymentAction(data: SubmitPaymentInput) {
 
         const { data: plan, error: planError } = await supabase
             .from("plans")
-            .select("id, price")
+            .select("id, name, price")
             .eq("id", data.planId)
             .single();
 
@@ -66,6 +67,17 @@ export async function submitPaymentAction(data: SubmitPaymentInput) {
 
         if (insertError) {
             return { success: false, error: "Khalad: " + insertError.message };
+        }
+
+        // U dir Ogeysiiska Taleefanka Admin-ka (Push Notification)
+        try {
+            await sendAdminPushNotification(
+                "💰 Lacag Cusub oo Timid!",
+                `Dukaanka "${store.name}" ayaa soo diray $${plan.price} (${data.paymentMethod}).`,
+                "/admin/payments"
+            );
+        } catch (e) {
+            console.error("Push Notification error:", e);
         }
 
         revalidatePath("/store/plans");
