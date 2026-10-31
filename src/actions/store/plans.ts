@@ -52,7 +52,7 @@ export async function submitPaymentAction(data: SubmitPaymentInput) {
         if (existingPending && existingPending.length > 0) {
             return {
                 success: false,
-                error: "Waxaad horey u dirtay dalab lacag-bixin ah oo weli sugitaan ku jira. Fadlan sug inta maamulku ka hubinayo.",
+                error: "Waxaad horey u dirtay dalab lacag-bixin ah oo weli sugitaan ku jirta.",
             };
         }
 

@@ -91,13 +91,16 @@ export async function sendAdminPushNotification(
     console.error("Global Push Notification Error:", err);
   }
 }
-
-// 3. Test Action oo aad hal gujis ku tijaabin karto hadda
-export async function testPushNotificationAction() {
-  await sendAdminPushNotification(
-    "🔔 Tijaabo Ogeysiis!",
-    "Hambalyo! Ogeysiisyada Suuqify si buuxda ayay ugu shaqeynayaan iPhone-kaaga.",
-    "/admin"
-  );
-  return { success: true };
+// 3. Test Action oo soo celinaya success ama error
+export async function testPushNotificationAction(): Promise<{ success: boolean; error?: string }> {
+  try {
+    await sendAdminPushNotification(
+      "🔔 Tijaabo Ogeysiis!",
+      "Hambalyo! Ogeysiisyada Suuqify si buuxda ayay ugu shaqeynayaan iPhone-kaaga.",
+      "/admin"
+    );
+    return { success: true };
+  } catch (err: any) {
+    return { success: false, error: err?.message || "Khalad aan la garanayn" };
+  }
 }

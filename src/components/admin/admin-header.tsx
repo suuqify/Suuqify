@@ -1,14 +1,14 @@
 "use client";
 
 import React, { useState } from "react";
-import { ShieldAlert, Menu, Bell, BellRing, Loader2 } from "lucide-react";
+import { ShieldAlert, Menu, Bell, BellRing, Loader2, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import { saveAdminSubscriptionAction } from "@/actions/admin/notifications";
+import { saveAdminSubscriptionAction, testPushNotificationAction } from "@/actions/admin/notifications";
 
-// Badhanka Shidista Ogeysiisyada ee Admin-ka
 export function AdminNotificationToggle() {
     const [loading, setLoading] = useState(false);
+    const [testing, setTesting] = useState(false);
     const [enabled, setEnabled] = useState(false);
 
     const enableNotifications = async () => {
@@ -48,25 +48,56 @@ export function AdminNotificationToggle() {
         }
     };
 
+    const handleTestNotification = async () => {
+        setTesting(true);
+        try {
+            const res = await testPushNotificationAction();
+            if (res.success) {
+                toast.success("Ogeysiiskii tijaabada ahaa waa la diray! Eeg shaashadda taleefankaaga.");
+            } else {
+                toast.error("Ma dirmin: " + (res.error || "Khalad"));
+            }
+        } catch (err: any) {
+            toast.error("Khalad: " + (err?.message || "Lama oggolaan"));
+        } finally {
+            setTesting(false);
+        }
+    };
+
     return (
-        <Button
-            variant="outline"
-            size="sm"
-            onClick={enableNotifications}
-            disabled={loading || enabled}
-            className="rounded-xl text-xs gap-1.5 border-primary/30 text-primary h-9"
-        >
-            {loading ? (
-                <Loader2 className="h-3.5 w-3.5 animate-spin" />
-            ) : enabled ? (
-                <BellRing className="h-3.5 w-3.5 text-emerald-600" />
-            ) : (
-                <Bell className="h-3.5 w-3.5" />
-            )}
-            <span className="hidden sm:inline">
-                {enabled ? "Ogeysiisyadu waa Shidanyihiin" : "Shid Ogeysiisyada"}
-            </span>
-        </Button>
+        <div className="flex items-center gap-1.5">
+            <Button
+                variant="outline"
+                size="sm"
+                onClick={enableNotifications}
+                disabled={loading}
+                className="rounded-xl text-xs gap-1.5 border-primary/30 text-primary h-9"
+            >
+                {loading ? (
+                    <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                ) : enabled ? (
+                    <BellRing className="h-3.5 w-3.5 text-emerald-600" />
+                ) : (
+                    <Bell className="h-3.5 w-3.5" />
+                )}
+                <span className="hidden sm:inline">
+                    {enabled ? "Ogeysiisyadu waa Shidanyihiin" : "Shid Ogeysiisyada"}
+                </span>
+            </Button>
+
+            {/* Badhanka Tijaabada Tooska ah */}
+            <Button
+                variant="secondary"
+                size="sm"
+                onClick={handleTestNotification}
+                disabled={testing}
+                className="rounded-xl text-xs gap-1 h-9 px-2.5"
+                title="Tijaabi Ogeysiiska Hadda"
+            >
+                {testing ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Send className="h-3.5 w-3.5" />}
+                <span className="hidden md:inline">Tijaabi</span>
+            </Button>
+        </div>
     );
 }
 
@@ -98,7 +129,6 @@ export function AdminHeader({ adminName, onOpenMobileNav }: AdminHeaderProps) {
             </div>
 
             <div className="flex items-center gap-2.5">
-                {/* Badhanka Ogeysiisyada */}
                 <AdminNotificationToggle />
 
                 <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-primary border border-primary/20">
